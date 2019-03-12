@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="FAIRmetricsApp">
+
+<head>
+    <meta charset="UTF-8">
+    <title>The FAIR Maturity Evaluation Service</title>
+    <link rel="stylesheet" href="lib/unused/sandstorm.min.css">
+    <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href="lib/angular-material.min.css">
+    <link rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+          integrity="sha384-hWVjflwFxL6sNzntih17bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+          crossorigin="anonymous">
+
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/bootstrap.min.js"></script>
+    <script type="text/javascript" src="lib/angular.js"></script>
+    <script type="text/javascript" src="lib/angular-route.min.js"></script>
+    <script type="text/javascript" src="lib/angular-aria.min.js"></script>
+    <script type="text/javascript" src="lib/angular-animate.min.js"></script>
+    <script type="text/javascript" src="lib/angular-messages.min.js"></script>
+    <script type="text/javascript" src="lib/angular-material.js"></script>
+
+    <script type="text/javascript" src="app.js"></script>
+</head>
+
+<body ng-controller="CollectionsController as Collections">
+
+    <!-- NAV BAR TOP -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="#" ng-click="Collections.get_collections()">FAIR Evaluation Services</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#" ng-click="Collections.get_collections()">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" ng-click="Collections.get_evaluations()">Evaluations</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Metrics</a>
+                    <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 37px, 0px); top: 0px; left: 0px; will-change: transform;">
+                        <a class="dropdown-item" href="#" ng-click="Collections.get_metrics()">Browse</a>
+                        <a class="dropdown-item disabled" href="#">Register</a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Collections</a>
+                    <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 37px, 0px); top: 0px; left: 0px; will-change: transform;">
+                        <a class="dropdown-item" href="#" ng-click="Collections.get_collections()">Browse</a>
+                        <a class="dropdown-item disabled" href="#">Register</a>
+                    </div>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search tests and collections">
+                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+
+    <!-- COLLECTIONS -->
+    <div class="container-fluid mainContainer" ng-if="Collections.data != false">
+        <div class="collections row" ng-if="Collections.current_collection == false">
+            <h1 class="col-12"> FAIR Maturity Indicator - Collections</h1>
+            <div class="col-lg-4 col-md-6 col-sm-12 col-xl-3 collectionsCards" ng-repeat="collection in Collections.data">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-check" ng-if="collection.Deprecated">
+                        </i>
+                        <h3> {{collection.name}}</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="description">
+                            <label>Description:</label>
+                            <span> {{collection.description}} </span>
+                        </div>
+                        <div class="description">
+                            <label>Contact:</label>
+                            <span> {{collection.contact | URL_last_arg}} </span>
+                        </div>
+                        <div class="description">
+                            <label>Organization:</label>
+                            <span> {{collection.Organization}} </span>
+                        </div>
+                    </div>
+                    <div class="buttonsContainer">
+                        <button type="button"
+                                class="btn btn-primary btn"
+                                ng-click="Collections.get_collection(collection.id)">
+                            Show
+                        </button>
+                        <button type="button" class="btn btn-primary">Execute Evaluation</button>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div ng-if="Collections.current_collection != false">
+            <div class="card collectionItem">
+                <div class="card-header">
+                    <h3>{{Collections.current_collection.name}}</h3>
+                </div>
+                <div class="card-body">
+                    <div ng-repeat="(key, val) in Collections.current_collection">
+                        <label>{{key | URL_last_arg}}:</label>
+                        <span>{{val}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="goBack">
+                <button type="button"
+                        class="btn-primary btn"
+                        ng-click="Collections.current_collection = false">
+                    Go Back to Collections
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- TESTS -->
+    <div class="container-fluid mainContainer" ng-if="Collections.evaluations != false">
+
+        <div ng-if="Collections.current_evaluation == false">
+            <h1 class="col-12"> FAIR Maturity Indicator - Evaluations</h1>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">Collection</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Executor</th>
+                    <th scope="col">Title</th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="evaluation in Collections.evaluations">
+                    <td>
+                        {{evaluation['@id'] | URL_last_arg}}
+                    </td>
+                    <td>
+                        {{evaluation['http://rdfs.org/ns/void#description']}}
+                    </td>
+                    <td>
+                        {{evaluation['creator'] | URL_last_arg}}
+                    </td>
+                    <td>
+                        {{evaluation['title']}}
+                    </td>
+                    <td>
+                        <button type="button"
+                                class="btn-primary btn"
+                                ng-click="Collections.get_evaluation(evaluation['@id'])">
+                            Show
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div ng-if="Collections.current_evaluation != false">
+            <div class="card">
+                <div class="card-header">
+                    <h3>{{Collections.current_evaluation.title}}</h3>
+                </div>
+                <div class="card-body">
+                    <div ng-repeat="(fieldKey, fieldVal) in Collections.current_evaluation">
+
+                        <div ng-if="fieldKey != 'evaluationResult'">
+                            <label> {{fieldKey | URL_last_arg}}</label>
+                            <span> {{fieldVal}}</span>
+                        </div>
+
+                        <div ng-if="fieldKey == 'evaluationResult'">
+                            <div ng-repeat="(iK, iV) in fieldVal">
+                                <hr ng-if="$first">
+                                {{iK | URL_last_arg}}
+                                <div ng-repeat="(TK, TV) in iV[0]">
+                                    {{TK}} {{TV}}
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="goBack">
+                <button type="button"
+                        class="btn-primary btn"
+                        ng-click="Collections.current_evaluation = false">
+                    Go Back to Evaluations
+                </button>
+            </div>
+        </div>
+
+     </div>
+
+    <!-- METRICS -->
+    <div class="container-fluid mainContainer" ng-if="Collections.metrics != false">
+
+        <div ng-if="Collections.current_metric == false">
+            <h1 class="col-12"> FAIR Maturity Indicator - Metrics</h1>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Creator</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Principle</th>
+                    <th scope="col">Test</th>
+                    <th scope="col">Interface</th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="metric in Collections.metrics">
+                    <td> {{metric['name']}}</td>
+                    <td> {{metric['creator']}}</td>
+                    <td> {{metric['email']}}</td>
+
+                    <td>
+                        <a target="_blank" href="{{metric['principle']}}">
+                            {{metric['principle'] | URL_last_arg}}
+                        </a>
+                    </td>
+
+                    <td> {{metric['test_of_metric']}}</td>
+                    <td> {{metric['smarturl']}}</td>
+
+                    <td>
+                        <button type="button"
+                                class="btn-primary btn"
+                                ng-click="Collections.get_metric(metric['@id'])">
+                            Show
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <div ng-if="Collections.current_metric != false">
+            <div class="card">
+                <div class="card-header">
+                    <h3>{{Collections.current_metric.name}}</h3>
+                </div>
+                <div class="card-body">
+                    <div ng-repeat="(fieldKey, fieldVal) in Collections.current_metric">
+                        <label>{{fieldKey | URL_last_arg}}: </label>
+                        <span> {{fieldVal}}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="goBack">
+                <button type="button"
+                        class="btn-primary btn"
+                        ng-click="Collections.current_metric = false">
+                    Go Back to metrics list
+                </button>
+            </div>
+        </div>
+
+
+    </div>
+
+</body>
+
+</html>
