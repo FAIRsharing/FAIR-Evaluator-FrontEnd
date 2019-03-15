@@ -55,28 +55,109 @@
                     <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 37px, 0px); top: 0px; left: 0px; will-change: transform;">
                         <a class="dropdown-item" href="#" ng-click="Collections.get_collections()">Browse</a>
                         <a class="dropdown-item disabled" href="#">Register</a>
+
+                        <a class="dropdown-item"
+                           href="#"
+                           ng-click="Collections.set_evaluation_form(null)">
+                           <!--ng-click="Collections.run_evaluation(22,
+                                                                'http://linkeddata.systems/Magnaporthe/polyA_Sites/',
+                                                                'API front end implementation test',
+                                                                '10.1098/abd.123')">-->
+                            Run test
+                        </a>
+
+
                     </div>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search tests and collections">
-                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                <input class="form-control mr-sm-2"
+                       type="text"
+                       placeholder="Search tests and collections"
+                       ng-model="Collections.terms_to_search">
+                <button class="btn btn-secondary my-2 my-sm-0" type="submit" ng-click="Collections.search_terms()">Search</button>
             </form>
         </div>
     </nav>
 
-    <!-- COLLECTIONS -->
-    <div class="container-fluid mainContainer" ng-if="Collections.data != false">
-        <div class="collections row" ng-if="Collections.current_collection == false">
-            <h1 class="col-12"> FAIR Maturity Indicator - Collections</h1>
-            <div class="col-lg-4 col-md-6 col-sm-12 col-xl-3 collectionsCards" ng-repeat="collection in Collections.data">
-                <div class="card">
-                    <div class="card-header">
-                        <i class="fas fa-check" ng-if="collection.Deprecated">
-                        </i>
-                        <h3> {{collection.name}}</h3>
+    <div class="fade show EvaluationForm container-fluid" ng-if="Collections.evaluationForm == true;">
+        <div class="FormContent" id="runEvaluation">
+            <h4>Evaluate a resource against a collection of tests</h4>
+
+            <div layout="column" ng-cloak class="md-inline-form">
+
+                <md-content layout-padding>
+                    <div>
+                        <form name="runEvaluation" class="runEvaluation">
+
+                            <div layout-gt-sm="row">
+
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label>Collection</label>
+                                    <md-select ng-model="Collections.prepared_evaluation['collection']">
+                                        <md-option ng-repeat="collection in Collections.data" value="{{collection['id']}}">
+                                            {{collection.name}}
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label>Resource URI</label>
+                                    <input ng-model="Collections.prepared_evaluation['uri']">
+                                </md-input-container>
+                            </div>
+
+                            <div layout-gt-sm="row">
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label>User DOI</label>
+                                    <input ng-model="Collections.prepared_evaluation['doi']">
+                                </md-input-container>
+                                <md-input-container class="md-block" flex-gt-sm>
+                                    <label>Title</label>
+                                    <input ng-model="Collections.prepared_evaluation['title']">
+                                </md-input-container>
+                            </div>
+
+                        </form>
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-lg-3 col-sm-7 col-md-4 buttonHolder">
+                                    <button class="btn-primary submitEval"> Submit </button>
+                                </div>
+                                <div class="col-lg-3 col-sm-7 col-md-4 buttonHolder">
+                                    <button class="btn-primary submitEval"
+                                            ng-click="Collections.set_evaluation_form(null)">
+                                        Hide
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
+                </md-content>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- COLLECTIONS -->
+    <div class="container-fluid mainContainer fade show" ng-if="Collections.data != false">
+        <div class="collections row fade show" ng-if="Collections.current_collection == false">
+            <div class="col-12">
+                <h1>FAIR Maturity Indicator - Collections</h1>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 col-xl-2 collectionsCards" ng-repeat="collection in Collections.data">
+                <div class="card">
                     <div class="card-body">
+                        <div class="title">
+                            <label class="collectionName">{{collection.name}}</label>
+                        </div>
+                        <hr>
+                        <div class="description">
+                            <label>Status:</label>
+                            <span> Deprecated or Valid </span>
+                        </div>
                         <div class="description">
                             <label>Description:</label>
                             <span> {{collection.description}} </span>
@@ -96,15 +177,33 @@
                                 ng-click="Collections.get_collection(collection.id)">
                             Show
                         </button>
-                        <button type="button" class="btn btn-primary">Execute Evaluation</button>
+                        <button type="button"
+                                class="btn btn-primary"
+                                ng-click="Collections.set_evaluation_form(collection['id'])">
+                            Execute Evaluation
+                        </button>
                     </div>
 
                 </div>
-
             </div>
         </div>
 
-        <div ng-if="Collections.current_collection != false">
+        <div ng-if="Collections.current_collection == false" class="row pagination fade show">
+            <div class="container">
+                <div class="row">
+                    <div class="col-3 empty"></div>
+                    <div class="col-1"> <button class="btn-primary"> 1 </button></div>
+                    <div class="col-1"> <button class="btn-primary"> 2 </button></div>
+                    <div class="col-1"><button class="btn-primary"> 3 </button></div>
+                    <div class="col-1"><button class="btn-primary"> 4 </button></div>
+                    <div class="col-1"> <button class="btn-primary"> Next </button> </div>
+                    <div class="col-1"> <button class="btn-primary"> Last </button></div>
+                    <div class="col-3 empty"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="fade show" ng-if="Collections.current_collection != false">
             <div class="card collectionItem">
                 <div class="card-header">
                     <h3>{{Collections.current_collection.name}}</h3>
@@ -128,7 +227,7 @@
     </div>
 
     <!-- TESTS -->
-    <div class="container-fluid mainContainer" ng-if="Collections.evaluations != false">
+    <div class="container-fluid mainContainer fade show" ng-if="Collections.evaluations != false">
 
         <div ng-if="Collections.current_evaluation == false">
             <h1 class="col-12"> FAIR Maturity Indicator - Evaluations</h1>
@@ -207,7 +306,7 @@
      </div>
 
     <!-- METRICS -->
-    <div class="container-fluid mainContainer" ng-if="Collections.metrics != false">
+    <div class="container-fluid mainContainer fade show" ng-if="Collections.metrics != false">
 
         <div ng-if="Collections.current_metric == false">
             <h1 class="col-12"> FAIR Maturity Indicator - Metrics</h1>

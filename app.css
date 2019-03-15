@@ -9,7 +9,7 @@
 .card-header {
     padding: 0.5rem 1rem;
     border-top-left-radius: 30px;
-    border-bottom:2px solid #3E3F3A ;
+    border-bottom:2px solid #325D88 ;
 }
 
 button.btn{
@@ -37,13 +37,25 @@ h1 {
     border-bottom: 2px solid #325D88;
     padding-bottom: 15px;
     margin-bottom: 15px;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
 }
 
 .card {
-    border-radius: 30px 0 30px 0;
-    border-color: #3E3F3A ;
+    border-radius: 0 0 30px 30px;
+    border-color: #325D88 ;
     border-width: 2px;
     box-shadow: 4px 4px 3px #D6D6D6;
+    height: 100%;
+    background-color: #e9ecef;
+}
+
+label.collectionName {
+    color: #325D88;
+    font-size:1.2rem;
 }
 
 .card-header i,
@@ -88,4 +100,70 @@ h1 {
 
 .navbar-nav li {
     margin: 0 10px;
+}
+
+.EvaluationForm {
+    border-bottom:2px solid #325D88;
+}
+
+.FormContent{
+    padding:15px 30px;
+}
+
+
+md-input-container {
+    padding: 2px 15px;
+}
+
+.submitEval{
+    padding:10px 20px;
+    width: 100%;
+}
+
+.buttonHolder {
+    padding:10px;
+}
+
+/* FADERS */
+
+/* The starting CSS styles for the enter animation */
+.fade.ng-enter {
+    transition:0.5s linear all;
+    opacity:0;
+}
+
+/* The finishing CSS styles for the enter animation */
+.fade.ng-enter.ng-enter-active {
+    opacity:1;
+}
+
+.fade.ng-leave {
+    transition:0.5s linear all;
+    opacity:1;
+}
+.fade.ng-leave.ng-leave-active {
+    opacity:0;
+}
+
+/* PAGINATION */
+.pagination {
+    margin-top:20px;
+    text-align: center;
+    font-size:1.6rem;
+}
+
+.pagination .col-1{
+    padding-left:2px;
+    padding-right:2px;
+}
+
+.pagination button {
+    width:100%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.collections {
+    border-bottom: 2px solid #325D88;
+    padding-bottom: 20px;
 }

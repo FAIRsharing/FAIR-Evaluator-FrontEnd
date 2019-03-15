@@ -1,10 +1,14 @@
 (function(){
 
     let my_app = angular.module('FAIRmetricsApp',
-        ['ngRoute', 'ngAria', 'ngAnimate', 'ngMessages']);
+        ['ngRoute', 'ngMaterial', 'ngAria', 'ngAnimate', 'ngMessages'])
+        .config(function($mdThemingProvider) {
+            $mdThemingProvider.theme('docs-dark', 'default')
+                .primaryPalette('yellow')
+        });
 
     my_app.controller('CollectionsController', ['$http', '$sce',
-        function($http, $sce) {
+        function($http) {
 
             let collections = this;
             collections.base_url = "http://linkeddata.systems:3000/FAIR_Evaluator";
@@ -12,6 +16,9 @@
             collections.current_collection = false;
             collections.current_evaluation = false;
             collections.curent_metric = false;
+            collections.evaluationForm = false;
+            collections.prepared_evaluation = {};
+            collections.terms_to_search = "";
 
             collections.process_data = function(data){
                 let processed_collections = [];
@@ -93,6 +100,59 @@
                 })
             };
 
+            /* Run a metrics evaluation of the given resource against the given collection */
+            collections.run_evaluation = function(collection_id, resource_url, title, executor_doi){
+
+                console.log(collections.prepared_evaluation);
+
+                let base_url = collections.base_url + "/collections/" + collection_id +
+                    "/evaluate.json" +
+                    "?resource=" + resource_url +
+                    "&executor=" + executor_doi +
+                    "&title=" + title;
+                $http.post(base_url, null).then(function (response) {
+                    console.log(response.data);
+                })
+            };
+
+            /* Set data for the evaluation form */
+            collections.set_evaluation_form = function(collection_id){
+                if (collections.evaluationForm === false){
+                    collections.evaluationForm = true;
+                }
+                else {
+                    collections.evaluationForm = false;
+                }
+
+                if (collections.data === false){
+                    collections.get_collections()
+                }
+
+                if (collection_id !== null){
+                    collections.prepared_evaluation['collection'] = collection_id
+                }
+
+                window.scrollTo({top: 0, behavior: 'smooth' });
+
+            };
+
+            collections.search_terms = function(){
+                let req = {
+                    method: 'POST',
+                    url: collections.base_url + "/searches/abc",
+                    headers: {
+                        'Accept': "text/turtle",
+                        'Content-Type': 'application/json',
+                    },
+                    data: {
+                        "keywords": collections.terms_to_search
+                    }
+                };
+
+                $http(req).then(function(response){
+                        console.log(response.data)
+                })
+            };
 
             collections.get_collections();
         }
