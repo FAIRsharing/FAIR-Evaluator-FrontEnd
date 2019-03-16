@@ -1,0 +1,40 @@
+<div class="container mainContainer fade show">
+    <h1 class="col-12"> FAIR Maturity Indicator - Metrics</h1>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Creator</th>
+            <th scope="col">Email</th>
+            <th scope="col">Principle</th>
+            <th scope="col">Test</th>
+            <th scope="col">Interface</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="metric in metrics">
+            <td> {{metric['name']}}</td>
+            <td> {{metric['creator']}}</td>
+            <td> {{metric['email']}}</td>
+
+            <td>
+                <a target="_blank" href="{{metric['principle']}}">
+                    {{metric['principle'] | URL_last_arg}}
+                </a>
+            </td>
+
+            <td> {{metric['test_of_metric']}}</td>
+            <td> {{metric['smarturl']}}</td>
+
+            <td>
+                <button type="button"
+                        class="btn-primary btn"
+                        ng-click="goToMetric(metric['@id'])">
+                    Show
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

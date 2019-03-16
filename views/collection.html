@@ -1,0 +1,21 @@
+<div class="fade show container">
+    <div class="card collectionItem">
+        <div class="card-header">
+            <h3>{{collection.title}}</h3>
+        </div>
+        <div class="card-body">
+            <div ng-repeat="(fieldName, fieldVal) in collection">
+                <label>{{fieldName | URL_last_arg}}:</label>
+                <span>{{fieldVal}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="goBack">
+        <button type="button"
+                class="btn-primary btn"
+                ng-click="goToCollections()">
+            Go Back to Collections
+        </button>
+    </div>
+
+</div>

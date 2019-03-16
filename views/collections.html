@@ -1,0 +1,47 @@
+<!-- COLLECTIONS -->
+<div class="container mainContainer fade show">
+    <div class="collections row fade show">
+        <div class="col-12">
+            <h1>FAIR Maturity Indicator - Collections</h1>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12 col-xl-3 collectionsCards" ng-repeat="collection in collections.data">
+            <div class="card">
+                <div class="card-body">
+                    <div class="title">
+                        <label class="collectionName">{{collection.name}}</label>
+                    </div>
+                    <hr>
+                    <div class="description">
+                        <label>Status:</label>
+                        <span> Deprecated or Valid </span>
+                    </div>
+                    <div class="description">
+                        <label>Description:</label>
+                        <span> {{collection.description}} </span>
+                    </div>
+                    <div class="description">
+                        <label>Contact:</label>
+                        <span> {{collection.contact | URL_last_arg}} </span>
+                    </div>
+                    <div class="description">
+                        <label>Organization:</label>
+                        <span> {{collection.Organization}} </span>
+                    </div>
+                </div>
+
+                <div class="buttonsContainer">
+                    <button type="button"
+                            class="btn btn-primary btn"
+                            ng-click="goToCollection(collection['id'])">
+                            <a>Show</a>
+                    </button>
+
+                    <button type="button"
+                            class="btn btn-primary">
+                        Execute Evaluation
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

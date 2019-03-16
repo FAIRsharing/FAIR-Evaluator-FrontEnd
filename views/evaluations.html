@@ -1,0 +1,37 @@
+<div class="container mainContainer fade show">
+    <h1 class="col-12"> FAIR Maturity Indicator - Evaluations</h1>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">Collection</th>
+            <th scope="col">Description</th>
+            <th scope="col">Executor</th>
+            <th scope="col">Title</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="evaluation in evaluations">
+            <td>
+                {{evaluation['collection'] | URL_last_arg}}
+            </td>
+            <td>
+                {{evaluation['http://rdfs.org/ns/void#description']}}
+            </td>
+            <td>
+                {{evaluation['creator'] | URL_last_arg}}
+            </td>
+            <td>
+                {{evaluation['title']}}
+            </td>
+            <td>
+                <button type="button"
+                        class="btn-primary btn"
+                        ng-click="goToEvaluation(evaluation['@id'])">
+                    Show
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

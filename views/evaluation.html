@@ -1,0 +1,35 @@
+<div class="container mainContainer fade show">
+    <div class="card">
+        <div class="card-header">
+            <h3>{{evaluation.title}}</h3>
+        </div>
+        <div class="card-body">
+            <div ng-repeat="(fieldKey, fieldVal) in evaluation">
+
+                <div ng-if="fieldKey != 'evaluationResult'">
+                    <label> {{fieldKey | URL_last_arg}}</label>
+                    <span> {{fieldVal}}</span>
+                </div>
+
+                <div ng-if="fieldKey == 'evaluationResult'">
+                    <div ng-repeat="(resultName, resultVal) in fieldVal">
+                        <hr ng-if="$first">
+                        {{resultName | URL_last_arg}}
+                        <div ng-repeat="(TK, TV) in resultVal[0]">
+                            {{TK}} {{TV}}
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="goBack">
+        <button type="button"
+                class="btn-primary btn"
+                ng-click="goToEvaluations()">
+            Go Back to Evaluations
+        </button>
+    </div>
+</div>

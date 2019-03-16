@@ -1,5 +1,16 @@
+html {
+    height: 100% !important;
+    background-color: #F8F9FA;
+}
+body{
+    background-color: #F8F9FA;
+}
+
 .mainContainer {
     padding: 15px 20px;
+    background-color: white;
+    margin:15px auto;
+    box-shadow: 4px 4px 3px #D6D6D6;
 }
 
 .collectionsCards {
@@ -46,7 +57,7 @@ h1 {
 
 .card {
     border-radius: 0 0 30px 30px;
-    border-color: #325D88 ;
+    border-color: transparent ;
     border-width: 2px;
     box-shadow: 4px 4px 3px #D6D6D6;
     height: 100%;
