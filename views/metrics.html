@@ -24,8 +24,8 @@
                 </a>
             </td>
 
-            <td> {{metric['test_of_metric']}}</td>
-            <td> {{metric['smarturl']}}</td>
+            <td> {{metric['test_of_metric'] | URL_last_arg}}</td>
+            <td> {{metric['smarturl'] | URL_last_arg}}</td>
 
             <td>
                 <button type="button"
