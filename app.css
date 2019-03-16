@@ -43,9 +43,8 @@ table button.btn {
 }
 
 h1 {
-    color: #325D88;
+    color: white;
     text-align: center;
-    border-bottom: 2px solid #325D88;
     padding-bottom: 15px;
     margin-bottom: 15px;
     width: 70%;
@@ -53,6 +52,8 @@ h1 {
     margin-right: auto;
     left: 0;
     right: 0;
+    font-size: 2.5rem;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
 }
 
 .card {
@@ -177,4 +178,33 @@ md-input-container {
 .collections {
     border-bottom: 2px solid #325D88;
     padding-bottom: 20px;
+}
+
+.splash {
+    padding: 12em 0 6em;
+    background: #349aed;
+    background: linear-gradient(to left, #1A2980, #26D0CE);
+    color: #fff;
+    text-align: center;
+}
+
+.siteLogo{
+    width:80px;
+}
+
+.navbar-brand {
+    margin-right:50px;
+}
+
+nav {
+    box-shadow: 0 0 6px 2px rgba(0,0,0,0.5);
+}
+
+.nav-link{
+    transition: 0.5s linear all;
+    border-bottom: 2px solid #3E3F3A;
+}
+
+.nav-link:hover{
+    border-bottom:2px solid white;
 }
