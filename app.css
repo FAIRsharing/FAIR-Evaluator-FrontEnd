@@ -188,6 +188,18 @@ md-input-container {
     text-align: center;
 }
 
+.splash span.subtitle {
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+    font-size:1.4rem;
+}
+
+.splash hr{
+    border:0;
+    height: 2px;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0));
+    margin-bottom: 30px;
+}
+
 .siteLogo{
     width:80px;
 }
@@ -207,4 +219,8 @@ nav {
 
 .nav-link:hover{
     border-bottom:2px solid white;
+}
+
+div#social{
+    margin-top:30px;
 }
