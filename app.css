@@ -224,3 +224,45 @@ nav {
 div#social{
     margin-top:30px;
 }
+
+a.nav-link, a.dropdown-item{
+    font-size: 16px !important;
+}
+
+div.dropdown-menu{
+    margin-top: 6px;
+}
+
+
+/* MAIN PAGE */
+
+div.section {
+    padding: 6em 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    background-color: #eaf1f1;
+}
+
+div.section .sectionItemIcon{
+    font-size: 2.5rem;
+    margin-right:20px;
+}
+
+div.section .sectionItemLabel {
+    font-size: 1.5rem;
+    color: #444;
+    top: -7px;
+    position: relative;
+}
+
+div.section .getStarted{
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    display: block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+/* TODO: set sm and md @media for .section.sectionItem */
