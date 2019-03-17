@@ -176,7 +176,7 @@
     /* *************************************************************************************************** */
     /* METRICS */
 
-    /* route: /evaluations */
+    /* route: /metrics */
     my_app.controller("metricsCtrl", function($http, $scope, $window, $location){
 
         let request = {
@@ -200,7 +200,7 @@
 
     });
 
-    /* route: /evaluations/{id} */
+    /* route: /metrics/{id} */
     my_app.controller("metricCtrl", function($http, $scope, $window, $location, $routeParams){
 
         $scope.identifier = $routeParams.id;
@@ -223,9 +223,6 @@
         };
 
     });
-
-
-
 
 
     /* *************************************************************************************************** */
