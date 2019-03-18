@@ -55,10 +55,12 @@
         }
     });
 
-    my_app.controller("searchCtrl", function($http, $scope) {
+    my_app.controller("searchCtrl", function($http, $scope, $window, $location) {
         $scope.terms = null;
 
         $scope.goToSearches = function(){
+            let window_url = new $window.URL($location.absUrl());
+            $window.location.href =  window_url.origin + window_url.pathname + '#!searches';;
             $scope.search_terms = $scope.terms;
             let request = {
                 method: 'POST',
