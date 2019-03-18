@@ -31,6 +31,21 @@ h3 {
     font-size: 1.4rem;
 }
 
+h2 {
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+    color: rgba(0,0,0,1);
+}
+
+h2.mgBot{
+    margin-bottom:30px;
+}
+
+h2 span {
+    border-bottom: 1px solid black;
+    padding-bottom: 6px;
+}
+
+
 label {
     margin-bottom: 0;
     color: black;
@@ -183,7 +198,6 @@ md-input-container {
 }
 
 .collections {
-    border-bottom: 2px solid #325D88;
     padding-bottom: 20px;
 }
 
@@ -291,4 +305,8 @@ div.main div.card-body{
 /* FOOTER */
 .footer {
     color: white;
+}
+
+.mainContainer, .main{
+    margin-bottom:120px;
 }
