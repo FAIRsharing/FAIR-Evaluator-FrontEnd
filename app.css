@@ -45,6 +45,23 @@ h2 span {
     padding-bottom: 6px;
 }
 
+h2 a{
+    color:rgba(0,0,0,1);
+}
+
+.miniIcon {
+    width:100%;
+    max-width: 200px;
+    display: block;
+    right: 0;
+    left: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.metricsIcon {
+    width: 80%;
+}
 
 label {
     margin-bottom: 0;
@@ -299,7 +316,9 @@ div.main div.card-body{
     text-align: justify;
 }
 
-/* TODO: set sm and md @media for .section.sectionItem */
+/* TODO: set sm and md @media for .section.sectionItem
+         set sm for icons padding on main page.
+*/
 
 
 /* FOOTER */
