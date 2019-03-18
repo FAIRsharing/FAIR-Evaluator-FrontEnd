@@ -1,0 +1,22 @@
+<div class="container mainContainer fade show">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="mgBot"><span>Search results</span></h2>
+            </div>
+            <div>
+                Selected words: {{search_terms}}
+            </div>
+
+            <div ng-repeat="(itemK, itemV) in results">
+                <label>{{itemK}}</label>
+                <span>{{itemV}}</span>
+                <br>
+                <hr ng-if="!$last">
+            </div>
+
+        </div>
+    </div>
+
+</div>

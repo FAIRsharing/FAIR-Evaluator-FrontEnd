@@ -28,14 +28,19 @@
 </head>
 
 
-<body>
+<body ng-controller="searchCtrl as searcher">
 
 
     <!-- NAV BAR TOP -->
     <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary navbar-transparent navbar-dark bg-primary">
         <img class="siteLogo" src="assets/img/fairmetrics.png">
         <a class="navbar-brand" href="#/!">FAIR Evaluation Services</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button"
+                data-toggle="collapse"
+                data-target="#navbarColor01"
+                aria-controls="navbarColor01"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -66,8 +71,6 @@
                            href="#">
                             Run test
                         </a>
-
-
                     </div>
                 </li>
             </ul>
@@ -75,9 +78,14 @@
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2"
                        type="text"
-                       placeholder="Search tests and collections">
-                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                       placeholder="Search tests and collections"
+                       ng-model="terms">
+                <div class="btn btn-secondary my-2 my-sm-0">
+                    <a class="navbar-brand" href="#!searches" ng-click="goToSearches()">Search</a>
+                </div>
+                <div ng-click="console.log('HelloWorld')">{{searcher.terms}}</div>
             </form>
+
         </div>
     </nav>
 
@@ -108,11 +116,9 @@
         </div>
     </div>
 
+
     <!-- MAIN -->
     <div ng-view></div>
-
-
-
 
     <!-- FOOTER -->
     <!-- Footer -->

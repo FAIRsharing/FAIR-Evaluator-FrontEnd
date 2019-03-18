@@ -12,7 +12,7 @@
     my_app.config(function($routeProvider) {
         $routeProvider
             .when("/", {
-                templateUrl : "views/main.html"
+                templateUrl : "views/main.html",
             })
             .when("/collections", {
                 templateUrl : "views/collections.html",
@@ -37,9 +37,47 @@
             .when("/metrics/:id", {
                 templateUrl : "views/metric.html",
                 controller: "metricCtrl"
+            })
+            .when("/searches", {
+                templateUrl : "views/searches.html",
+                controller: "mainCtrl"
             });
     });
 
+    /* *************************************************************************************************** */
+    /* MAIN */
+
+    my_app.controller("mainCtrl", function($http, $scope, $window, $location) {
+        $scope.searches = "";
+        $scope.hello = "hello";
+
+        $scope.goToSearches = function(){
+            console.log("HelloWorld")
+        }
+    });
+
+    my_app.controller("searchCtrl", function($http, $scope, $window, $location) {
+        $scope.terms = null;
+
+        $scope.goToSearches = function(){
+            $scope.search_terms = $scope.terms;
+            let request = {
+                method: 'POST',
+                url: base_url + "/searches/abcde",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                data: {
+                    "keywords": $scope.search_terms
+                }
+            };
+            $http(request).then(function(response){
+                $scope.results = response.data;
+            })
+        };
+
+    });
 
     /* *************************************************************************************************** */
     /* COLLECTIONS */
