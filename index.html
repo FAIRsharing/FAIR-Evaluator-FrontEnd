@@ -75,15 +75,14 @@
                 </li>
             </ul>
 
-            <form class="form-inline my-2 my-lg-0">
+            <form class="form-inline my-2 my-lg-0" ng-submit="goToSearches()">
                 <input class="form-control mr-sm-2"
                        type="text"
                        placeholder="Search tests and collections"
                        ng-model="terms">
-                <div class="btn btn-secondary my-2 my-sm-0">
-                    <a class="navbar-brand" href="#!searches" ng-click="goToSearches()">Search</a>
+                <div class="btn btn-secondary my-2 my-sm-0" ng-click="goToSearches()">
+                    <a class="" href="#!searches">Search</a>
                 </div>
-                <div ng-click="console.log('HelloWorld')">{{searcher.terms}}</div>
             </form>
 
         </div>

@@ -39,8 +39,7 @@
                 controller: "metricCtrl"
             })
             .when("/searches", {
-                templateUrl : "views/searches.html",
-                controller: "mainCtrl"
+                templateUrl : "views/searches.html"
             });
     });
 
@@ -56,7 +55,7 @@
         }
     });
 
-    my_app.controller("searchCtrl", function($http, $scope, $window, $location) {
+    my_app.controller("searchCtrl", function($http, $scope) {
         $scope.terms = null;
 
         $scope.goToSearches = function(){

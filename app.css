@@ -329,3 +329,7 @@ div.main div.card-body{
 .mainContainer, .main{
     margin-bottom:120px;
 }
+
+.navbar div.btn a {
+    color:white;
+}

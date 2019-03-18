@@ -9,7 +9,15 @@
                 Selected words: {{search_terms}}
             </div>
 
-            <div ng-repeat="(itemK, itemV) in results">
+            <div ng-repeat="(itemK, itemV) in results.metrics">
+                <label>{{itemK}}</label>
+                <span>{{itemV}}</span>
+                <br>
+                <hr ng-if="!$last">
+            </div>
+
+
+            <div ng-repeat="(itemK, itemV) in results.collections">
                 <label>{{itemK}}</label>
                 <span>{{itemV}}</span>
                 <br>
