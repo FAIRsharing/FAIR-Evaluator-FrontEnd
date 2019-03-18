@@ -286,3 +286,9 @@ div.main div.card-body{
 }
 
 /* TODO: set sm and md @media for .section.sectionItem */
+
+
+/* FOOTER */
+.footer {
+    color: white;
+}
