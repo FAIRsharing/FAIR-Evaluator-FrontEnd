@@ -1,7 +1,7 @@
 # FAIR-Maturity-FrontEnd
 An angularJS app for FAIR Maturity Evaluation service
 
-Check https://terazus.github.io/FAIR-Maturity-FrontEnd/#!/
+Check https://terazus.github.io/FAIR-Maturity-FrontEnd
 
 Content coming from the API is deserved through HTTP which will be blocked by your web browser. You need to allow mixing content.
 To do so, go to https://terazus.github.io/FAIR-Maturity-FrontEnd/#!/evaluations then:
