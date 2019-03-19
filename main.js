@@ -1,6 +1,6 @@
 (function() {
 
-    let base_url = "http://linkeddata.systems:3000/FAIR_Evaluator";
+    let base_url = "https://linkeddata.systems:3000/FAIR_Evaluator";
 
     let my_app = angular.module('FAIRmetricsApp',
         ['ngRoute', 'ngMaterial', 'ngAria', 'ngAnimate', 'ngMessages'])
