@@ -40,20 +40,15 @@
             })
             .when("/searches", {
                 templateUrl : "views/searches.html"
+            })
+            .when("/collection/new", {
+                templateUrl : "views/create_collection.html",
+                controller: "newCollectionCtrl"
             });
     });
 
     /* *************************************************************************************************** */
     /* MAIN */
-
-    my_app.controller("mainCtrl", function($http, $scope, $window, $location) {
-        $scope.searches = "";
-        $scope.hello = "hello";
-
-        $scope.goToSearches = function(){
-            console.log("HelloWorld")
-        }
-    });
 
     my_app.controller("searchCtrl", function($http, $scope, $window, $location) {
         $scope.terms = null;
@@ -154,6 +149,33 @@
             $scope.baseURL = new $window.URL($location.absUrl());
             $window.location.href = $scope.baseURL.origin + $scope.baseURL.pathname + '#!/collections';
         };
+
+    });
+
+    /* route: /collections */
+    my_app.controller("newCollectionCtrl", function($http, $scope, $window, $location){
+
+        let request = {
+            method: 'GET',
+            url: base_url + "/metrics.json",
+            headers: {
+                'Accept': "application/json",
+            },
+            data: null
+        };
+
+        $scope.available_collections = {};
+        $scope.collection_data = {};
+        $scope.collection_data.name = "";
+        $scope.collection_data.contact = "";
+        $scope.collection_data.organization = "";
+        $scope.collection_data.indicators = [];
+        $scope.collection_data.description = "";
+
+
+        $http(request).then(function(response){
+            $scope.available_collections = response.data;
+        });
 
     });
 

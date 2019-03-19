@@ -1,0 +1,72 @@
+<div class="container mainContainer fade show newCollection">
+    <div class="newCol row fade show">
+
+        <div class="col-12">
+            <h2 class="mgBot"><span>Create a new collection of maturity indicators</span></h2>
+        </div>
+
+        <md-content layout-padding>
+            <div>
+                <form name="userForm">
+
+                    <div layout-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Collection name</label>
+                            <input ng-model="collection_data.name">
+                        </md-input-container>
+
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Contact ORCiD</label>
+                            <input ng-model="collection_data.contact">
+                        </md-input-container>
+
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Organization Name</label>
+                            <input ng-model="collection_data.organization">
+                        </md-input-container>
+                    </div>
+
+                    <md-input-container class="md-block">
+                        <label>Description of the collection</label>
+                        <textarea ng-model="collection_data.description" md-maxlength="300" rows="5" md-select-on-focus></textarea>
+                    </md-input-container>
+
+
+                    <div layout-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-xs>
+                            <md-select multiple="{{true}}"
+                                       placeholder="Select Maturity Indicators"
+                                       ng-model="collection_data.indicators">
+                                <md-option ng-repeat="collection in available_collections"
+                                           value="{{collection['@id']}}">
+                                    {{collection['name']}}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+
+                    <!--
+                    <div layout-gt-sm="row">
+                        <label>Select Maturity Indicators</label>
+                        <select multiple
+                                ng-model="collection_data.indicators">
+                            <option ng-repeat="collection in available_collections"
+                                    value="{{collection['@id']}}">
+                                {{collection['name']}}
+                            </option>
+                        </select>
+                    </div>
+                    -->
+
+
+                </form>
+            </div>
+        </md-content>
+        <div class="newCollectionValidate">
+            <button type="button" class="btn btn-primary">Create collection</button>
+            <button type="button" class="btn btn-primary">Clear fields</button>
+        </div>
+
+    </div>
+
+</div>

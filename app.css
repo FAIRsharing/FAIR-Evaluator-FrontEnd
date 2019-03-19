@@ -24,6 +24,8 @@ body{
 
 button.btn{
     border-radius: 0;
+    box-shadow:2px 2px 3px #D6D6D6;
+
 }
 
 h3 {
@@ -355,4 +357,27 @@ iframe.twitter-timeline {
 
 .navbar div.btn a {
     color:white;
+}
+
+md-content {
+    width:100%;
+    background-color: white;
+}
+
+.newCol{
+    padding: 20px 10px;
+}
+
+.newCollectionValidate{
+    padding:30px;
+}
+
+.md-select-value span {
+    display: block !important;
+}
+
+@media (min-height:1280px) {
+    md-select-menu, md-select-menu md-content {
+        max-height: 350px !important;
+    }
 }
