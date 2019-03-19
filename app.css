@@ -335,6 +335,13 @@ div.main div.card-body{
     }
 }
 
+iframe.twitter-timeline {
+    display: block !important;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+}
 
 /* FOOTER */
 .footer {
