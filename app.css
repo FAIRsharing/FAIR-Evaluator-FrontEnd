@@ -320,6 +320,21 @@ div.main div.card-body{
          set sm for icons padding on main page.
 */
 
+@media(max-width: 766px){
+    .section .sectionItem{
+        text-align: center;
+    }
+}
+
+@media(min-width: 767px) and (max-width:992px){
+    .section .sectionItem{
+        text-align: center;
+    }
+    .section #item3{
+        margin-top:40px;
+    }
+}
+
 
 /* FOOTER */
 .footer {
