@@ -1,4 +1,4 @@
-<div class="container mainContainer fade show">
+<div class="container mainContainer fade show" ng-if="response_rdy">
 
     <div class="container">
         <div class="row">
@@ -27,4 +27,9 @@
         </div>
     </div>
 
+</div>
+
+<!-- waiter -->
+<div class="container fade show" ng-if="!response_rdy">
+    <div loader></div>
 </div>

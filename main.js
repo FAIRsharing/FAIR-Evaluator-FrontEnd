@@ -57,6 +57,7 @@
         $scope.terms = null;
 
         $scope.goToSearches = function(){
+            $scope.response_rdy = false;
             let window_url = new $window.URL($location.absUrl());
             $window.location.href =  window_url.origin + window_url.pathname + '#!searches';;
             $scope.search_terms = $scope.terms;
@@ -72,6 +73,7 @@
                 }
             };
             $http(request).then(function(response){
+                $scope.response_rdy = true;
                 $scope.results = response.data;
             })
         };
