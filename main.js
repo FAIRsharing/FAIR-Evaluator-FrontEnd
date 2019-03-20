@@ -22,6 +22,13 @@
                 templateUrl : "views/collection.html",
                 controller: "collectionCtrl"
             })
+            .when("/collection/new", {
+                templateUrl : "views/create_collection.html",
+                controller: "newCollectionCtrl"
+            })
+            .when("/collections/:id/evaluate", {
+                templateUrl : "views/run_evaluation.html"
+            })
             .when("/evaluations", {
                 templateUrl : "views/evaluations.html",
                 controller: "evaluationsCtrl"
@@ -40,10 +47,6 @@
             })
             .when("/searches", {
                 templateUrl : "views/searches.html"
-            })
-            .when("/collection/new", {
-                templateUrl : "views/create_collection.html",
-                controller: "newCollectionCtrl"
             });
     });
 
