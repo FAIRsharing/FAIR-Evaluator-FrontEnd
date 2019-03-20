@@ -360,4 +360,15 @@
     });
 
 
+    /* *************************************************************************************************** */
+    /* DIRECTIVES */
+
+    my_app.directive('loader', function(){
+        return{
+            restrict: 'A',
+            templateUrl: 'directives/loader.html',
+        }
+    });
+
+
 })();
