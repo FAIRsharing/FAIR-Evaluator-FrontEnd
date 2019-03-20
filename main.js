@@ -252,6 +252,8 @@
     /* route: /evaluations */
     my_app.controller("evaluationsCtrl", function($http, $scope, $window, $location){
 
+        $scope.response_rdy = false;
+
         let request = {
             method: 'GET',
             url: base_url + "/evaluations.json",
@@ -262,7 +264,7 @@
         };
         $http(request).then(function(response){
             $scope.evaluations = response.data;
-
+            $scope.response_rdy = true;
         });
 
         $scope.goToEvaluation = function(identifier){
