@@ -1,5 +1,5 @@
 <!-- COLLECTIONS -->
-<div class="container mainContainer fade show">
+<div class="container mainContainer fade show" ng-if="response_rdy">
     <div class="collections row fade show">
         <div class="col-12">
             <h2 class="mgBot"><span>FAIR Maturity Indicator - Collections</span></h2>
@@ -44,4 +44,9 @@
             </div>
         </div>
     </div>
+</div>
+
+<!-- waiter -->
+<div class="container fade show" ng-if="!response_rdy">
+    <div loader></div>
 </div>

@@ -91,6 +91,7 @@
     /* route: /collections */
     my_app.controller("collectionsCtrl", function($http, $scope, $window, $location){
 
+        $scope.response_rdy = false;
         let request = {
             method: 'GET',
             url: base_url + "/collections.json",
@@ -100,6 +101,7 @@
             data: null
         };
         $http(request).then(function(response){
+            $scope.response_rdy = true;
             $scope.collections = {};
             $scope.collections.data = $scope.process_data(response.data);
         });
