@@ -381,3 +381,24 @@ md-content {
         max-height: 350px !important;
     }
 }
+
+/* WAITER */
+
+.waiter {
+    background-color: white;
+    box-shadow: 4px 4px 3px #D6D6D6;;
+    margin-top: 30px;
+    margin-bottom:30px;
+    text-align: center;
+    padding:20px 20px;
+}
+
+.waiterLabel {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #325D88;
+}
+
+.rdyLink {
+    font-size: 1.3rem;
+}
