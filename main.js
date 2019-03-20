@@ -143,6 +143,7 @@
     my_app.controller("collectionCtrl", function($http, $scope, $routeParams, $window, $location){
 
         $scope.identifier = $routeParams.id;
+        $scope.response_rdy = false;
 
         let request = {
             method: 'GET',
@@ -153,6 +154,7 @@
             data: null
         };
         $http(request).then(function(response){
+            $scope.response_rdy = true;
             $scope.collection = response.data;
             $scope.collection['title'] = response.data['http://purl.org/dc/elements/1.1/title'];
         });

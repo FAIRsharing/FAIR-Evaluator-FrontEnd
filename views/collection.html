@@ -1,4 +1,4 @@
-<div class="fade show container">
+<div class="fade show container" ng-if="response_rdy">
     <div class="card collectionItem">
         <div class="card-header">
             <h3>{{collection.title}}</h3>
@@ -18,4 +18,9 @@
         </button>
     </div>
 
+</div>
+
+<!-- waiter -->
+<div class="container fade show" ng-if="!response_rdy">
+    <div loader></div>
 </div>
