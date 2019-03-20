@@ -278,6 +278,8 @@
     /* route: /evaluations/{id} */
     my_app.controller("evaluationCtrl", function($http, $scope, $window, $location, $routeParams){
 
+        $scope.response_rdy = false;
+
         $scope.identifier = $routeParams.id;
 
         let request = {
@@ -292,6 +294,7 @@
             let evaluation =  JSON.parse(response.data['evaluationResult']);
             $scope.evaluation = response.data;
             $scope.evaluation['evaluationResult'] = evaluation
+            $scope.response_rdy = true;
         });
 
         $scope.goToEvaluations = function(){
@@ -308,6 +311,8 @@
     /* route: /metrics */
     my_app.controller("metricsCtrl", function($http, $scope, $window, $location){
 
+        $scope.response_rdy = false;
+
         let request = {
             method: 'GET',
             url: base_url + "/metrics.json",
@@ -318,7 +323,7 @@
         };
         $http(request).then(function(response){
             $scope.metrics = response.data;
-
+            $scope.response_rdy = true;
         });
 
         $scope.goToMetric = function(identifier){
@@ -332,6 +337,7 @@
     /* route: /metrics/{id} */
     my_app.controller("metricCtrl", function($http, $scope, $window, $location, $routeParams){
 
+        $scope.response_rdy = false;
         $scope.identifier = $routeParams.id;
 
         let request = {
@@ -344,6 +350,7 @@
         };
         $http(request).then(function(response){
             $scope.metric = response.data;
+            $scope.response_rdy = true;
         });
 
         $scope.goToMetrics = function(){

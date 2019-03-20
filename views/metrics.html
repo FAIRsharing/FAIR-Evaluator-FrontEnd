@@ -1,4 +1,4 @@
-<div class="container mainContainer fade show">
+<div class="container mainContainer fade show" ng-if="response_rdy">
     <h2 class="col-12 mgBot"> <span> FAIR Maturity Indicator - Metrics </span> </h2>
     <table class="table table-hover">
         <thead>
@@ -37,4 +37,9 @@
         </tr>
         </tbody>
     </table>
+</div>
+
+<!-- waiter -->
+<div class="container fade show" ng-if="!response_rdy">
+    <div loader></div>
 </div>

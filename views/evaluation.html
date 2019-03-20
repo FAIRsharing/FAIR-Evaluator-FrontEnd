@@ -1,4 +1,4 @@
-<div class="container mainContainer fade show">
+<div class="container mainContainer fade show" ng-if="response_rdy">
     <div class="card">
         <div class="card-header">
             <h3>{{evaluation.title}}</h3>
@@ -32,4 +32,9 @@
             Go Back to Evaluations
         </button>
     </div>
+</div>
+
+<!-- waiter -->
+<div class="container fade show" ng-if="!response_rdy">
+    <div loader></div>
 </div>
