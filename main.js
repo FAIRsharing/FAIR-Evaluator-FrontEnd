@@ -45,6 +45,9 @@
                 templateUrl : "views/metric.html",
                 controller: "metricCtrl"
             })
+            .when("/metric/new", {
+                templateUrl: "views/import_metric.html"
+            })
             .when("/searches", {
                 templateUrl : "views/searches.html"
             });
