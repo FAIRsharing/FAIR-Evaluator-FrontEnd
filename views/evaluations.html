@@ -1,6 +1,6 @@
 <div class="container mainContainer fade show" ng-if="response_rdy">
     <h2 class="col-12 mgBot"> <span>FAIR Maturity Indicator - Evaluations </span> </h2>
-    <table class="table table-hover">
+    <table class="table table-hover table-light table-striped">
         <thead>
         <tr>
             <th scope="col">Collection</th>
@@ -12,7 +12,7 @@
         </thead>
         <tbody>
         <tr ng-repeat="evaluation in evaluations">
-            <td>
+            <td class="col1">
                 {{evaluation['collection'] | URL_last_arg}}
             </td>
             <td>

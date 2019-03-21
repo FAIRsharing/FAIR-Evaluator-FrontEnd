@@ -76,6 +76,27 @@ table button.btn {
     padding:10px 20px;
 }
 
+.table thead th {
+    border-bottom:0;
+    text-align: center;
+}
+
+.table {
+    border: 1px solid #ccc;
+}
+
+.table td.col1{
+    text-align: center;
+}
+
+.table td{
+    vertical-align: middle;
+}
+
+.table-hover tbody tr:hover{
+    background-color: #b6c5d5 !important;
+}
+
 h1 {
     color: white;
     text-align: center;
@@ -398,6 +419,10 @@ md-content {
     text-align: center;
     font-size: 1.5rem;
     color: #325D88;
+}
+
+.waiterLabel span{
+    font-size: 1.1rem;
 }
 
 .rdyLink {
