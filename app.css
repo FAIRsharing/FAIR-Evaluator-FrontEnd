@@ -91,6 +91,7 @@ table button.btn {
 
 .table td{
     vertical-align: middle;
+    text-align: center;
 }
 
 .table-hover tbody tr:hover{
