@@ -36,6 +36,7 @@ h3 {
 h2 {
     text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
     color: rgba(0,0,0,1);
+    color: #325D88;
 }
 
 h2.mgBot{
@@ -43,7 +44,7 @@ h2.mgBot{
 }
 
 h2 span {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #325D88;
     padding-bottom: 6px;
 }
 
