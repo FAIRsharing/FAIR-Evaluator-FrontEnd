@@ -428,3 +428,13 @@ md-content {
 .rdyLink {
     font-size: 1.3rem;
 }
+
+.orcid_icon {
+    width:30px;
+    height:auto;
+}
+
+.orcidLink {
+    position: relative;
+    left:10px;
+}

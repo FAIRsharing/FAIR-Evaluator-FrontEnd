@@ -19,7 +19,9 @@
                 {{evaluation['http://rdfs.org/ns/void#description']}}
             </td>
             <td>
-                {{evaluation['creator'] | URL_last_arg}}
+                <a href="{{evaluation['creator']}}" target="_blank" class="orcidLink">
+                <img src="assets/img/orcid.png" class="orcid_icon">
+                </a>
             </td>
             <td>
                 {{evaluation['title']}}
