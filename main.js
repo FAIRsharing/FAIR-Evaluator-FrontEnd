@@ -62,7 +62,7 @@
         $scope.goToSearches = function(){
             $scope.response_rdy = false;
             let window_url = new $window.URL($location.absUrl());
-            $window.location.href =  window_url.origin + window_url.pathname + '#!searches';;
+
             $scope.search_terms = $scope.terms;
             let request = {
                 method: 'POST',
@@ -75,10 +75,13 @@
                     "keywords": $scope.search_terms
                 }
             };
-            $http(request).then(function(response){
-                $scope.response_rdy = true;
-                $scope.results = response.data;
-            })
+            if ($scope.search_terms.length > 0){
+                $window.location.href =  window_url.origin + window_url.pathname + '#!searches';
+                $http(request).then(function(response){
+                    $scope.response_rdy = true;
+                    $scope.results = response.data;
+                })
+            }
         };
 
         $scope.goToNewCollection = function(){
