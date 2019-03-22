@@ -1,9 +1,10 @@
 (function() {
 
     let base_url = "https://linkeddata.systems:3000/FAIR_Evaluator";
+    let charts_on = false;
 
     let my_app = angular.module('FAIRmetricsApp',
-        ['ngRoute', 'ngMaterial', 'ngAria', 'ngAnimate', 'ngMessages'])
+        ['ngRoute', 'ngMaterial', 'ngAria', 'ngAnimate', 'ngMessages', 'chart.js'])
         .config(function ($mdThemingProvider) {
             $mdThemingProvider.theme('docs-dark', 'default')
                 .primaryPalette('yellow')
@@ -299,9 +300,16 @@
     /* route: /evaluations/{id} */
     my_app.controller("evaluationCtrl", function($http, $scope, $window, $location, $routeParams){
 
+        $scope.charts_on = charts_on;
         $scope.response_rdy = false;
-
         $scope.identifier = $routeParams.id;
+        $scope.pie_labels = ["1 star", "2 stars", "3stars", "4 stars", "5stars"];
+        $scope.pie_data = [0, 0, 0, 0, 0];
+
+
+        $scope.histo_labels = [];
+        $scope.histo_data = [
+        ];
 
         let request = {
             method: 'GET',
@@ -314,8 +322,50 @@
         $http(request).then(function(response){
             let evaluation =  JSON.parse(response.data['evaluationResult']);
             $scope.evaluation = response.data;
-            console.log($scope.evaluation);
-            $scope.evaluation['evaluationResult'] = evaluation
+            $scope.evaluation['evaluationResult'] = evaluation;
+            $scope.resource = String();
+
+            let resourceLimit = 0;
+            for (let metricKey in $scope.evaluation['evaluationResult']){
+                let metric = $scope.evaluation['evaluationResult'][metricKey][0];
+                if (resourceLimit === 0){
+                    console.log(metric['http://semanticscience.org/resource/SIO_000332'][0]);
+
+                    $scope.resource = metric['http://semanticscience.org/resource/SIO_000332'][0]['@id'];
+                    if (!$scope.resource){
+                        $scope.resource = metric['http://semanticscience.org/resource/SIO_000332'][0]['@value'];
+                    }
+                    if (!$scope.resource.startsWith('http') && !$scope.resource.startsWith('https')){
+                        $scope.resource = "https://doi.org/" + $scope.resource;
+                    }
+                    resourceLimit++
+                }
+
+                let score = metric["http://semanticscience.org/resource/SIO_000300"][0]["@value"];
+                $scope.histo_labels.push(
+                    metricKey.split('/').slice(-1)[0].replace(/_/g, ' ')
+                );
+                $scope.histo_data.push(parseFloat(score));
+
+                switch(parseFloat(score)){
+                    case 0:
+                        $scope.pie_data[0] += 1;
+                        break;
+                    case 1:
+                        $scope.pie_data[4] += 1;
+                        break;
+                    case 0.25:
+                        $scope.pie_data[1] += 1;
+                        break;
+                    case 0.5:
+                        $scope.pie_data[2] += 1;
+                        break;
+                    case 0.75:
+                        $scope.pie_data[3] += 1;
+                        break;
+                }
+            }
+
             $scope.response_rdy = true;
         });
 
