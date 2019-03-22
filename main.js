@@ -47,7 +47,8 @@
                 controller: "metricCtrl"
             })
             .when("/metric/new", {
-                templateUrl: "views/import_metric.html"
+                templateUrl: "views/import_metric.html",
+                controller: "newMetricCtrl"
             })
             .when("/searches", {
                 templateUrl : "views/searches.html"
@@ -142,6 +143,12 @@
             $scope.baseURL = new $window.URL($location.absUrl());
             let id = identifier.split('/').slice(-1)[0];
             $window.location.href = $scope.baseURL + "/" + id
+        };
+
+        $scope.goToRunEvaluation = function(identifier){
+            $scope.baseURL = new $window.URL($location.absUrl());
+            let id = identifier.split('/').slice(-1)[0];
+            $window.location.href = $scope.baseURL + "/" + id + '/evaluate'
         };
 
     });
@@ -313,15 +320,12 @@
     });
 
     my_app.controller("runEvaluationCtrl", function($http, $scope, $window, $location, $routeParams){
-
         $scope.evalForm = {};
-        $scope.evalForm.collection_disabled = false;
         $scope.evalForm.collection = null;
         $scope.evalForm.guid = null;
         $scope.evalForm.title = null;
         $scope.evalForm.orcid = null;
         $scope.response_content = false;
-        $scope.response_rdy = false;
         $scope.response_rdy = true;
 
 
@@ -333,8 +337,23 @@
             },
             data: null
         };
+
+        $scope.evalForm.collection_disabled = true;
+        if ($routeParams.id === "new"){
+            $scope.evalForm.collection_disabled = false;
+        }
+        else{
+            request.url = base_url+ "/collections/" + $routeParams.id + '.json';
+        }
+
         $http(request).then(function(response){
             $scope.collections = response.data;
+            if ($scope.evalForm.collection_disabled){
+                $scope.collection_id = response.data['@id'];
+                $scope.collection_title = response.data['http://purl.org/dc/elements/1.1/title']
+            }
+
+            console.log(response.data);
         });
 
         $scope.clearFields = function(){
@@ -369,7 +388,6 @@
             $http(eval_request).then(function(response){
                 $scope.response_rdy = true;
                 let evaluation_id = response.data["@id"].split('/').slice(-1)[0];
-                $scope.next_url = "";
                 $scope.response_content = next_url + evaluation_id;
 
             $scope.response_rdy = true;
@@ -434,6 +452,10 @@
 
     });
 
+
+    my_app.controller('newMetricCtrl', function(){
+       console.log('lets import some metrics')
+    });
 
     /* *************************************************************************************************** */
     /* FILTERS */

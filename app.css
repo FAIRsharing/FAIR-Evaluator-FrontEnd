@@ -508,6 +508,6 @@ table a {
     font-weight: bold;
 }
 
-.mainPageItem a {
+.mainPageItem a, .sectionItemText a {
     font-weight: bold;
 }

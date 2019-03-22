@@ -44,7 +44,8 @@
                         <div>Select a collection</div>
                         <div layout-gt-sm="row">
 
-                            <md-input-container class="md-block" flex-gt-xs>
+                            <md-input-container class="md-block" flex-gt-xs
+                                                ng-if="!evalForm.collection_disabled">
                                 <md-select placeholder="collections"
                                            ng-model="evalForm.collection"
                                            name="collectionMetrics"
@@ -55,6 +56,22 @@
                                     </md-option>
                                 </md-select>
                             </md-input-container>
+
+
+                            <md-input-container class="md-block" flex-gt-xs
+                                                ng-if="evalForm.collection_disabled">
+                                <md-select placeholder="collections"
+                                           ng-model="evalForm.collection"
+                                           name="collectionMetrics"
+                                           required
+                                           ng-disabled="true">
+                                    <md-option value="{{collection_id}}"
+                                               ng-selected="true">
+                                        {{collection_title}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+
                         </div>
 
                         <div layout-gt-sm="row">
