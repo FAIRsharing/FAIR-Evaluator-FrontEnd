@@ -299,6 +299,7 @@
         $http(request).then(function(response){
             let evaluation =  JSON.parse(response.data['evaluationResult']);
             $scope.evaluation = response.data;
+            console.log($scope.evaluation);
             $scope.evaluation['evaluationResult'] = evaluation
             $scope.response_rdy = true;
         });
@@ -380,10 +381,17 @@
         };
     });
 
+    my_app.filter('removeUnderscore', function() {
+        return function (str) {
+            return str.replace(/_/g, ' ')
+        };
+    });
+
 
     /* *************************************************************************************************** */
     /* DIRECTIVES */
 
+    /* DNA Loading animation directive */
     my_app.directive('loader', function(){
         return{
             restrict: 'A',
