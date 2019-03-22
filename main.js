@@ -1,6 +1,7 @@
 (function() {
 
     let base_url = "https://linkeddata.systems:3000/FAIR_Evaluator";
+    let charts_on = false;
 
     let my_app = angular.module('FAIRmetricsApp',
         ['ngRoute', 'ngMaterial', 'ngAria', 'ngAnimate', 'ngMessages', 'chart.js'])
@@ -299,6 +300,7 @@
     /* route: /evaluations/{id} */
     my_app.controller("evaluationCtrl", function($http, $scope, $window, $location, $routeParams){
 
+        $scope.charts_on = charts_on;
         $scope.response_rdy = false;
         $scope.identifier = $routeParams.id;
         $scope.pie_labels = ["1 star", "2 stars", "3stars", "4 stars", "5stars"];
