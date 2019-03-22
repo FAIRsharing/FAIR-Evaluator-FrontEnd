@@ -9,7 +9,7 @@
             <th scope="col">Principle</th>
             <th scope="col">Test</th>
             <th scope="col">Interface</th>
-            <th scope="col"></th>
+            <th scope="col">View</th>
         </tr>
         </thead>
         <tbody>
@@ -28,11 +28,7 @@
             <td> {{metric['smarturl'] | URL_last_arg}}</td>
 
             <td>
-                <button type="button"
-                        class="btn-primary btn"
-                        ng-click="goToMetric(metric['@id'])">
-                    Show
-                </button>
+                <i class="fas fa-share-square showButton" ng-click="goToMetric(metric['@id'])"></i>
             </td>
         </tr>
         </tbody>
