@@ -181,7 +181,7 @@
     });
 
     /* route: /collections */
-    my_app.controller("newCollectionCtrl", function($http, $scope, $window, $location, $timeout){
+    my_app.controller("newCollectionCtrl", function($http, $scope, $window, $location){
 
         let request = {
             method: 'GET',
@@ -340,7 +340,7 @@
 
         $scope.evalForm.collection_disabled = true;
         if ($routeParams.id === "new"){
-            $scope.evalForm.collection_disabled = false;
+            collection_disabled = false;
         }
         else{
             request.url = base_url+ "/collections/" + $routeParams.id + '.json';
@@ -355,7 +355,9 @@
         });
 
         $scope.clearFields = function(){
-            $scope.evalForm.collection = null;
+            if (!collection_disabled){
+                $scope.evalForm.collection = null;
+            }
             $scope.evalForm.guid = null;
             $scope.evalForm.title = null;
             $scope.evalForm.orcid = null;
@@ -451,8 +453,18 @@
     });
 
 
-    my_app.controller('newMetricCtrl', function(){
-       console.log('lets import some metrics')
+    my_app.controller('newMetricCtrl', function($http, $scope, $window, $location, $routeParams){
+        $scope.response_rdy = true;
+        console.log('lets import some metrics');
+
+
+        $scope.import_metric = function(){
+            $scope.response_rdy = true;
+            let request = {};
+            /*$http(request).then(function(response){
+
+            })*/
+        }
     });
 
     /* *************************************************************************************************** */

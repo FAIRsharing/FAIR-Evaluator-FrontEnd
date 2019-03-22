@@ -11,7 +11,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="evaluation in evaluations">
+        <tr ng-repeat="evaluation in evaluations | orderBy : 'title'">
             <td class="col1">
                 {{evaluation['collection'] | URL_last_arg}}
             </td>
