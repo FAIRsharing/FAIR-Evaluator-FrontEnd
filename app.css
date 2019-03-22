@@ -445,7 +445,7 @@ md-content {
     height:auto;
 }
 
-.orcidLink {
+.evalTitle .orcidLink {
     position: relative;
     left:10px;
     float:right;
