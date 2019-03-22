@@ -352,8 +352,6 @@
                 $scope.collection_id = response.data['@id'];
                 $scope.collection_title = response.data['http://purl.org/dc/elements/1.1/title']
             }
-
-            console.log(response.data);
         });
 
         $scope.clearFields = function(){
