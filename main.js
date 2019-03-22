@@ -3,7 +3,7 @@
     let base_url = "https://linkeddata.systems:3000/FAIR_Evaluator";
 
     let my_app = angular.module('FAIRmetricsApp',
-        ['ngRoute', 'ngMaterial', 'ngAria', 'ngAnimate', 'ngMessages'])
+        ['ngRoute', 'ngMaterial', 'ngAria', 'ngAnimate', 'ngMessages', 'chart.js'])
         .config(function ($mdThemingProvider) {
             $mdThemingProvider.theme('docs-dark', 'default')
                 .primaryPalette('yellow')
@@ -300,8 +300,9 @@
     my_app.controller("evaluationCtrl", function($http, $scope, $window, $location, $routeParams){
 
         $scope.response_rdy = false;
-
         $scope.identifier = $routeParams.id;
+        $scope.labels = ["Download Sales", "In-Store Sales", "Mail-Order Sales"];
+        $scope.data = [300, 500, 100];
 
         let request = {
             method: 'GET',
@@ -315,7 +316,18 @@
             let evaluation =  JSON.parse(response.data['evaluationResult']);
             $scope.evaluation = response.data;
             console.log($scope.evaluation);
-            $scope.evaluation['evaluationResult'] = evaluation
+            $scope.evaluation['evaluationResult'] = evaluation;
+
+            $scope.resource = String();
+
+            for (let metricKey in $scope.evaluation['evaluationResult']){
+                let metric = $scope.evaluation['evaluationResult'][metricKey][0];
+                $scope.resource = metric['http://semanticscience.org/resource/SIO_000332'][0]['@id'];
+                console.log($scope.resource);
+                break;
+            }
+
+
             $scope.response_rdy = true;
         });
 
@@ -506,6 +518,13 @@
         return function (str) {
             return str.replace(/_/g, ' ')
         };
+    });
+
+
+    /* *************************************************************************************************** */
+    /* CHARTS */
+    my_app.controller("DoughnutCtrl", function ($scope) {
+
     });
 
 

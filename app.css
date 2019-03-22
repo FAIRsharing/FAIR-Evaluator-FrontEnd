@@ -532,3 +532,7 @@ table a {
 .starContainer {
     display: inline-block;
 }
+
+.charts {
+    max-width:20%;
+}
