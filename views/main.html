@@ -8,7 +8,11 @@
                 <label class="sectionItemLabel">Import  Maturity Indicators</label>
                 <p class="sectionItemText">
                     Import  Maturity Indicators as YAML  <a href="" target="_blank">smartAPI</a> interface annotation
-                    <button type="button" class="getStarted btn-primary"> Get started </button>
+                    <button type="button"
+                            class="getStarted btn-primary"
+                            ng-click="goToLocation('#!/metric/new')">
+                        Get started
+                    </button>
                 </p>
             </div>
 
@@ -18,7 +22,7 @@
                 <label class="sectionItemLabel">Create collections</label>
                 <p class="sectionItemText">
                     Assemble  Maturity Indicators into community centered collections
-                    <button type="button" class="getStarted btn-primary" ng-click="goToNewCollection()"> Get started </button>
+                    <button type="button" class="getStarted btn-primary" ng-click="goToLocation('#!/collection/new')"> Get started </button>
                 </p>
             </div>
 
@@ -31,7 +35,7 @@
                     <button type="button"
 
                             class="getStarted btn-primary"
-                            ng-click=""> Get started </button>
+                            ng-click="goToLocation('#!/collections/new/evaluate')"> Get started </button>
                 </p>
             </div>
 

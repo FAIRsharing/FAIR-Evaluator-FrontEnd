@@ -27,7 +27,8 @@
                 controller: "newCollectionCtrl"
             })
             .when("/collections/:id/evaluate", {
-                templateUrl : "views/run_evaluation.html"
+                templateUrl : "views/run_evaluation.html",
+                controller: "runEvaluationCtrl"
             })
             .when("/evaluations", {
                 templateUrl : "views/evaluations.html",
@@ -84,9 +85,9 @@
             }
         };
 
-        $scope.goToNewCollection = function(){
+        $scope.goToLocation = function(location){
             $scope.baseURL = new $window.URL($location.absUrl());
-            $window.location.href = $scope.baseURL.origin + $scope.baseURL.pathname + '#!/collection/new';
+            $window.location.href = $scope.baseURL.origin + $scope.baseURL.pathname + location;
         }
 
     });
@@ -308,6 +309,25 @@
             $scope.baseURL = new $window.URL($location.absUrl());
             $window.location.href = $scope.baseURL.origin + $scope.baseURL.pathname + '#!/evaluations';
         };
+
+    });
+
+    my_app.controller("runEvaluationCtrl", function($http, $scope, $window, $location, $routeParams){
+        console.log('lets run an evaluation')
+
+        let request = {
+            method: 'GET',
+            url: base_url + "/collections.json",
+            headers: {
+                'Accept': "application/json",
+            },
+            data: null
+        };
+        $http(request).then(function(response){
+            $scope.response_rdy = true;
+            $scope.collections = response.data;
+        });
+
 
     });
 
