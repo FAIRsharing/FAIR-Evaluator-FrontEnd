@@ -507,3 +507,7 @@ a:hover {
 table a {
     font-weight: bold;
 }
+
+.mainPageItem a {
+    font-weight: bold;
+}
