@@ -448,6 +448,7 @@ md-content {
 .orcidLink {
     position: relative;
     left:10px;
+    float:right;
 }
 
 .fa-star {
