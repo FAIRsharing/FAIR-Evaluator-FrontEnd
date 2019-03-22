@@ -70,8 +70,21 @@
                                 </div>
 
                                 <div class="comment">
-                                    {{resultVal[0]['http://schema.org/comment'][0]['@value']}}
+                                    <label> Description</label>
+                                    <span>{{resultVal[0]['http://schema.org/comment'][0]['@value']}}</span>
                                 </div>
+
+                                <div class="">
+                                    <label>Created on: </label>
+                                    <span> {{resultVal[0]["http://purl.obolibrary.org/obo/date"][0]["@value"]}} </span>
+                                </div>
+
+                                <div class="">
+                                    <label>Score: </label>
+                                    <span> {{resultVal[0]['http://semanticscience.org/resource/SIO_000300'][0]['@value']}} </span>
+                                </div>
+
+
 
                             </div>
                         </div>
