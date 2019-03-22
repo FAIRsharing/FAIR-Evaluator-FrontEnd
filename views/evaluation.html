@@ -37,15 +37,23 @@
                     </div>
                 </div>
 
-                <div class="row" ng-if="charts_on">
-                    <div class="col-12"><label> Summary: </label></div>
-                    <div class="col-4 doughnut">
+                <div class="row" >
+                    <div class="col-12">
+                        <label> Summary: </label>
+                        <md-switch class="chartSwitch md-primary" ng-model="charts_on" aria-label="Charts">
+                            Charts:
+                            <span ng-if="charts_on">Show</span>
+                            <span ng-if="!charts_on">Hide</span>
+                        </md-switch>
+                    </div>
+
+                    <div class="col-4 doughnut" ng-if="charts_on">
                         <canvas id="doughnut" class="chart chart-doughnut"
                                 chart-data="pie_data" chart-labels="pie_labels">
                         </canvas>
                     </div>
 
-                    <div class="col-8 hBar">
+                    <div class="col-8 hBar" ng-if="charts_on">
                         <canvas id="bar" class="chart chart-horizontal-bar"
                                 chart-data="histo_data" chart-labels="histo_labels">
                         </canvas>
