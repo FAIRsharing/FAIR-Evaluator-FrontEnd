@@ -2,26 +2,110 @@
 
     <div class="container">
         <div class="row">
+
             <div class="col-12">
                 <h2 class="mgBot"><span>Search results</span></h2>
             </div>
-            <div>
-                Selected words: {{search_terms}}
+
+            <div class="col-12">
+                Selected words:
+                <ul>
+                    <li ng-repeat="term in terms_array">
+                        {{term}}
+                    </li>
+                </ul>
             </div>
 
-            <div ng-repeat="(itemK, itemV) in results.metrics">
-                <label>{{itemK}}</label>
-                <span>{{itemV}}</span>
-                <br>
-                <hr ng-if="!$last">
+            <div class="col-12">
+                <hr>
             </div>
 
 
-            <div ng-repeat="(itemK, itemV) in results.collections">
-                <label>{{itemK}}</label>
-                <span>{{itemV}}</span>
-                <br>
-                <hr ng-if="!$last">
+            <div class="search_results col-12" id="metrics_results">
+                <h3> Metrics </h3>
+                <table class="table table-hover table-light table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Creator</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Principle</th>
+                        <th scope="col">Test</th>
+                        <th scope="col">Interface</th>
+                        <th scope="col">View</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="metric in results.metrics">
+                        <td> {{metric['name']}}</td>
+                        <td> {{metric['creator']}}</td>
+                        <td> {{metric['email']}}</td>
+
+                        <td>
+                            <a target="_blank" href="{{metric['principle']}}">
+                                {{metric['principle'] | URL_last_arg}}
+                            </a>
+                        </td>
+
+                        <td> {{metric['test_of_metric'] | URL_last_arg}}</td>
+                        <td> {{metric['smarturl'] | URL_last_arg}}</td>
+
+                        <td>
+                            <i class="fas fa-share-square showButton" ng-click="goToMetric(metric['@id'])"></i>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-12">
+                <hr>
+            </div>
+
+            <div class="search_results col-12" id="collections_results">
+                <h3> Collections </h3>
+
+                <div class="collections row fade show">
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-xl-3 collectionsCards" ng-repeat="collection in results.collections">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="title">
+                                    <label class="collectionName">{{collection["http://purl.org/dc/elements/1.1/title"]}}</label>
+                                </div>
+                                <hr>
+                                <div class="description">
+                                    <label>Status:</label>
+                                    <span> Deprecated or Valid </span>
+                                </div>
+                                <div class="description">
+                                    <label>Description:</label>
+                                    <span> {{collection['http://rdfs.org/ns/void#description']}} </span>
+                                </div>
+                                <div class="description">
+                                    <label>Contact:</label>
+                                    <span> {{collection['http://purl.org/dc/elements/1.1/authoredBy'] | URL_last_arg}} </span>
+                                </div>
+                                <div class="description">
+                                    <label>Organization:</label>
+                                    <span> {{collection["http://purl.org/dc/elements/1.1/creator"]}} </span>
+                                </div>
+                            </div>
+
+                            <div class="buttonsContainer">
+                                <button type="button"
+                                        class="btn btn-primary btn"
+                                        ng-click="goToCollection(collection['id'])">
+                                    <a>Show</a>
+                                </button>
+
+                                <button type="button"
+                                        class="btn btn-primary" ng-click="goToRunEvaluation(collection['id'])">
+                                    Execute Evaluation
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </div>

@@ -511,3 +511,7 @@ table a {
 .mainPageItem a, .sectionItemText a {
     font-weight: bold;
 }
+
+.resultItem {
+    margin-bottom:20px;
+}

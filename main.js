@@ -62,10 +62,13 @@
         $scope.terms = null;
 
         $scope.goToSearches = function(){
+
             $scope.response_rdy = false;
             let window_url = new $window.URL($location.absUrl());
 
             $scope.search_terms = $scope.terms;
+            $scope.terms_array = $scope.search_terms.split(",");
+
             let request = {
                 method: 'POST',
                 url: base_url + "/searches/abcde",
@@ -89,6 +92,10 @@
         $scope.goToLocation = function(location){
             $scope.baseURL = new $window.URL($location.absUrl());
             $window.location.href = $scope.baseURL.origin + $scope.baseURL.pathname + location;
+        };
+
+        $scope.setSearchTerms = function(){
+
         }
 
     });
@@ -319,6 +326,7 @@
 
     });
 
+    /* route: /evaluations/{id}/evaluate */
     my_app.controller("runEvaluationCtrl", function($http, $scope, $window, $location, $routeParams){
         $scope.evalForm = {};
         $scope.evalForm.collection = null;
@@ -452,6 +460,7 @@
 
     });
 
+    /* route: /metric/new*/
     my_app.controller('newMetricCtrl', function($http, $scope, $window, $location, $routeParams){
         $scope.response_rdy = true;
         $scope.metrics_url = null;
