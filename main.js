@@ -340,7 +340,7 @@
 
         $scope.evalForm.collection_disabled = true;
         if ($routeParams.id === "new"){
-            collection_disabled = false;
+            $scope.evalForm.collection_disabled = false;
         }
         else{
             request.url = base_url+ "/collections/" + $routeParams.id + '.json';
@@ -355,7 +355,7 @@
         });
 
         $scope.clearFields = function(){
-            if (!collection_disabled){
+            if (!$scope.evalForm.collection_disabled){
                 $scope.evalForm.collection = null;
             }
             $scope.evalForm.guid = null;
