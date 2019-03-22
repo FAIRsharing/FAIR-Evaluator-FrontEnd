@@ -327,7 +327,15 @@
             for (let metricKey in $scope.evaluation['evaluationResult']){
                 let metric = $scope.evaluation['evaluationResult'][metricKey][0];
                 if (resourceLimit === 0){
+                    console.log(metric['http://semanticscience.org/resource/SIO_000332'][0]);
+
                     $scope.resource = metric['http://semanticscience.org/resource/SIO_000332'][0]['@id'];
+                    if (!$scope.resource){
+                        $scope.resource = metric['http://semanticscience.org/resource/SIO_000332'][0]['@value'];
+                    }
+                    if (!$scope.resource.startsWith('http') && !$scope.resource.startsWith('https')){
+                        $scope.resource = "https://doi.org/" + $scope.resource;
+                    }
                     resourceLimit++
                 }
 
