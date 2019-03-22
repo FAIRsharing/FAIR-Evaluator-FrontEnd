@@ -47,25 +47,27 @@
 
                                 <!-- results /stars -->
                                 <div class="stars">
-                                    <div id="star1" class="star"
-                                         ng-if="resultVal[0]['http://semanticscience.org/resource/SIO_000300'][0]['@value'] === '0'">
-                                        <i class="fas fa-star"></i>
-                                    </div>
-                                    <div id="star2" class="star"
-                                         ng-if="resultVal[0]['http://semanticscience.org/resource/SIO_000300'][0]['@value'] === '0.25'">
-                                        <i class="fas fa-star"></i><i class="fas fa-star"></i>
-                                    </div>
-                                    <div id="star3" class="star"
-                                         ng-if="resultVal[0]['http://semanticscience.org/resource/SIO_000300'][0]['@value'] === '0.5' || resultVal[0]['http://semanticscience.org/resource/SIO_000300'][0]['@value'] === '0.50'">
-                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                                    </div>
-                                    <div id="star4" class="star"
-                                         ng-if="resultVal[0]['http://semanticscience.org/resource/SIO_000300'][0]['@value'] === '0.75'">
-                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                                    </div>
-                                    <div id="star5" class="star"
-                                         ng-if="resultVal[0]['http://semanticscience.org/resource/SIO_000300'][0]['@value'] === '1' || resultVal[0]['http://semanticscience.org/resource/SIO_000300'][0]['@value'] === '1.0'">
-                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                    <div class="starContainer">
+                                        <div id="star1" class="star"
+                                             ng-if="resultVal[0]['http://semanticscience.org/resource/SIO_000300'][0]['@value'] === '0'">
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <div id="star2" class="star"
+                                             ng-if="resultVal[0]['http://semanticscience.org/resource/SIO_000300'][0]['@value'] === '0.25'">
+                                            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                        </div>
+                                        <div id="star3" class="star"
+                                             ng-if="resultVal[0]['http://semanticscience.org/resource/SIO_000300'][0]['@value'] === '0.5' || resultVal[0]['http://semanticscience.org/resource/SIO_000300'][0]['@value'] === '0.50'">
+                                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                        </div>
+                                        <div id="star4" class="star"
+                                             ng-if="resultVal[0]['http://semanticscience.org/resource/SIO_000300'][0]['@value'] === '0.75'">
+                                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                        </div>
+                                        <div id="star5" class="star"
+                                             ng-if="resultVal[0]['http://semanticscience.org/resource/SIO_000300'][0]['@value'] === '1' || resultVal[0]['http://semanticscience.org/resource/SIO_000300'][0]['@value'] === '1.0'">
+                                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                        </div>
                                     </div>
                                 </div>
 

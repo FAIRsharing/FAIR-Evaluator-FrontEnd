@@ -515,3 +515,13 @@ table a {
 .resultItem {
     margin-bottom:20px;
 }
+
+.stars {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.starContainer {
+    display: inline-block;
+}
