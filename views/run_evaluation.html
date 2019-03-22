@@ -1,4 +1,20 @@
-<div class="container mainContainer fade show ">
+<!-- response -->
+<div class="container fade show waiter" ng-if="response_content">
+
+    <div class="row">
+        <div class="waiterLabel col-12"> Your URL is ready:</div>
+        <a class="rdyLink col-12"
+           style="text-align: center"
+           ng-href="{{response_content}}">
+            {{response_content}}
+        </a>
+    </div>
+    {{errors}}
+
+</div>
+
+
+<div class="container mainContainer fade show " ng-if="response_rdy">
     <div class="newCol row fade show">
 
         <div class="col-12">
@@ -9,58 +25,68 @@
 
             <md-content layout-padding>
                 <div>
+                    <div>
+                        <h5>
+                            Globally Unique Identifier (GUID) to be Evaluated:
+                        </h5>
+                        <span><i>This is the GUID for the metadata (!) of your data record</i></span>
+                    </div>
+                    <div class="hints">
+                        <label>Hints:</label>
+                        We currently recognze INCHI Keys, DOIs, Handles and URLs. Contact the developer to add new GUID types to this list - for example, we plan to support LSIDs soon, and others. <br>
+                        If you have a DOI for your data deposit, a DOI returns metadata to our system, so please use your DOI unless you have specifically created a better metadata record. <br>
+                        For DOIs, enter the DOI <b>without the 'doi:' prefix </b> (e.g. just '10.1002/abd.123') <br>
+                        For InCHI keys, enter the key <b>with no prefix</b> ( e.g xxxxxxxxxxxxxxxx.xxxxxxxxxx.xxxxx)
+
+                    </div>
+
                     <form name="runEval">
-
-                        <!--
+                        <div>Select a collection</div>
                         <div layout-gt-sm="row">
-                            <md-input-container class="md-block" flex-gt-sm>
-                                <label>Collection name</label>
-                                <input ng-model="collection_data.name" required name="collectionName">
-                            </md-input-container>
 
-                            <md-input-container class="md-block" flex-gt-sm>
-                                <label>Contact ORCiD</label>
-                                <input ng-model="collection_data.contact" required name="collectionContact">
-                            </md-input-container>
-
-                            <md-input-container class="md-block" flex-gt-sm>
-                                <label>Organization Name</label>
-                                <input ng-model="collection_data.organization" required name="collectionOrganziation">
-                            </md-input-container>
-                        </div>
-
-                        <md-input-container class="md-block">
-                            <label>Description of the collection</label>
-                            <textarea ng-model="collection_data.description"
-                                      md-maxlength="300"
-                                      rows="5"
-                                      required
-                                      name="collectionDescription"
-                                      md-select-on-focus>
-                            </textarea>
-                        </md-input-container>
-
-
-                        <div layout-gt-sm="row">
                             <md-input-container class="md-block" flex-gt-xs>
-                                <md-select multiple="{{true}}"
-                                           placeholder="Select Maturity Indicators"
-                                           ng-model="collection_data.indicators"
+                                <md-select placeholder="collections"
+                                           ng-model="evalForm.collection"
                                            name="collectionMetrics"
                                            required>
-                                    <md-option ng-repeat="collection in available_metrics"
+                                    <md-option ng-repeat="collection in collections"
                                                value="{{collection['@id']}}">
-                                        {{collection['name']}}
+                                        {{collection["http://purl.org/dc/elements/1.1/title"]}}
                                     </md-option>
                                 </md-select>
                             </md-input-container>
                         </div>
-                        -->
-                        Under construction
+
+                        <div layout-gt-sm="row">
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>GUID</label>
+                                <input ng-model="evalForm.guid" required name="collectionName">
+                            </md-input-container>
+
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Title of this evaluation</label>
+                                <input ng-model="evalForm.title" required name="collectionContact">
+                            </md-input-container>
+
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Your ORCiD</label>
+                                <input ng-model="evalForm.orcid" required name="collectionOrganziation">
+                            </md-input-container>
+                        </div>
                     </form>
                 </div>
             </md-content>
 
+            <div class="newCollectionValidate">
+                <button type="button" class="btn btn-primary" ng-click="runEvaluation()">Create collection</button>
+                <button type="button" class="btn btn-primary" ng-click="clearFields()">Clear fields</button>
+            </div>
+
         </div>
     </div>
+</div>
+
+<!-- waiter -->
+<div class="container fade show" ng-if="!response_rdy">
+    <div loader></div>
 </div>

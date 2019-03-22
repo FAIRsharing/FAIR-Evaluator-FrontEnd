@@ -313,7 +313,17 @@
     });
 
     my_app.controller("runEvaluationCtrl", function($http, $scope, $window, $location, $routeParams){
-        console.log('lets run an evaluation')
+
+        $scope.evalForm = {};
+        $scope.evalForm.collection_disabled = false;
+        $scope.evalForm.collection = null;
+        $scope.evalForm.guid = null;
+        $scope.evalForm.title = null;
+        $scope.evalForm.orcid = null;
+        $scope.response_content = false;
+        $scope.response_rdy = false;
+        $scope.response_rdy = true;
+
 
         let request = {
             method: 'GET',
@@ -324,10 +334,47 @@
             data: null
         };
         $http(request).then(function(response){
-            $scope.response_rdy = true;
             $scope.collections = response.data;
         });
 
+        $scope.clearFields = function(){
+            $scope.evalForm.collection = null;
+            $scope.evalForm.guid = null;
+            $scope.evalForm.title = null;
+            $scope.evalForm.orcid = null;
+        };
+
+        $scope.runEvaluation = function() {
+
+            $scope.response_rdy = false;
+            let collection_id = $scope.evalForm.collection.split('/').slice(-1)[0];
+
+            let eval_request = {
+                method: 'POST',
+                url: base_url + "/collections/" + collection_id + "/evaluate",
+                headers: {
+                    'Accept': "application/json",
+                    'Content-Type': "application/json"
+                },
+                data: {
+                    "resource": $scope.evalForm.collection,
+                    "executor": $scope.evalForm.orcid,
+                    "title": $scope.evalForm.title
+                }
+            };
+
+            let root_url = new $window.URL($location.absUrl());
+            let next_url = root_url.origin + root_url.pathname + '#!/collections/';
+
+            $http(eval_request).then(function(response){
+                $scope.response_rdy = true;
+                let evaluation_id = response.data["@id"].split('/').slice(-1)[0];
+                $scope.next_url = "";
+                $scope.response_content = next_url + evaluation_id;
+
+            $scope.response_rdy = true;
+            })
+        }
 
     });
 
