@@ -494,6 +494,15 @@ a:hover {
     color: #213d59;
 }
 
+.showButton {
+    color: #325D88;
+    font-size: 2rem;
+}
+
+.showButton:hover{
+    cursor: pointer;
+}
+
 table a {
     font-weight: bold;
 }

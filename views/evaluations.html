@@ -4,16 +4,19 @@
         <thead>
         <tr>
             <th scope="col">Collection</th>
+            <th scope="col">Title</th>
             <th scope="col">Description</th>
             <th scope="col">Executor</th>
-            <th scope="col">Title</th>
-            <th scope="col"></th>
+            <th scope="col">View</th>
         </tr>
         </thead>
         <tbody>
         <tr ng-repeat="evaluation in evaluations">
             <td class="col1">
                 {{evaluation['collection'] | URL_last_arg}}
+            </td>
+            <td>
+                {{evaluation['title']}}
             </td>
             <td>
                 {{evaluation['http://rdfs.org/ns/void#description']}}
@@ -23,15 +26,16 @@
                     <img src="assets/img/orcid.png" class="orcid_icon">
                 </a>
             </td>
+
             <td>
-                {{evaluation['title']}}
-            </td>
-            <td>
+                <i class="fas fa-share-square showButton" ng-click="goToEvaluation(evaluation['@id'])"></i>
+                <!--
                 <button type="button"
                         class="btn-primary btn"
-                        ng-click="goToEvaluation(evaluation['@id'])">
+                        >
                     Show
                 </button>
+                -->
             </td>
         </tr>
         </tbody>
