@@ -37,10 +37,19 @@
                     </div>
                 </div>
 
-                <div class="charts row">
-                    <canvas id="doughnut" class="chart chart-doughnut"
-                            chart-data="data" chart-labels="labels">
-                    </canvas>
+                <div class="row">
+                    <div class="col-12"><label> Summary: </label></div>
+                    <div class="col-4 doughnut">
+                        <canvas id="doughnut" class="chart chart-doughnut"
+                                chart-data="pie_data" chart-labels="pie_labels">
+                        </canvas>
+                    </div>
+
+                    <div class="col-8 hBar">
+                        <canvas id="bar" class="chart chart-horizontal-bar"
+                                chart-data="histo_data" chart-labels="histo_labels">
+                        </canvas>
+                    </div>
                 </div>
 
                 <hr>
@@ -91,14 +100,6 @@
                                     <label>Score: </label>
                                     <span> {{resultVal[0]['http://semanticscience.org/resource/SIO_000300'][0]['@value']}} </span>
                                 </div>
-
-                                <hr>
-                                <div ng-repeat="(a,b) in resultVal[0]">
-                                    <label>{{a}}</label>
-                                    <span>{{b}}</span>
-                                </div>
-
-
                             </div>
                         </div>
                     </div>

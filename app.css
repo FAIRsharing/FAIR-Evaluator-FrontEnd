@@ -523,16 +523,16 @@ table a {
     margin-bottom:20px;
 }
 
-.stars {
+.stars, .doughnut, .hBar {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.starContainer {
+.starContainer, #doughnut, #bar {
     display: inline-block;
 }
 
 .charts {
-    max-width:20%;
+    max-width:30%;
 }

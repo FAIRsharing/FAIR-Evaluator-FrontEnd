@@ -301,8 +301,13 @@
 
         $scope.response_rdy = false;
         $scope.identifier = $routeParams.id;
-        $scope.labels = ["Download Sales", "In-Store Sales", "Mail-Order Sales"];
-        $scope.data = [300, 500, 100];
+        $scope.pie_labels = ["1 star", "2 stars", "3stars", "4 stars", "5stars"];
+        $scope.pie_data = [0, 0, 0, 0, 0];
+
+
+        $scope.histo_labels = [];
+        $scope.histo_data = [
+        ];
 
         let request = {
             method: 'GET',
@@ -315,18 +320,41 @@
         $http(request).then(function(response){
             let evaluation =  JSON.parse(response.data['evaluationResult']);
             $scope.evaluation = response.data;
-            console.log($scope.evaluation);
             $scope.evaluation['evaluationResult'] = evaluation;
-
             $scope.resource = String();
 
+            let resourceLimit = 0;
             for (let metricKey in $scope.evaluation['evaluationResult']){
                 let metric = $scope.evaluation['evaluationResult'][metricKey][0];
-                $scope.resource = metric['http://semanticscience.org/resource/SIO_000332'][0]['@id'];
-                console.log($scope.resource);
-                break;
-            }
+                if (resourceLimit === 0){
+                    $scope.resource = metric['http://semanticscience.org/resource/SIO_000332'][0]['@id'];
+                    resourceLimit++
+                }
 
+                let score = metric["http://semanticscience.org/resource/SIO_000300"][0]["@value"];
+                $scope.histo_labels.push(
+                    metricKey.split('/').slice(-1)[0].replace(/_/g, ' ')
+                );
+                $scope.histo_data.push(parseFloat(score));
+
+                switch(parseFloat(score)){
+                    case 0:
+                        $scope.pie_data[0] += 1;
+                        break;
+                    case 1:
+                        $scope.pie_data[4] += 1;
+                        break;
+                    case 0.25:
+                        $scope.pie_data[1] += 1;
+                        break;
+                    case 0.5:
+                        $scope.pie_data[2] += 1;
+                        break;
+                    case 0.75:
+                        $scope.pie_data[3] += 1;
+                        break;
+                }
+            }
 
             $scope.response_rdy = true;
         });
@@ -518,13 +546,6 @@
         return function (str) {
             return str.replace(/_/g, ' ')
         };
-    });
-
-
-    /* *************************************************************************************************** */
-    /* CHARTS */
-    my_app.controller("DoughnutCtrl", function ($scope) {
-
     });
 
 
