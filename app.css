@@ -485,3 +485,15 @@ md-content {
 .hints{
     margin-bottom: 30px;
 }
+
+a {
+    color: #27aae1;
+}
+
+a:hover {
+    color: #213d59;
+}
+
+table a {
+    font-weight: bold;
+}
