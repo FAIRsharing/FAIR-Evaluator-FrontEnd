@@ -452,18 +452,31 @@
 
     });
 
-
     my_app.controller('newMetricCtrl', function($http, $scope, $window, $location, $routeParams){
         $scope.response_rdy = true;
-        console.log('lets import some metrics');
-
+        $scope.metrics_url = null;
 
         $scope.import_metric = function(){
-            $scope.response_rdy = true;
-            let request = {};
-            /*$http(request).then(function(response){
+            $scope.response_rdy = false;
+            let request = {
+                method: 'POST',
+                url: base_url + "/metrics",
+                headers: {
+                    'Accept': "application/json",
+                    "Content-Type": "application/json"
+                },
+                data: {
+                    "smarturl": $scope.metrics_url
+                }
+            };
+            if ($scope.metrics_url != null){
+                $http(request).then(function(response){
+                    console.log(response)
+                    $scope.response_rdy = false;
+                    $scope.response_content = response.data['@id']
+                })
+            }
 
-            })*/
         }
     });
 

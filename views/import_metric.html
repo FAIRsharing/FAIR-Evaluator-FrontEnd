@@ -1,4 +1,19 @@
-<div class="container mainContainer fade show">
+<!-- response -->
+<div class="container fade show waiter" ng-if="response_content != null">
+
+    <div class="row">
+        <div class="waiterLabel col-12"> Your URL is ready:</div>
+        <a class="rdyLink col-12"
+           style="text-align: center"
+           ng-href="{{response_content}}">
+            {{response_content}}
+        </a>
+    </div>
+    {{errors}}
+
+</div>
+
+<div class="container mainContainer fade show" ng-if="response_rdy">
     <div class="newCol row fade show">
 
         <div class="col-12">
@@ -13,14 +28,14 @@
 
                         <md-input-container class="md-block" flex-gt-sm>
                             <label>URL to the Maturity Indicator Test's smartAPI YAML</label>
-                            <input ng-model="collection_data.name" required name="collectionName">
+                            <input ng-model="metrics_url" required name="collectionName">
                         </md-input-container>
                     </form>
                 </div>
             </md-content>
 
             <div class="newCollectionValidate">
-                <button type="button" class="btn btn-primary" ng-click="">Import Maturity Indicator</button>
+                <button type="button" class="btn btn-primary" ng-click="import_metric()">Import Maturity Indicator</button>
             </div>
 
         </div>
@@ -28,6 +43,6 @@
 </div>
 
 <!-- waiter -->
-<div class="container fade show" ng-if="">
+<div class="container fade show" ng-if="!response_rdy">
     <div loader></div>
 </div>
