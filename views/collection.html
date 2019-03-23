@@ -1,15 +1,64 @@
 <div class="fade show container mainContainer" ng-if="response_rdy">
-    <div class="card collectionItem">
-        <div class="card-header">
-            <h3>{{collection.title}}</h3>
-        </div>
-        <div class="card-body">
-            <div ng-repeat="(fieldName, fieldVal) in collection">
-                <label>{{fieldName | URL_last_arg}}:</label>
-                <span>{{fieldVal}}</span>
+
+    <div class="container evalTitle">
+        <div class="row">
+            <div class="col-11"><h2>{{collection.title}}</h2></div>
+            <div class="orcid_logo col-1">
+                <a href="{{collection['http://purl.org/dc/elements/1.1/authoredBy']}}" target="_blank" class="orcidLink">
+                    <img src="assets/img/orcid.png" class="orcid_icon">
+                </a>
             </div>
         </div>
     </div>
+
+    <div class="container collectionFields">
+
+        <!-- description -->
+        <div class="fieldContainer">
+            <label>Description: </label>
+            <span> {{collection['http://rdfs.org/ns/void#description']}}</span>
+        </div>
+
+        <!-- license -->
+        <div class="fieldContainer">
+            <label>Licence: </label>
+            <a href="{{collection['http://purl.org/dc/elements/1.1/license']}}}" target="_blank">
+                {{collection['http://purl.org/dc/elements/1.1/license']}}
+            </a>
+        </div>
+
+        <!-- Organization -->
+        <div class="fieldContainer">
+            <label>Organization: </label>
+            <span> {{collection['http://purl.org/dc/elements/1.1/creator']}}</span>
+        </div>
+
+        <!-- Creation date -->
+        <div class="fieldContainer">
+            <label>Created on: </label>
+            <span> {{collection['http://purl.org/pav/version'] | date}}</span>
+        </div>
+
+        <!-- Creation date -->
+        <div class="fieldContainer">
+            <label>Status: </label>
+            <span> ?? </span>
+        </div>
+
+
+        <!-- Metrics -->
+        <div class="fieldContainer">
+            <label>Maturity indicators</label>
+            <span>({{collection['http://www.w3.org/ns/dcat#entities']}}):</span>
+            <ul>
+                <li ng-repeat="(key, metric) in collection['http://www.w3.org/ns/ldp#contains']">
+                    {{metric}}
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
     <div class="goBack">
         <button type="button"
                 class="btn-primary btn"
