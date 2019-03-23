@@ -1,4 +1,4 @@
-<div class="container mainContainer fade show" ng-if="response_rdy">
+<div class="container mainContainer fade show" ng-if="response_rdy && !search_errors">
 
     <div class="container">
         <div class="row">
@@ -117,3 +117,5 @@
 <div class="container fade show" ng-if="!response_rdy">
     <div loader></div>
 </div>
+
+<!-- ERRORS -->

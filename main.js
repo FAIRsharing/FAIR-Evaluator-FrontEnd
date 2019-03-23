@@ -100,33 +100,6 @@
             $window.location.href = $scope.baseURL.origin + $scope.baseURL.pathname + location;
         };
 
-        $scope.setSearchTerms = function(){
-
-        }
-
-    });
-
-    /* *************************************************************************************************** */
-    /* COLLECTIONS */
-
-    /* route: /collections */
-    my_app.controller("collectionsCtrl", function($http, $scope, $window, $location){
-
-        $scope.response_rdy = false;
-        let request = {
-            method: 'GET',
-            url: base_url + "/collections.json",
-            headers: {
-                'Accept': "application/json",
-            },
-            data: null
-        };
-        $http(request).then(function(response){
-            $scope.response_rdy = true;
-            $scope.collections = {};
-            $scope.collections.data = $scope.process_data(response.data);
-        });
-
         $scope.process_data = function(data){
             let processed_collections = [];
             for (let collectionIterator in data){
@@ -164,6 +137,35 @@
             $window.location.href = $scope.baseURL + "/" + id + '/evaluate'
         };
 
+        $scope.goToMetric = function(identifier){
+            $scope.baseURL = new $window.URL($location.absUrl());
+            let id = identifier.split('/').slice(-1)[0];
+            $window.location.href = $scope.baseURL + "/" + id
+        };
+
+    });
+
+    /* *************************************************************************************************** */
+    /* COLLECTIONS */
+
+    /* route: /collections */
+    my_app.controller("collectionsCtrl", function($http, $scope, $window, $location){
+
+        $scope.response_rdy = false;
+        let request = {
+            method: 'GET',
+            url: base_url + "/collections.json",
+            headers: {
+                'Accept': "application/json",
+            },
+            data: null
+        };
+        $http(request).then(function(response){
+            $scope.response_rdy = true;
+            $scope.collections = {};
+            $scope.collections.data = $scope.process_data(response.data);
+        });
+
     });
 
     /* route: /collection/{id} */
@@ -186,14 +188,9 @@
             $scope.collection['title'] = response.data['http://purl.org/dc/elements/1.1/title'];
         });
 
-        $scope.goToCollections = function(){
-            $scope.baseURL = new $window.URL($location.absUrl());
-            $window.location.href = $scope.baseURL.origin + $scope.baseURL.pathname + '#!/collections';
-        };
-
     });
 
-    /* route: /collections */
+    /* route: /collection/new */
     my_app.controller("newCollectionCtrl", function($http, $scope, $window, $location){
 
         let request = {
@@ -381,7 +378,7 @@
 
     });
 
-    /* route: /evaluations/{id}/evaluate */
+    /* route: /collections/{id}/evaluate */
     my_app.controller("runEvaluationCtrl", function($http, $scope, $window, $location, $routeParams){
         $scope.evalForm = {};
         $scope.evalForm.collection = null;
@@ -481,12 +478,6 @@
             $scope.response_rdy = true;
         });
 
-        $scope.goToMetric = function(identifier){
-            $scope.baseURL = new $window.URL($location.absUrl());
-            let id = identifier.split('/').slice(-1)[0];
-            $window.location.href = $scope.baseURL + "/" + id
-        };
-
     });
 
     /* route: /metrics/{id} */
@@ -507,12 +498,6 @@
             $scope.metric = response.data;
             $scope.response_rdy = true;
         });
-
-        $scope.goToMetrics = function(){
-            $scope.baseURL = new $window.URL($location.absUrl());
-            $window.location.href = $scope.baseURL.origin + $scope.baseURL.pathname + '#!/metrics';
-        };
-
     });
 
     /* route: /metric/new*/
