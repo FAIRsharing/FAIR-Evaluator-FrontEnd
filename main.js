@@ -59,11 +59,11 @@
     /* *************************************************************************************************** */
     /* MAIN */
 
-    my_app.controller("searchCtrl", function($http, $scope, $window, $location) {
+    my_app.controller("maniCtrl", function($http, $scope, $window, $location) {
         $scope.terms = null;
+        $scope.search_errors = null;
 
         $scope.goToSearches = function(){
-
             $scope.response_rdy = false;
             let window_url = new $window.URL($location.absUrl());
 
@@ -81,12 +81,17 @@
                     "keywords": $scope.search_terms
                 }
             };
+
             if ($scope.search_terms.length > 0){
                 $window.location.href =  window_url.origin + window_url.pathname + '#!searches';
                 $http(request).then(function(response){
                     $scope.response_rdy = true;
                     $scope.results = response.data;
                 })
+            }
+            else {
+                $window.location.href =  window_url.origin + window_url.pathname + '#!searches';
+                $scope.response_rdy = true;
             }
         };
 
