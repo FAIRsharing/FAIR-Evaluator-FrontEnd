@@ -358,25 +358,6 @@ div.main div.card-body{
     text-align: justify;
 }
 
-/* TODO: set sm and md @media for .section.sectionItem
-         set sm for icons padding on main page.
-*/
-
-@media(max-width: 766px){
-    .section .sectionItem{
-        text-align: center;
-    }
-}
-
-@media(min-width: 767px) and (max-width:992px){
-    .section .sectionItem{
-        text-align: center;
-    }
-    .section #item3{
-        margin-top:40px;
-    }
-}
-
 iframe.twitter-timeline {
     display: block !important;
     margin-left: auto;
@@ -535,4 +516,43 @@ table a {
 
 .charts {
     max-width:30%;
+}
+
+.principleContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.principle{
+    font-size: 4.5rem;
+    color: #27aae1;
+    font-weight: bold;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+}
+
+/* TODO: set sm and md @media for .section.sectionItem
+         set sm for icons padding on main page.
+*/
+
+@media(max-width: 766px){
+    .section .sectionItem{
+        text-align: center;
+    }
+
+    .principle {
+        font-size: 2.5rem;
+    }
+}
+
+@media(min-width: 767px) and (max-width:992px){
+    .section .sectionItem{
+        text-align: center;
+    }
+    .section #item3{
+        margin-top:40px;
+    }
+    .principle {
+        font-size: 2.5rem;
+    }
 }

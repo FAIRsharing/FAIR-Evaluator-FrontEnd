@@ -1,14 +1,52 @@
 <div class="container mainContainer fade show" ng-if="response_rdy">
-    <div class="card">
-        <div class="card-header">
-            <h3>{{metric.name}}</h3>
-        </div>
-        <div class="card-body">
-            <div ng-repeat="(fieldKey, fieldVal) in metric">
-                <label>{{fieldKey | URL_last_arg}}: </label>
-                <span> {{fieldVal}}</span>
+
+    <div class="container evalTitle">
+        <div class="row">
+            <div class="col-11"><h2>{{metric.name}}</h2></div>
+            <div class="orcid_logo col-1">
+                <a href="https://orcid.org/ + {{metric['orcid']}}" target="_blank" class="orcidLink">
+                    <img src="assets/img/orcid.png" class="orcid_icon">
+                </a>
             </div>
         </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-2 principleContainer">
+                <div class="principle">
+                    <a href="{{metric['principle']}}" target="_blank">{{metric['principle'] | URL_last_arg}}</a>
+                </div>
+            </div>
+
+            <div class="col-10">
+
+                <!-- Description -->
+                <div class="">
+                    <label>Description: </label>
+                    <span> {{metric["description"]}}</span>
+                </div>
+
+                <!-- Created -->
+                <div class="">
+                    <label>Created by: </label>
+                    <span>
+                        <a href="mailto:{{metric['email']}}">{{metric["creator"]}}</a> on {{metric['created_at'] | date}} (updated on {{metric['updated_at'] | date}})
+                    </span>
+                </div>
+
+                <!-- Created -->
+                <div class="">
+                    <label>Interface smarlURL: </label>
+                    <a href="{{metric['smarturl']}}" target="_blank">
+                        {{metric["smarturl"]}}
+                    </a>
+                </div>
+
+            </div>
+        </div>
+        <hr>
     </div>
 
     <div class="goBack">
