@@ -128,10 +128,6 @@ my_evaluations_app.controller(
                     }
                 }
             }
-
-
-
-
             $scope.response_rdy = true;
         });
 
