@@ -555,6 +555,11 @@ canvas#doughnut {
     height:auto !important;
 }
 
+
+.chartSwitch{
+    display: inline-block;
+}
+
 /* TODO: set sm and md @media for .section.sectionItem
          set sm for icons padding on main page.
 */

@@ -38,12 +38,20 @@
 
                 <div class="row" >
                     <div class="col-12">
-                        <label> Summary: </label>
-                        <md-switch class="chartSwitch md-primary" ng-model="charts_on" aria-label="Charts">
-                            Charts:
-                            <span ng-if="charts_on">Show</span>
-                            <span ng-if="!charts_on">Hide</span>
-                        </md-switch>
+                        <div class="container">
+                            <div class="row"><label> Summary: </label></div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <md-switch class="chartSwitch md-primary" ng-model="charts_on" aria-label="Charts">
+                                        Charts:
+                                        <span ng-if="charts_on">Show</span>
+                                        <span ng-if="!charts_on">Hide</span>
+                                    </md-switch>
+                                </div>
+                            </div>
+                        </div>
+
+
                     </div>
 
                     <div class="col-4 doughnut" ng-if="charts_on">
