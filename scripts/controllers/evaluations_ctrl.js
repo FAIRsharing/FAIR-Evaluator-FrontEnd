@@ -45,6 +45,14 @@ my_evaluations_app.controller(
         $scope.histo_data = [
         ];
 
+        $scope.histo_options = {
+            scales: {
+                xAxes: [{
+                    display: false
+                }]
+            }
+        };
+
         let request = {
             method: 'GET',
             url: base_url + "/evaluations/" + $scope.identifier + '.json',
