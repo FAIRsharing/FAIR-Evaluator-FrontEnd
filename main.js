@@ -59,7 +59,7 @@
     /* *************************************************************************************************** */
     /* MAIN */
 
-    my_app.controller("maniCtrl", function($http, $scope, $window, $location) {
+    my_app.controller("mainCtrl", function($http, $scope, $window, $location) {
         $scope.terms = null;
         $scope.search_errors = null;
 
@@ -145,11 +145,12 @@
 
     });
 
+
     /* *************************************************************************************************** */
     /* COLLECTIONS */
 
     /* route: /collections */
-    my_app.controller("collectionsCtrl", function($http, $scope, $window, $location){
+    my_app.controller("collectionsCtrl", function($http, $scope){
 
         $scope.response_rdy = false;
         let request = {
@@ -169,7 +170,7 @@
     });
 
     /* route: /collection/{id} */
-    my_app.controller("collectionCtrl", function($http, $scope, $routeParams, $window, $location){
+    my_app.controller("collectionCtrl", function($http, $scope, $routeParams){
 
         $scope.identifier = $routeParams.id;
         $scope.response_rdy = false;
@@ -218,7 +219,7 @@
             $scope.available_metrics = response.data;
         });
 
-        $scope.createCollection = function(coll){
+        $scope.createCollection = function(){
 
             $scope.triggered = true;
 
@@ -233,7 +234,7 @@
             for (let ite in $scope.collection_data.indicators){
                 let metric_URL = $scope.collection_data.indicators[ite];
                 for (let sub_it in $scope.available_metrics){
-                    if ($scope.available_metrics[sub_it]["@id"] === metric_URL){
+                    if ($scope.available_metrics.hasOwnProperty(sub_it) && $scope.available_metrics[sub_it]["@id"] === metric_URL){
                         request_data['include_metrics'].push($scope.available_metrics[sub_it]['smarturl']);
                     }
                 }
@@ -460,7 +461,7 @@
     /* METRICS */
 
     /* route: /metrics */
-    my_app.controller("metricsCtrl", function($http, $scope, $window, $location){
+    my_app.controller("metricsCtrl", function($http, $scope){
 
         $scope.response_rdy = false;
 
@@ -500,7 +501,7 @@
     });
 
     /* route: /metric/new*/
-    my_app.controller('newMetricCtrl', function($http, $scope, $window, $location, $routeParams){
+    my_app.controller('newMetricCtrl', function($http, $scope){
         $scope.response_rdy = true;
         $scope.metrics_url = null;
 
@@ -519,7 +520,7 @@
             };
             if ($scope.metrics_url != null){
                 $http(request).then(function(response){
-                    console.log(response)
+                    console.log(response);
                     $scope.response_rdy = false;
                     $scope.response_content = response.data['@id']
                 })
@@ -527,6 +528,7 @@
 
         }
     });
+
 
     /* *************************************************************************************************** */
     /* FILTERS */
