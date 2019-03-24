@@ -1,8 +1,5 @@
 (function() {
 
-    let base_url = "https://linkeddata.systems:3000/FAIR_Evaluator";
-    let charts_on = false;
-
     let my_app = angular.module('FAIRmetricsApp',
         [
             'ngRoute',
@@ -14,7 +11,8 @@
             'appConfigCtrl',
             'appGraphCtrl',
             'appCollectionsCtrl',
-            'appEvaluationsCtrl'
+            'appEvaluationsCtrl',
+            'appMetricsCtrl'
         ])
         .config(function ($mdThemingProvider) {
             $mdThemingProvider.theme('docs-dark', 'default')

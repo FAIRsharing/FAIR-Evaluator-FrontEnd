@@ -1,7 +1,7 @@
 let my_metrics_app = angular.module('appMetricsCtrl', ['appConfigCtrl']);
 
 /* route: /metrics */
-my_evaluations_app.controller(
+my_metrics_app.controller(
     'metricsCtrl',
     function($http, $scope){
         let base_url = $scope.$parent.base_url;
@@ -24,7 +24,7 @@ my_evaluations_app.controller(
 );
 
 /* route: /metrics/{id} */
-my_evaluations_app.controller(
+my_metrics_app.controller(
     'metricCtrl',
     function($http, $scope, $window, $location, $routeParams){
         let base_url = $scope.$parent.base_url;
@@ -48,7 +48,7 @@ my_evaluations_app.controller(
 
 
 /* route: /metric/new */
-my_evaluations_app.controller(
+my_metrics_app.controller(
     'newMetricCtrl',
     function($http, $scope){
         let base_url = $scope.$parent.base_url;
