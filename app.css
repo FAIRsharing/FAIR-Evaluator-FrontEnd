@@ -534,9 +534,20 @@ table a {
 
 .principle{
     font-size: 4.5rem;
-    color: #27aae1;
     font-weight: bold;
     text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+}
+
+.principle a{
+    background-color:#325D88;
+    border-radius: 50%;
+    color: white;
+    padding: 5px 5px 5px 13px;
+    box-shadow: 4px 4px 3px #D6D6D6;
+}
+
+.principle a:hover{
+    text-decoration:none;
 }
 
 canvas#doughnut {
