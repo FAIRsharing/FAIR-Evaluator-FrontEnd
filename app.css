@@ -62,6 +62,14 @@ h5 {
     display: inline-block;
 }
 
+h6 {
+    font-weight: bold;
+    text-align: center;
+    display: block;
+    width: 100%;
+    font-size: 1.3rem;
+}
+
 .miniIcon {
     width:100%;
     max-width: 200px;
@@ -529,6 +537,11 @@ table a {
     color: #27aae1;
     font-weight: bold;
     text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+}
+
+canvas#doughnut {
+    width:109% !important;
+    height:auto !important;
 }
 
 /* TODO: set sm and md @media for .section.sectionItem

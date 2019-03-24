@@ -48,19 +48,23 @@
 
                     <div class="col-4 doughnut" ng-if="charts_on">
                         <div class="container">
-                            <label class="row" style="text-align:center"> Number of stars </label>
-                            <canvas id="doughnut"
-                                    class="chart chart-doughnut row"
-                                    chart-data="pie_data"
-                                    chart-labels="pie_labels">
-                            </canvas>
+                            <div class="row"> <h6>Number of stars </h6></div>
+                            <div class="row">
+                                <canvas id="doughnut"
+                                        class="chart chart-doughnut row"
+                                        chart-data="pie_data"
+                                        chart-labels="pie_labels"
+                                        width=100>
+                                </canvas>
+                            </div>
+
                         </div>
                     </div>
 
                     <div class="col-8 hBar" ng-if="charts_on">
 
                         <div class="container">
-                            <label class="row" style="text-align:center"> Score per metric </label>
+                            <div class="row"> <h6>Score per metric </h6> </div>
                             <canvas id="bar"
                                     class="chart chart-bar"
                                     chart-data="histo_data"
