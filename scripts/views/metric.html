@@ -20,29 +20,38 @@
                 </div>
             </div>
 
-            <div class="col-10">
+            <div class="col-10 principleText">
 
-                <!-- Description -->
-                <div class="">
-                    <label>Description: </label>
-                    <span> {{metric["description"]}}</span>
+                <div class="container">
+                    <!-- Description -->
+                    <div class="row">
+                        <div class="col-12">
+                            <label>Description: </label>
+                            <span> {{metric["description"]}}</span>
+                        </div>
+                    </div>
+
+                    <!-- Created -->
+                    <div class="row">
+                        <div class="col-12">
+                            <label>Created by: </label>
+                            <span>
+                                <a href="mailto:{{metric['email']}}">{{metric["creator"]}}</a> on {{metric['created_at'] | date}} (updated on {{metric['updated_at'] | date}})
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Created -->
+                    <div class="row">
+                        <div class="col-12">
+                            <label>Interface smarlURL: </label>
+                            <a href="{{metric['smarturl']}}" target="_blank">
+                                {{metric["smarturl"]}}
+                            </a>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Created -->
-                <div class="">
-                    <label>Created by: </label>
-                    <span>
-                        <a href="mailto:{{metric['email']}}">{{metric["creator"]}}</a> on {{metric['created_at'] | date}} (updated on {{metric['updated_at'] | date}})
-                    </span>
-                </div>
-
-                <!-- Created -->
-                <div class="">
-                    <label>Interface smarlURL: </label>
-                    <a href="{{metric['smarturl']}}" target="_blank">
-                        {{metric["smarturl"]}}
-                    </a>
-                </div>
 
             </div>
         </div>

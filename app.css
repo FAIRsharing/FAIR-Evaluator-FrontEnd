@@ -575,6 +575,12 @@ canvas#doughnut {
 }
 
 
+.principleText{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .chartSwitch{
     display: inline-block;
 }
