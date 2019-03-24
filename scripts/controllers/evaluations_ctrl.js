@@ -100,7 +100,13 @@ my_evaluations_app.controller(
                     $scope.histo_labels.push(
                         metricKey.split('/').slice(-1)[0].replace(/_/g, ' ')
                     );
-                    $scope.histo_data[0].push(parseFloat(score)*100);
+
+                    if (score > 0){
+                        $scope.histo_data[0].push(parseFloat(score)*100);
+                    }
+                    else {
+                        $scope.histo_data[0].push(1);
+                    }
 
                     /* SET PIE CHART DATA */
                     switch(parseFloat(score)){
