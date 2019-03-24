@@ -40,18 +40,31 @@ my_evaluations_app.controller(
         $scope.pie_labels = ["1 star", "2 stars", "3stars", "4 stars", "5stars"];
         $scope.pie_data = [0, 0, 0, 0, 0];
 
-
         $scope.histo_labels = [];
-        $scope.histo_data = [
+        $scope.histo_data = [[]];
+
+        $scope.series = [
+            ["test"], ["test2"]
         ];
 
         $scope.histo_options = {
             scales: {
                 xAxes: [{
                     display: false
+                }],
+                yAxes: [{
+                    ticks: {
+                        stepSize: 25,
+                        callback: function(value) {
+                            return value + '%';
+                        }
+                    }
                 }]
             }
+
         };
+
+        $scope.colors = ["#1F6FA1"];
 
         let request = {
             method: 'GET',
@@ -82,12 +95,14 @@ my_evaluations_app.controller(
                         resourceLimit++
                     }
 
+                    /* SET HISTOGRAM DATA*/
                     let score = metric["http://semanticscience.org/resource/SIO_000300"][0]["@value"];
                     $scope.histo_labels.push(
                         metricKey.split('/').slice(-1)[0].replace(/_/g, ' ')
                     );
-                    $scope.histo_data.push(parseFloat(score));
+                    $scope.histo_data[0].push(parseFloat(score)*100);
 
+                    /* SET PIE CHART DATA */
                     switch(parseFloat(score)){
                         case 0:
                             $scope.pie_data[0] += 1;
@@ -107,6 +122,9 @@ my_evaluations_app.controller(
                     }
                 }
             }
+
+
+
 
             $scope.response_rdy = true;
         });
