@@ -543,7 +543,7 @@ table a {
     border-radius: 50%;
     color: white;
     padding: 5px 5px 5px 13px;
-    box-shadow: 4px 4px 3px #D6D6D6;
+    box-shadow: 2px 1px 7px #D6D6D6;
 }
 
 .principle a:hover{
