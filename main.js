@@ -71,6 +71,7 @@
         'mainCtrl',
         function($http, $scope, $window, $location) {
             let base_url = $scope.$parent.base_url;
+            $scope.warning_on = $scope.$parent.warning;
 
             $scope.terms = null;
             $scope.search_errors = null;
@@ -155,6 +156,10 @@
                 $window.location.href = $scope.baseURL + "/" + id
             };
 
+            $scope.removeWarning = function(){
+                $scope.warning_on = false;
+            }
+
         }
     );
 
@@ -186,6 +191,14 @@
         return{
             restrict: 'A',
             templateUrl: 'scripts/directives/loader.html',
+        }
+    });
+
+    /* Warning */
+    my_app.directive('warning', function(){
+        return{
+            restrict: 'A',
+            templateUrl: 'scripts/directives/warning.html',
         }
     });
 

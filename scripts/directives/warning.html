@@ -1,0 +1,21 @@
+<div class="container fade show" ng-if="warning_on != false">
+    <div class="row">
+        <div class="col-12">
+            <div class="warning container mainContainer"
+                 style="margin-bottom:10px !important">
+                <div class="row">
+                    <div class="col-11">
+                        <h2>Warning</h2>
+                    </div>
+                    <div class="col-1 quitter">
+                        <i class="fa fa-times" ng-click="removeWarning()"></i>
+                    </div>
+                    <div class="col-12">
+                        <b>This application and all of its components are in Beta version. It should not be expected to store results
+                            long-term and its database may be wiped out entirely several times before release.</b>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

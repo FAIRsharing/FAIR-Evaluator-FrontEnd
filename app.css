@@ -512,10 +512,22 @@ table a {
     margin-bottom:20px;
 }
 
-.stars, .doughnut, .hBar {
+.stars, .doughnut, .hBar, .principleContainer, .quitter {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.quitter .fa{
+    font-size:1.3rem;
+    color:#ccc;
+    position: absolute;
+    top: -8px;
+    right: 9px;
+}
+
+.quitter .fa:hover {
+    cursor:pointer;
 }
 
 .starContainer, #doughnut, #bar {
@@ -524,12 +536,6 @@ table a {
 
 .charts {
     max-width:30%;
-}
-
-.principleContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .principle{
