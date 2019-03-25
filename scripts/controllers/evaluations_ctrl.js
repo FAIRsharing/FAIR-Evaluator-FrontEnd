@@ -6,6 +6,9 @@ my_evaluations_app.controller(
     function($http, $scope, $window, $location) {
         let base_url = $scope.$parent.base_url;
         $scope.response_rdy = false;
+        $scope.sortType = 'title';
+        $scope.reverseSort = false;
+        $scope.searchTerms = '';
 
         let request = {
             method: 'GET',

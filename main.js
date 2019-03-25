@@ -182,6 +182,13 @@
         };
     });
 
+    my_app.filter('str_to_int', function() {
+        return function (str) {
+            return parseInt(str)
+        };
+    });
+
+
 
     /* *************************************************************************************************** */
     /* DIRECTIVES */
