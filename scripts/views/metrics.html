@@ -1,21 +1,58 @@
 <div warning></div>
 
 <div class="container mainContainer fade show" ng-if="response_rdy">
+
     <h2 class="col-12 mgBot"> <span> FAIR Maturity Indicator - Metrics </span> </h2>
+
+    <div class="col-12">
+        <form>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                    <input type="text" class="form-control" placeholder="Search terms" ng-model="searchTerms">
+                </div>
+            </div>
+        </form>
+    </div>
+
     <table class="table table-hover table-light table-striped">
         <thead>
         <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Creator</th>
-            <th scope="col">Email</th>
-            <th scope="col">Principle</th>
-            <th scope="col">Test</th>
-            <th scope="col">Interface</th>
+            <th scope="col" ng-click="sortType = 'name'; reverseSort = !reverseSort" class="clickMe">
+                <span>Name</span>
+                <span ng-show="sortType == 'name' && !reverseSort" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'name' && reverseSort" class="fa fa-caret-up"></span>
+            </th>
+            <th scope="col" ng-click="sortType = 'creator'; reverseSort = !reverseSort" class="clickMe">
+                <span>Creator</span>
+                <span ng-show="sortType == 'creator' && !reverseSort" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'creator' && reverseSort" class="fa fa-caret-up"></span>
+            </th>
+            <th scope="col" ng-click="sortType = 'email'; reverseSort = !reverseSort" class="clickMe">
+                <span>Email</span>
+                <span ng-show="sortType == 'email' && !reverseSort" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'email' && reverseSort" class="fa fa-caret-up"></span>
+            </th>
+            <th scope="col" ng-click="sortType = 'principle'; reverseSort = !reverseSort" class="clickMe">
+                <span>Principle</span>
+                <span ng-show="sortType == 'principle' && !reverseSort" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'principle' && reverseSort" class="fa fa-caret-up"></span>
+            </th>
+            <th scope="col" ng-click="sortType = 'test'; reverseSort = !reverseSort" class="clickMe">
+                <span>Test</span>
+                <span ng-show="sortType == 'test' && !reverseSort" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'test' && reverseSort" class="fa fa-caret-up"></span>
+            </th>
+            <th scope="col" ng-click="sortType = 'interface'; reverseSort = !reverseSort" class="clickMe">
+                <span>Interface</span>
+                <span ng-show="sortType == 'interface' && !reverseSort" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'interface' && reverseSort" class="fa fa-caret-up"></span>
+            </th>
             <th scope="col">View</th>
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="metric in metrics">
+        <tr ng-repeat="metric in metrics | orderBy : sortType:reverseSort | filter:searchTerms">
             <td> {{metric['name']}}</td>
             <td> {{metric['creator']}}</td>
             <td> {{metric['email']}}</td>
