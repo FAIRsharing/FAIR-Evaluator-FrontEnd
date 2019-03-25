@@ -95,7 +95,7 @@ table button.btn {
 }
 
 table th{
-    min-width:100px;
+    min-width:110px;
 }
 
 .table thead th {
@@ -599,8 +599,6 @@ canvas#doughnut {
 .chartSwitch{
     display: inline-block;
 }
-
-
 
 .input-group-addon{
     min-width:35px;
