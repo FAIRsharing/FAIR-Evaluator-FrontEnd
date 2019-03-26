@@ -619,6 +619,12 @@ canvas#doughnut {
 }
 
 
+.newlines{
+    white-space: pre-wrap;
+    text-align: justify;
+}
+
+
 /* TODO: set sm and md @media for .section.sectionItem
          set sm for icons padding on main page.
 */

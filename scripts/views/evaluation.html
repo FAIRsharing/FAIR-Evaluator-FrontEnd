@@ -92,7 +92,9 @@
                     <div class="col-4 resultCol" ng-repeat="(resultKey, resultVal) in evaluation['evaluationResult']">
                         <div class="card">
                             <div class="card-body">
+
                                 <h4>{{resultKey | URL_last_arg | removeUnderscore}}</h4>
+
                                 <hr>
                                 <!-- results /stars -->
                                 <div class="stars">
@@ -121,8 +123,8 @@
                                 </div>
 
                                 <div class="comment">
-                                    <label> Description</label>
-                                    <span>{{resultVal[0]['http://schema.org/comment'][0]['@value']}}</span>
+                                    <label> Results:</label>
+                                    <div class="newlines">{{resultVal[0]['http://schema.org/comment'][0]['@value']}}</div>
                                 </div>
 
                                 <div class="">
