@@ -30,6 +30,21 @@
                 <form name="newCollection">
 
                     <div layout-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-xs>
+                            <md-select multiple="{{true}}"
+                                       placeholder="Select Maturity Indicators"
+                                       ng-model="collection_data.indicators"
+                                       name="collectionMetrics"
+                                       required>
+                                <md-option ng-repeat="collection in available_metrics"
+                                           value="{{collection['@id']}}">
+                                    {{collection['name']}}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+
+                    <div layout-gt-sm="row">
                         <md-input-container class="md-block" flex-gt-sm>
                             <label>Collection name</label>
                             <input ng-model="collection_data.name" required name="collectionName">
@@ -58,21 +73,6 @@
                         </textarea>
                     </md-input-container>
 
-
-                    <div layout-gt-sm="row">
-                        <md-input-container class="md-block" flex-gt-xs>
-                            <md-select multiple="{{true}}"
-                                       placeholder="Select Maturity Indicators"
-                                       ng-model="collection_data.indicators"
-                                       name="collectionMetrics"
-                                       required>
-                                <md-option ng-repeat="collection in available_metrics"
-                                           value="{{collection['@id']}}">
-                                    {{collection['name']}}
-                                </md-option>
-                            </md-select>
-                        </md-input-container>
-                    </div>
                 </form>
             </div>
         </md-content>
