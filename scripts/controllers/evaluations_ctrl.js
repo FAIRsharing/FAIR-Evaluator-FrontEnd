@@ -3,9 +3,10 @@ let my_evaluations_app = angular.module('appEvaluationsCtrl', ['appConfigCtrl'])
 /* route: /evaluations */
 my_evaluations_app.controller(
     'evaluationsCtrl',
-    function($http, $scope, $window, $location) {
+    function($http, $scope, $window, $location, $q) {
         let base_url = $scope.$parent.base_url;
         $scope.response_rdy = false;
+        $scope.request_error = false;
 
         let request = {
             method: 'GET',
@@ -13,11 +14,16 @@ my_evaluations_app.controller(
             headers: {
                 'Accept': "application/json",
             },
-            data: null
+            data: null,
+            timeout: $scope.request_timeout
         };
         $http(request).then(function(response){
             $scope.evaluations = response.data;
             $scope.response_rdy = true;
+        }, function(error){
+            $scope.response_rdy = true;
+            $scope.request_error = true;
+            console.log(error);
         });
 
         $scope.goToEvaluation = function(identifier){
