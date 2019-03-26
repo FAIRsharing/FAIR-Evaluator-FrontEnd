@@ -6,6 +6,9 @@ my_metrics_app.controller(
     function($http, $scope){
         let base_url = $scope.$parent.base_url;
         $scope.response_rdy = false;
+        $scope.sortType = 'principle';
+        $scope.reverseSort = false;
+        $scope.searchTerms = '';
 
         let request = {
             method: 'GET',

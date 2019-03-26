@@ -6,38 +6,68 @@
 </div>
 
 <div class="container mainContainer fade show" ng-if="response_rdy && !request_error">
-    <h2 class="col-12 mgBot"> <span>FAIR Maturity Indicator - Evaluations </span> </h2>
-    <table class="table table-hover table-light table-striped">
-        <thead>
-        <tr>
-            <th scope="col">Collection</th>
-            <th scope="col">Title</th>
-            <th scope="col">Description</th>
-            <th scope="col">Executor</th>
-            <th scope="col">View</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="evaluation in evaluations | orderBy : 'title'">
-            <td class="col1">
-                {{evaluation['collection'] | URL_last_arg}}
-            </td>
-            <td>
-                {{evaluation['title']}}
-            </td>
-            <td>
-                {{evaluation['http://rdfs.org/ns/void#description']}}
-            </td>
-            <td>
-                <a href="{{evaluation['creator']}}" target="_blank" class="orcidLink">
-                    <img src="assets/img/orcid.png" class="orcid_icon">
-                </a>
-            </td>
 
-            <td>
-                <i class="fas fa-share-square showButton" ng-click="goToEvaluation(evaluation['@id'])"></i>
-            </td>
-        </tr>
+    <div class="container mainContainer fade show" ng-if="response_rdy">
+
+    <h2 class="col-12 mgBot"> <span>FAIR Maturity Indicator - Evaluations </span> </h2>
+
+    <div class="col-12">
+        <form>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                    <input type="text" class="form-control" placeholder="Search terms" ng-model="searchTerms">
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <table class="table table-hover table-light table-striped">
+
+        <thead>
+            <tr>
+                <th scope="col" ng-click="sortType = 'collection'; reverseSort = !reverseSort" class="clickMe">
+                    <span>Collection</span>
+                    <span ng-show="sortType == 'collection' && !reverseSort" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'collection' && reverseSort" class="fa fa-caret-up"></span>
+                </th>
+                <th scope="col" ng-click="sortType = 'title'; reverseSort = !reverseSort" class="clickMe">
+                    <span>Title</span>
+                    <span ng-show="sortType == 'title' && !reverseSort" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'title' && reverseSort" class="fa fa-caret-up"></span>
+                </th>
+                <th scope="col" ng-click="sortType = 'description'; reverseSort = !reverseSort" class="clickMe">
+                    <span>Description</span>
+                    <span ng-show="sortType == 'description' && !reverseSort" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'description' && reverseSort" class="fa fa-caret-up"></span>
+                </th>
+
+                <th scope="col">Executor</th>
+                <th scope="col">View</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr ng-repeat="evaluation in evaluations | orderBy : sortType:reverseSort | filter:searchTerms">
+                <td class="col1">
+                    {{evaluation['collection'] | str_to_int}}
+                </td>
+                <td>
+                    {{evaluation['title']}}
+                </td>
+                <td>
+                    {{evaluation['http://rdfs.org/ns/void#description']}}
+                </td>
+                <td>
+                    <a href="{{evaluation['creator']}}" target="_blank" class="orcidLink">
+                        <img src="assets/img/orcid.png" class="orcid_icon">
+                    </a>
+                </td>
+
+                <td>
+                    <i class="fas fa-share-square showButton" ng-click="goToEvaluation(evaluation['@id'])"></i>
+                </td>
+            </tr>
         </tbody>
     </table>
 </div>
