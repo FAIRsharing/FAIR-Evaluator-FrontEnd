@@ -1,7 +1,11 @@
 <div warning></div>
 
+<div class="container mainContainer fade show" ng-if="response_rdy && request_error">
+    <div timeout></div>
+</div>
+
 <!-- COLLECTIONS -->
-<div class="container mainContainer fade show" ng-if="response_rdy">
+<div class="container mainContainer fade show" ng-if="response_rdy && !request_error">
     <div class="collections row fade show">
         <div class="col-12">
             <h2 class="mgBot"><span>FAIR Maturity Indicator - Collections</span></h2>

@@ -6,18 +6,24 @@ my_collections_app.controller(
     function($http, $scope) {
         let base_url = $scope.$parent.base_url;
         $scope.response_rdy = false;
+        $scope.request_error = false;
         let request = {
             method: 'GET',
             url: base_url + "/collections.json",
             headers: {
                 'Accept': "application/json",
             },
-            data: null
+            data: null,
+            timeout: $scope.request_timeout
         };
         $http(request).then(function(response){
             $scope.response_rdy = true;
             $scope.collections = {};
             $scope.collections.data = $scope.process_data(response.data);
+        },
+        function(error){
+            $scope.response_rdy = true;
+            $scope.request_error = true;
         });
 
     }
@@ -31,6 +37,7 @@ my_collections_app.controller(
 
         $scope.identifier = $routeParams.id;
         $scope.response_rdy = false;
+        $scope.request_error = false;
 
         let request = {
             method: 'GET',
@@ -38,12 +45,17 @@ my_collections_app.controller(
             headers: {
                 'Accept': "application/json",
             },
-            data: null
+            data: null,
+            timeout: $scope.request_timeout
         };
         $http(request).then(function(response){
             $scope.response_rdy = true;
             $scope.collection = response.data;
             $scope.collection['title'] = response.data['http://purl.org/dc/elements/1.1/title'];
+        },
+        function(error){
+            $scope.response_rdy = true;
+            $scope.request_error = true;
         });
     }
 );

@@ -9,6 +9,7 @@ my_metrics_app.controller(
         $scope.sortType = 'principle';
         $scope.reverseSort = false;
         $scope.searchTerms = '';
+        $scope.request_error = false;
 
         let request = {
             method: 'GET',
@@ -16,11 +17,16 @@ my_metrics_app.controller(
             headers: {
                 'Accept': "application/json",
             },
-            data: null
+            data: null,
+            timeout: $scope.request_timeout
         };
         $http(request).then(function(response){
             $scope.metrics = response.data;
             $scope.response_rdy = true;
+        },
+        function(error){
+            $scope.response_rdy = true;
+            $scope.request_error = true;
         });
 
     }
@@ -33,6 +39,7 @@ my_metrics_app.controller(
         let base_url = $scope.$parent.base_url;
         $scope.response_rdy = false;
         $scope.identifier = $routeParams.id;
+        $scope.request_error = false;
 
         let request = {
             method: 'GET',
@@ -40,11 +47,16 @@ my_metrics_app.controller(
             headers: {
                 'Accept': "application/json",
             },
-            data: null
+            data: null,
+            timeout: $scope.request_timeout
         };
         $http(request).then(function(response){
             $scope.metric = response.data;
             $scope.response_rdy = true;
+        },
+        function(error){
+            $scope.response_rdy = true;
+            $scope.request_error = true;
         });
     }
 );
