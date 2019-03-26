@@ -43,7 +43,7 @@
         <tbody>
             <tr ng-repeat="evaluation in evaluations | orderBy : sortType:reverseSort | filter:searchTerms">
                 <td class="col1">
-                    {{evaluation['collection'] | URL_last_arg | str_to_int}}
+                    {{evaluation['collection'] | str_to_int}}
                 </td>
                 <td>
                     {{evaluation['title']}}

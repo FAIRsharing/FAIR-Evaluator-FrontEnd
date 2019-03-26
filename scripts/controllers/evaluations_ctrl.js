@@ -20,6 +20,10 @@ my_evaluations_app.controller(
         };
         $http(request).then(function(response){
             $scope.evaluations = response.data;
+            for (let evalIterator in $scope.evaluations){
+                let evaluation = $scope.evaluations[evalIterator];
+                evaluation['collection'] = parseFloat(evaluation['collection'].split('/').slice(-1)[0]);
+            }
             $scope.response_rdy = true;
         });
 
