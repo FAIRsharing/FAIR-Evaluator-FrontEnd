@@ -209,5 +209,13 @@
         }
     });
 
+    /* Timeout Error */
+    my_app.directive('timeout', function(){
+        return{
+            restrict: 'A',
+            templateUrl: 'scripts/directives/timeout.html',
+        }
+    });
+
 
 })();

@@ -30,7 +30,6 @@ my_evaluations_app.controller(
         }, function(error){
             $scope.response_rdy = true;
             $scope.request_error = true;
-            console.log(error);
         });
 
         $scope.goToEvaluation = function(identifier){
@@ -85,7 +84,8 @@ my_evaluations_app.controller(
             headers: {
                 'Accept': "application/json",
             },
-            data: null
+            data: null,
+            timeout: $scope.request_timeout
         };
         $http(request).then(function(response){
             let evaluation =  JSON.parse(response.data['evaluationResult']);
@@ -142,7 +142,11 @@ my_evaluations_app.controller(
                 }
             }
             $scope.response_rdy = true;
-        });
+        },
+            function(error){
+                $scope.response_rdy = true;
+                $scope.request_error = true;
+            });
 
         $scope.goToEvaluations = function(){
             $scope.baseURL = new $window.URL($location.absUrl());
