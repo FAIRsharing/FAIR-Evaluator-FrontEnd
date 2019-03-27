@@ -18,7 +18,6 @@ my_collections_app.controller(
 
             /* COLLECTIONS */
             if (URL[0] === 'collections'){
-
                 if (URL.length === 2){
                     $scope.collection = response.data;
                     $scope.collection['title'] = response.data['http://purl.org/dc/elements/1.1/title'];
@@ -30,10 +29,18 @@ my_collections_app.controller(
 
             /* EVALUATIONS */
             else if (URL[0] === 'evaluations'){
-                $scope.content_output = response.data;
-                for (let evalIterator in $scope.content_output){
-                    let evaluation = $scope.content_output[evalIterator];
-                    evaluation['collection'] = parseFloat(evaluation['collection'].split('/').slice(-1)[0]);
+                if (URL.length === 2){
+                    let evaluation =  JSON.parse(response.data['evaluationResult']);
+                    $scope.evaluation = response.data;
+                    $scope.evaluation['evaluationResult'] = evaluation;
+                    $scope.resource = String();
+                }
+                else {
+                    $scope.content_output = response.data;
+                    for (let evalIterator in $scope.content_output){
+                        let evaluation = $scope.content_output[evalIterator];
+                        evaluation['collection'] = parseFloat(evaluation['collection'].split('/').slice(-1)[0]);
+                    }
                 }
             }
 

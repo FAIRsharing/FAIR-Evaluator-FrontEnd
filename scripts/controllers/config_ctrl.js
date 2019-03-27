@@ -3,12 +3,15 @@ angular.module('appConfigCtrl', []).controller(
     [
         '$scope',
         function($scope){
-        console.log('hi');
+            /* server base URL for endpoints */
             $scope.base_url = "https://linkeddata.systems:3000/FAIR_Evaluator";
-            $scope.charts_on = false;
-            $scope.warning = true;
-            $scope.request_timeout = 2000;
 
+            /* Warning */
+            $scope.warning = true;
+
+            /* ******************************************** */
+            /* SORTING TABLES */
+            /* ******************************************** */
             $scope.sortType = {
                 "collections": null,
                 "evaluations": "title",
@@ -20,9 +23,10 @@ angular.module('appConfigCtrl', []).controller(
                 "metrics": false
             };
 
-            $scope.evaluation_searchTerms = "";
-            $scope.metrics_searchTerms = "";
-
+            /* ******************************************** */
+            /* REQUESTS */
+            /* ******************************************** */
+            $scope.request_timeout = 2000;
             $scope.requests = {
                 metrics: {
                     multiple: {
@@ -108,7 +112,29 @@ angular.module('appConfigCtrl', []).controller(
                         }
                     }
                 }
-            }
+            };
+
+            /* ******************************************** */
+            /* CHARTS */
+            /* ******************************************** */
+            $scope.charts_on = false;
+            $scope.histo_options = {
+                scales: {
+                    xAxes: [{
+                        display: false
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            stepSize: 25,
+                            callback: function(value) {
+                                return value + '%';
+                            }
+                        }
+                    }]
+                }
+
+            };
+            $scope.colors = ["#1F6FA1"];
 
         }
     ]

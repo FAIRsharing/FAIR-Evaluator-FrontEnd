@@ -47,7 +47,7 @@
             })
             .when("/evaluations/:id", {
                 templateUrl : "scripts/views/evaluation.html",
-                controller: "evaluationCtrl"
+                controller: "requestCtrl"
             })
             .when("/metrics", {
                 templateUrl : "scripts/views/metrics.html",
@@ -73,9 +73,10 @@
         function($http, $scope, $window, $location) {
             let base_url = $scope.$parent.base_url;
             $scope.warning_on = $scope.$parent.warning;
-
             $scope.terms = null;
             $scope.search_errors = null;
+            $scope.evaluation_searchTerms = "";
+            $scope.metrics_searchTerms = "";
 
             $scope.goToSearches = function(){
                 $scope.response_rdy = false;
