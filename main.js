@@ -31,7 +31,7 @@
             })
             .when("/collections/:id", {
                 templateUrl : "scripts/views/collection.html",
-                controller: "collectionCtrl"
+                controller: "requestCtrl"
             })
             .when("/collection/new", {
                 templateUrl : "scripts/views/create_collection.html",
@@ -55,7 +55,7 @@
             })
             .when("/metrics/:id", {
                 templateUrl : "scripts/views/metric.html",
-                controller: "metricCtrl"
+                controller: "requestCtrl"
             })
             .when("/metric/new", {
                 templateUrl: "scripts/views/import_metric.html",

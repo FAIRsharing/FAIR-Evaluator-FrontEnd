@@ -1,6 +1,6 @@
 let my_collections_app = angular.module('appCollectionsCtrl', ['appConfigCtrl']);
 
-/* route: /collections/{id} */
+/* route: /collections/{id}
 my_collections_app.controller(
     'collectionCtrl',
     function($http, $scope, $routeParams) {
@@ -30,6 +30,7 @@ my_collections_app.controller(
         });
     }
 );
+*/
 
 /* route: /collection/new */
 my_collections_app.controller(

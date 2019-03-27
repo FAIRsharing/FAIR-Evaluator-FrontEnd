@@ -1,35 +1,5 @@
 let my_metrics_app = angular.module('appMetricsCtrl', ['appConfigCtrl']);
 
-/* route: /metrics/{id} */
-my_metrics_app.controller(
-    'metricCtrl',
-    function($http, $scope, $window, $location, $routeParams){
-        let base_url = $scope.$parent.base_url;
-        $scope.response_rdy = false;
-        $scope.identifier = $routeParams.id;
-        $scope.request_error = false;
-
-        let request = {
-            method: 'GET',
-            url: base_url + "/metrics/" + $scope.identifier + '.json',
-            headers: {
-                'Accept': "application/json",
-            },
-            data: null,
-            timeout: $scope.request_timeout
-        };
-        $http(request).then(function(response){
-            $scope.metric = response.data;
-            $scope.response_rdy = true;
-        },
-        function(error){
-            $scope.response_rdy = true;
-            $scope.request_error = true;
-        });
-    }
-);
-
-
 /* route: /metric/new */
 my_metrics_app.controller(
     'newMetricCtrl',
