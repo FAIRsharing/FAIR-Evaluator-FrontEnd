@@ -1,45 +1,5 @@
 let my_evaluations_app = angular.module('appEvaluationsCtrl', ['appConfigCtrl']);
 
-/* route: /evaluations */
-my_evaluations_app.controller(
-    'evaluationsCtrl',
-    function($http, $scope, $window, $location, $q) {
-        let base_url = $scope.$parent.base_url;
-        $scope.response_rdy = false;
-        $scope.request_error = false;
-        $scope.sortType = 'title';
-        $scope.reverseSort = false;
-        $scope.searchTerms = '';
-
-        let request = {
-            method: 'GET',
-            url: base_url + "/evaluations.json",
-            headers: {
-                'Accept': "application/json",
-            },
-            data: null,
-            timeout: $scope.request_timeout
-        };
-        $http(request).then(function(response){
-            $scope.evaluations = response.data;
-            for (let evalIterator in $scope.evaluations){
-                let evaluation = $scope.evaluations[evalIterator];
-                evaluation['collection'] = parseFloat(evaluation['collection'].split('/').slice(-1)[0]);
-            }
-            $scope.response_rdy = true;
-        }, function(error){
-            $scope.response_rdy = true;
-            $scope.request_error = true;
-        });
-
-        $scope.goToEvaluation = function(identifier){
-            $scope.baseURL = new $window.URL($location.absUrl());
-            let id = identifier.split('/').slice(-1)[0];
-            $window.location.href = $scope.baseURL + "/" + id
-        };
-    }
-);
-
 /* route: /evaluations/{id}*/
 my_evaluations_app.controller(
     'evaluationCtrl',

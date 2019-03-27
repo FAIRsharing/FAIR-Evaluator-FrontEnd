@@ -12,7 +12,8 @@
             'appGraphCtrl',
             'appCollectionsCtrl',
             'appEvaluationsCtrl',
-            'appMetricsCtrl'
+            'appMetricsCtrl',
+            'requestProviderCtrl'
         ])
         .config(function ($mdThemingProvider) {
             $mdThemingProvider.theme('docs-dark', 'default')
@@ -26,7 +27,7 @@
             })
             .when("/collections", {
                 templateUrl : "scripts/views/collections.html",
-                controller: "collectionsCtrl"
+                controller: "requestCtrl"
             })
             .when("/collections/:id", {
                 templateUrl : "scripts/views/collection.html",
@@ -42,7 +43,7 @@
             })
             .when("/evaluations", {
                 templateUrl : "scripts/views/evaluations.html",
-                controller: "evaluationsCtrl"
+                controller: "requestCtrl"
             })
             .when("/evaluations/:id", {
                 templateUrl : "scripts/views/evaluation.html",
@@ -50,7 +51,7 @@
             })
             .when("/metrics", {
                 templateUrl : "scripts/views/metrics.html",
-                controller: "metricsCtrl"
+                controller: "requestCtrl"
             })
             .when("/metrics/:id", {
                 templateUrl : "scripts/views/metric.html",
@@ -151,6 +152,12 @@
             };
 
             $scope.goToMetric = function(identifier){
+                $scope.baseURL = new $window.URL($location.absUrl());
+                let id = identifier.split('/').slice(-1)[0];
+                $window.location.href = $scope.baseURL + "/" + id
+            };
+
+            $scope.goToEvaluation = function(identifier){
                 $scope.baseURL = new $window.URL($location.absUrl());
                 let id = identifier.split('/').slice(-1)[0];
                 $window.location.href = $scope.baseURL + "/" + id
