@@ -1,37 +1,5 @@
 let my_collections_app = angular.module('appCollectionsCtrl', ['appConfigCtrl']);
 
-/* route: /collections/{id}
-my_collections_app.controller(
-    'collectionCtrl',
-    function($http, $scope, $routeParams) {
-        let base_url = $scope.$parent.base_url;
-
-        $scope.identifier = $routeParams.id;
-        $scope.response_rdy = false;
-        $scope.request_error = false;
-
-        let request = {
-            method: 'GET',
-            url: base_url + "/collections/" + $scope.identifier + '.json',
-            headers: {
-                'Accept': "application/json",
-            },
-            data: null,
-            timeout: $scope.request_timeout
-        };
-        $http(request).then(function(response){
-            $scope.response_rdy = true;
-            $scope.collection = response.data;
-            $scope.collection['title'] = response.data['http://purl.org/dc/elements/1.1/title'];
-        },
-        function(error){
-            $scope.response_rdy = true;
-            $scope.request_error = true;
-        });
-    }
-);
-*/
-
 /* route: /collection/new */
 my_collections_app.controller(
     'newCollectionCtrl',

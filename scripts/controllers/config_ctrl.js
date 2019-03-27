@@ -3,6 +3,7 @@ angular.module('appConfigCtrl', []).controller(
     [
         '$scope',
         function($scope){
+        console.log('hi');
             $scope.base_url = "https://linkeddata.systems:3000/FAIR_Evaluator";
             $scope.charts_on = false;
             $scope.warning = true;
@@ -18,6 +19,7 @@ angular.module('appConfigCtrl', []).controller(
                 "evaluations": false,
                 "metrics": false
             };
+
             $scope.evaluation_searchTerms = "";
             $scope.metrics_searchTerms = "";
 
@@ -41,7 +43,7 @@ angular.module('appConfigCtrl', []).controller(
                         data: null,
                         timeout: $scope.request_timeout
                     },
-                    post: {
+                    new: {
                         method: 'POST',
                         url: $scope.base_url + "/metrics",
                         headers: {
@@ -69,7 +71,7 @@ angular.module('appConfigCtrl', []).controller(
                         data: null,
                         timeout: $scope.request_timeout
                     },
-                    post: {
+                    new: {
                         method: 'POST',
                         url: $scope.base_url + "/evaluations",
                         headers: {
@@ -97,7 +99,7 @@ angular.module('appConfigCtrl', []).controller(
                         data: null,
                         timeout: $scope.request_timeout
                     },
-                    post: {
+                    new: {
                         method: 'POST',
                         url: $scope.base_url + "/collections",
                         headers: {

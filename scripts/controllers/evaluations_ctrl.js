@@ -9,16 +9,14 @@ my_evaluations_app.controller(
         $scope.charts_on = $scope.$parent.charts_on;
         $scope.response_rdy = false;
         $scope.identifier = $routeParams.id;
+
         $scope.pie_labels = ["1 star", "2 stars", "3stars", "4 stars", "5stars"];
         $scope.pie_data = [0, 0, 0, 0, 0];
-
         $scope.histo_labels = [];
         $scope.histo_data = [[]];
-
         $scope.series = [
             ["test"], ["test2"]
         ];
-
         $scope.histo_options = {
             scales: {
                 xAxes: [{
@@ -130,14 +128,7 @@ my_evaluations_app.controller(
         $scope.response_rdy = true;
 
 
-        let request = {
-            method: 'GET',
-            url: base_url + "/collections.json",
-            headers: {
-                'Accept': "application/json",
-            },
-            data: null
-        };
+        let request = $scope.request.evaluations.new;
 
         $scope.evalForm.collection_disabled = true;
         if ($routeParams.id === "new"){

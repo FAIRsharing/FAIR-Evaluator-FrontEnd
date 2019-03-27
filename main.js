@@ -165,7 +165,47 @@
 
             $scope.removeWarning = function(){
                 $scope.warning_on = false;
-            }
+            };
+
+            $scope.getRequest = function(URLArray){
+
+                let local_request = null;
+
+                /* REQUEST BUILDER */
+                /* Deal with multiple items pages */
+                if (URLArray.length === 1 ){
+                    for (let itemName in $scope.requests){
+                        if ($scope.requests.hasOwnProperty(itemName) && itemName === URLArray[0] ){
+                            local_request = $scope.requests[itemName].multiple;
+                        }
+                    }
+                }
+
+
+                else if (URLArray.length === 2){
+
+                    /* Deal with single item pages */
+                    if (URLArray[1] !== "new"){
+                        for (let itemName in $scope.requests) {
+                            if ($scope.requests.hasOwnProperty(itemName) && itemName === URLArray[0]) {
+                                local_request = $scope.requests[itemName].single;
+                                local_request.url = local_request.url.replace("{:id}", URLArray[1]);
+                            }
+                        }
+                    }
+                    /* Deal with ne pages */
+                    else {
+                        for (let itemName in $scope.requests) {
+                            if ($scope.requests.hasOwnProperty(itemName) && itemName === URLArray[0]) {
+                                local_request = $scope.requests[itemName].new;
+                            }
+                        }
+                    }
+                }
+
+
+                return local_request;
+            };
 
         }
     );
