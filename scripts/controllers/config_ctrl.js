@@ -29,6 +29,7 @@ angular.module('appConfigCtrl', []).controller(
             $scope.request_timeout = 2000;
             $scope.requests = {
                 metrics: {
+                    /* ROUTE: /metrics */
                     multiple: {
                         method: 'GET',
                         url: $scope.base_url + "/metrics.json",
@@ -38,6 +39,7 @@ angular.module('appConfigCtrl', []).controller(
                         data: null,
                         timeout: $scope.request_timeout
                     },
+                    /* ROUTE: /metrics/{id} */
                     single: {
                         method: 'GET',
                         url: $scope.base_url + "/metrics/{:id}.json",
@@ -47,6 +49,7 @@ angular.module('appConfigCtrl', []).controller(
                         data: null,
                         timeout: $scope.request_timeout
                     },
+                    /* ROUTE: /metric/new */
                     new: {
                         method: 'POST',
                         url: $scope.base_url + "/metrics",
@@ -57,6 +60,7 @@ angular.module('appConfigCtrl', []).controller(
                     }
                 },
                 evaluations: {
+                    /* ROUTE: /evaluations */
                     multiple: {
                         method: 'GET',
                         url: $scope.base_url + "/evaluations.json",
@@ -66,6 +70,7 @@ angular.module('appConfigCtrl', []).controller(
                         data: null,
                         timeout: $scope.request_timeout
                     },
+                    /* ROUTE: /evaluations/{id} */
                     single: {
                         method: 'GET',
                         url: $scope.base_url + "/evaluations/{:id}.json",
@@ -75,6 +80,7 @@ angular.module('appConfigCtrl', []).controller(
                         data: null,
                         timeout: $scope.request_timeout
                     },
+                    /* ROUTE: /collections/{id}/evaluate */
                     new: {
                         method: 'POST',
                         url: $scope.base_url + "/evaluations",
@@ -85,6 +91,7 @@ angular.module('appConfigCtrl', []).controller(
                     }
                 },
                 collections: {
+                    /* ROUTE: /collections */
                     multiple: {
                         method: 'GET',
                         url: $scope.base_url + "/collections.json",
@@ -94,6 +101,7 @@ angular.module('appConfigCtrl', []).controller(
                         data: null,
                         timeout: $scope.request_timeout
                     },
+                    /* ROUTE: /collections/{id} */
                     single: {
                         method: 'GET',
                         url: $scope.base_url + "/collections/{:id}.json",
@@ -103,6 +111,7 @@ angular.module('appConfigCtrl', []).controller(
                         data: null,
                         timeout: $scope.request_timeout
                     },
+                    /* ROUTE: /collection/new */
                     new: {
                         method: 'POST',
                         url: $scope.base_url + "/collections",
@@ -113,6 +122,7 @@ angular.module('appConfigCtrl', []).controller(
                     }
                 },
                 searches: {
+                    /* ROUTE: /searches?terms=term */
                     multiple: {
                         method: 'POST',
                         url: $scope.base_url + "/searches/abcde",
