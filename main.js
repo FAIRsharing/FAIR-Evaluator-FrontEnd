@@ -62,7 +62,8 @@
                 controller: "newMetricCtrl"
             })
             .when("/searches", {
-                templateUrl : "scripts/views/searches.html"
+                templateUrl : "scripts/views/searches.html",
+                controller: "requestCtrl"
             });
     });
 
@@ -71,42 +72,29 @@
     my_app.controller(
         'mainCtrl',
         function($http, $scope, $window, $location) {
-            let base_url = $scope.$parent.base_url;
             $scope.warning_on = $scope.$parent.warning;
             $scope.terms = null;
             $scope.search_errors = null;
             $scope.evaluation_searchTerms = "";
             $scope.metrics_searchTerms = "";
+            $scope.search_triggered = false;
 
             $scope.goToSearches = function(){
-                $scope.response_rdy = false;
                 let window_url = new $window.URL($location.absUrl());
+                $scope.search_triggered = true;
 
-                $scope.search_terms = $scope.terms;
-                $scope.terms_array = $scope.search_terms.split(",");
-                console.log(base_url);
-                let request = {
-                    method: 'POST',
-                    url: base_url + "/searches/abcde",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Accept": "application/json"
-                    },
-                    data: {
-                        "keywords": $scope.search_terms
-                    }
-                };
+                let termsArray = $scope.terms.split(',');
+                for (let k in termsArray){
+                    termsArray[k] = termsArray[k].replace(' ', '')
+                }
 
-                if ($scope.search_terms.length > 0){
-                    $window.location.href =  window_url.origin + window_url.pathname + '#!searches';
-                    $http(request).then(function(response){
-                        $scope.response_rdy = true;
-                        $scope.results = response.data;
-                    })
+                if ($scope.terms !== null){
+                    $scope.search_terms = $scope.terms;
+                    $scope.terms_array = $scope.search_terms.split(",");
+                    $window.location.href =  window_url.origin + window_url.pathname + '#!searches?terms=' + termsArray;
                 }
                 else {
-                    $window.location.href =  window_url.origin + window_url.pathname + '#!searches';
-                    $scope.response_rdy = true;
+                    return;
                 }
             };
 
@@ -169,42 +157,57 @@
             };
 
             $scope.getRequest = function(URLArray){
-
                 let local_request = null;
 
                 /* REQUEST BUILDER */
-                /* Deal with multiple items pages */
-                if (URLArray.length === 1 ){
-                    for (let itemName in $scope.requests){
-                        if ($scope.requests.hasOwnProperty(itemName) && itemName === URLArray[0] ){
-                            local_request = $scope.requests[itemName].multiple;
+
+                /* NON SEARCHES */
+                if (URLArray[0].indexOf('searches') === -1){
+
+                    /* Deal with multiple items pages */
+                    if (URLArray.length === 1 ){
+                        for (let itemName in $scope.requests){
+                            if ($scope.requests.hasOwnProperty(itemName) && itemName === URLArray[0] ){
+                                local_request = $scope.requests[itemName].multiple;
+                            }
+                        }
+                    }
+
+                    else if (URLArray.length === 2){
+                        /* Deal with single item pages */
+                        if (URLArray[1] !== "new"){
+                            for (let itemName in $scope.requests) {
+                                if ($scope.requests.hasOwnProperty(itemName) && itemName === URLArray[0]) {
+                                    local_request = $scope.requests[itemName].single;
+                                    local_request.url = local_request.url.replace("{:id}", URLArray[1]);
+                                }
+                            }
+                        }
+
+                        /* Deal with new pages */
+                        else {
+                            for (let itemName in $scope.requests) {
+                                if ($scope.requests.hasOwnProperty(itemName) && itemName === URLArray[0]) {
+                                    local_request = $scope.requests[itemName].new;
+                                }
+                            }
                         }
                     }
                 }
 
-
-                else if (URLArray.length === 2){
-
-                    /* Deal with single item pages */
-                    if (URLArray[1] !== "new"){
-                        for (let itemName in $scope.requests) {
-                            if ($scope.requests.hasOwnProperty(itemName) && itemName === URLArray[0]) {
-                                local_request = $scope.requests[itemName].single;
-                                local_request.url = local_request.url.replace("{:id}", URLArray[1]);
-                            }
-                        }
+                /* SEARCHES */
+                else {
+                    let searchterms = URLArray[0].split("?terms=")[1];
+                    for (let k in searchterms){
+                        searchterms[k] = searchterms[k].replace(' ', '')
                     }
-                    /* Deal with ne pages */
-                    else {
-                        for (let itemName in $scope.requests) {
-                            if ($scope.requests.hasOwnProperty(itemName) && itemName === URLArray[0]) {
-                                local_request = $scope.requests[itemName].new;
-                            }
+                    if (searchterms !== undefined){
+                        local_request = $scope.requests.searches.multiple;
+                        local_request.data = {
+                            keywords: searchterms
                         }
                     }
                 }
-
-
                 return local_request;
             };
 

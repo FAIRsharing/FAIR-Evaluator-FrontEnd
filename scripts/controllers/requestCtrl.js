@@ -12,6 +12,11 @@ my_collections_app.controller(
         let URL = baseURL.split('/');
         let current_request = $scope.getRequest(URL);
 
+        if (current_request === null){
+            $scope.response_rdy = true;
+            return;
+        }
+
         /* trigger the request and process the data */
         $http(current_request).then(function(response){
             $scope.response_rdy = true;
@@ -53,13 +58,18 @@ my_collections_app.controller(
                     $scope.content_output = response.data;
                 }
             }
+
+            /* SEARCHES */
+            else {
+                $scope.results = response.data;
+                $scope.terms = URL[0].split("?terms=")[1]
+            }
+
+
         },
         function(error){
             $scope.response_rdy = true;
             $scope.request_error = true;
         });
-
-
-
     }
 );

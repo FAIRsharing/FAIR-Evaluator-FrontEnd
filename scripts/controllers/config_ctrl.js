@@ -10,7 +10,7 @@ angular.module('appConfigCtrl', []).controller(
             $scope.warning = true;
 
             /* ******************************************** */
-            /* SORTING TABLES */
+            /* SORTING TABLES DEFAULT VALUES */
             /* ******************************************** */
             $scope.sortType = {
                 "collections": null,
@@ -111,6 +111,18 @@ angular.module('appConfigCtrl', []).controller(
                             "Content-Type": "application/json"
                         }
                     }
+                },
+                searches: {
+                    multiple: {
+                        method: 'POST',
+                        url: $scope.base_url + "/searches/abcde",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Accept": "application/json"
+                        },
+                        data: { },
+                        timeout: 3000
+                    }
                 }
             };
 
@@ -128,7 +140,8 @@ angular.module('appConfigCtrl', []).controller(
                             stepSize: 25,
                             callback: function(value) {
                                 return value + '%';
-                            }
+                            },
+                            max: 100
                         }
                     }]
                 }

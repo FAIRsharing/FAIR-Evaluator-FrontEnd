@@ -1,21 +1,34 @@
 <div warning></div>
 
-<div class="container mainContainer fade show" ng-if="response_rdy && !search_errors">
+<div class="container mainContainer fade show" ng-if="response_rdy && request_error">
+    <div timeout></div>
+</div>
+
+<div class="container mainContainer fade show" ng-if="response_rdy && !search_errors && !request_error">
 
     <div class="container">
+
         <div class="row">
+            <div class="col-12">
+                <form>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon" ng-click="goToSearches(terms)">
+                                <i class="fa fa-search"></i>
+                            </div>
+                            <input type="text" class="form-control"
+                                   placeholder="Search for collections and metrics"
+                                   ng-model="terms">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="row" ng-if="terms">
 
             <div class="col-12">
                 <h2 class="mgBot"><span>Search results</span></h2>
-            </div>
-
-            <div class="col-12">
-                Selected words:
-                <ul>
-                    <li ng-repeat="term in terms_array">
-                        {{term}}
-                    </li>
-                </ul>
             </div>
 
             <div class="col-12">

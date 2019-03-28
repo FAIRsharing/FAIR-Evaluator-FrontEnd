@@ -1,6 +1,6 @@
 angular.module('appGraphCtrl', []).controller(
     'graphCtrl',
-    ['$scope', '$http', function($scope, $http){
+    ['$scope', '$http', function($scope){
         $scope.pie_labels = ["1 star", "2 stars", "3stars", "4 stars", "5stars"];
         $scope.histo_labels = [];
         $scope.pie_data = [0, 0, 0, 0, 0];
@@ -56,7 +56,6 @@ angular.module('appGraphCtrl', []).controller(
                 }
             }
         }
-
 
     }]
 );
