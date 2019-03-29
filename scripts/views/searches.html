@@ -1,3 +1,4 @@
+
 <div warning></div>
 
 <div class="container mainContainer fade show" ng-if="response_rdy && request_error">
@@ -13,19 +14,19 @@
                 <form>
                     <div class="form-group">
                         <div class="input-group">
-                            <div class="input-group-addon" ng-click="goToSearches(terms)">
+                            <div class="input-group-addon" ng-click="goToSearches(searchTerms)">
                                 <i class="fa fa-search"></i>
                             </div>
                             <input type="text" class="form-control"
                                    placeholder="Search for collections and metrics"
-                                   ng-model="terms">
+                                   ng-model="searchTerms">
                         </div>
                     </div>
                 </form>
             </div>
         </div>
 
-        <div class="row" ng-if="terms">
+        <div class="row" ng-if="searchTerms">
 
             <div class="col-12">
                 <h2 class="mgBot"><span>Search results</span></h2>

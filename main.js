@@ -79,18 +79,16 @@
             $scope.metrics_searchTerms = "";
             $scope.search_triggered = false;
 
-            $scope.goToSearches = function(){
+            $scope.goToSearches = function(terms){
                 let window_url = new $window.URL($location.absUrl());
                 $scope.search_triggered = true;
 
-                let termsArray = $scope.terms.split(',');
+                let termsArray = terms.split(',');
                 for (let k in termsArray){
-                    termsArray[k] = termsArray[k].replace(' ', '')
+                    termsArray[k] = termsArray[k].trim()
                 }
 
                 if ($scope.terms !== null){
-                    $scope.search_terms = $scope.terms;
-                    $scope.terms_array = $scope.search_terms.split(",");
                     $window.location.href =  window_url.origin + window_url.pathname + '#!searches?terms=' + termsArray;
                 }
                 else {
