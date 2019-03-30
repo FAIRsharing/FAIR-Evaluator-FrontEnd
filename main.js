@@ -268,5 +268,23 @@
         }
     });
 
+    /* Metrics table */
+    my_app.directive('metricsData', function(){
+        return{
+            restrict: 'A',
+            templateUrl: 'scripts/directives/metricsTable.html',
+            scope: {
+                metricsData: '=',
+            },
+            link: function($scope){
+                $scope.$watch('metricsData', function(fieldType){
+                    if(fieldType)
+                        $scope.content_output = $scope.metricsData;
+                });
+            }
+        }
+    });
+
+
 
 })();

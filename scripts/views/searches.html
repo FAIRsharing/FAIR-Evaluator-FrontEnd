@@ -39,39 +39,7 @@
 
             <div class="search_results col-12" id="metrics_results">
                 <h3> Metrics </h3>
-                <table class="table table-hover table-light table-striped">
-                    <thead>
-                    <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Creator</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Principle</th>
-                        <th scope="col">Test</th>
-                        <th scope="col">Interface</th>
-                        <th scope="col">View</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr ng-repeat="metric in results.metrics">
-                        <td> {{metric['name']}}</td>
-                        <td> {{metric['creator']}}</td>
-                        <td> {{metric['email']}}</td>
-
-                        <td>
-                            <a target="_blank" href="{{metric['principle']}}">
-                                {{metric['principle'] | URL_last_arg}}
-                            </a>
-                        </td>
-
-                        <td> {{metric['test_of_metric'] | URL_last_arg}}</td>
-                        <td> {{metric['smarturl'] | URL_last_arg}}</td>
-
-                        <td>
-                            <i class="fas fa-share-square showButton" ng-click="goToMetric(metric['@id'])"></i>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+                <div metrics-data="results.metrics"></div>
             </div>
 
             <div class="col-12">
