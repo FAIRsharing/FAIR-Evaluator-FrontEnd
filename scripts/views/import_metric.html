@@ -27,7 +27,6 @@
             <md-content layout-padding>
                 <div>
                     <form name="newMetric">
-
                         <md-input-container class="md-block" flex-gt-sm>
                             <label>URL to the Maturity Indicator Test's smartAPI YAML</label>
                             <input ng-model="form.metrics_url" required name="collectionName">
@@ -36,7 +35,7 @@
                 </div>
             </md-content>
             <div class="newCollectionValidate">
-                <button type="button" class="btn btn-primary" ng-click="import_metric()">Import Maturity Indicator</button>
+                <button type="button" class="btn btn-primary" ng-click="import_metric(newMetric)">Import Maturity Indicator</button>
             </div>
 
         </div>

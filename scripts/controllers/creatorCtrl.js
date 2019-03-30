@@ -84,7 +84,6 @@ my_creator_app.controller(
 my_creator_app.controller(
     'newCollectionCtrl',
     function($http, $scope, $window, $location){
-        let vm = this;
         let base_url = $scope.$parent.base_url;
         let request = {
             method: 'GET',
@@ -114,9 +113,9 @@ my_creator_app.controller(
         $scope.createCollection = function(form){
 
             form.$setSubmitted();
-            $scope.triggered = true;
 
             if (form.$valid){
+                $scope.triggered = true;
                 let request_data = {
                     "name": $scope.collection_data.name,
                     "contact": $scope.collection_data.contact,
@@ -152,11 +151,7 @@ my_creator_app.controller(
                     $scope.errors = response.data.statusText
                 });
             }
-
-            else{
-                $scope.triggered = false;
-            }
-                    };
+        };
 
         $scope.clearFields = function(){
             $scope.collection_data.name = "";
@@ -178,26 +173,30 @@ my_creator_app.controller(
         $scope.form = {};
         $scope.form.metrics_url = null;
 
-        $scope.import_metric = function(){
+        $scope.import_metric = function(form){
 
-            $scope.response_rdy = false;
-            let request = {
-                method: 'POST',
-                url: base_url + "/metrics",
-                headers: {
-                    'Accept': "application/json",
-                    "Content-Type": "application/json"
-                },
-                data: {
-                    "smarturl": $scope.form.metrics_url
+            form.$setSubmitted();
+
+            if (form.$valid){
+                $scope.response_rdy = false;
+                let request = {
+                    method: 'POST',
+                    url: base_url + "/metrics",
+                    headers: {
+                        'Accept': "application/json",
+                        "Content-Type": "application/json"
+                    },
+                    data: {
+                        "smarturl": $scope.form.metrics_url
+                    }
+                };
+                if ($scope.form.metrics_url != null){
+                    $http(request).then(function(response){
+                        console.log(response);
+                        $scope.response_rdy = false;
+                        $scope.response_content = response.data['@id']
+                    })
                 }
-            };
-            if ($scope.form.metrics_url != null){
-                $http(request).then(function(response){
-                    console.log(response);
-                    $scope.response_rdy = false;
-                    $scope.response_content = response.data['@id']
-                })
             }
         }
     }
