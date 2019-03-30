@@ -617,6 +617,11 @@ canvas#doughnut {
     border-radius: 0 !important;
 }
 
+.imgCentered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .clickMe:hover{
     cursor:pointer;
