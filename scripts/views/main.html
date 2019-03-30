@@ -8,11 +8,11 @@
                 <label class="sectionItemLabel">Import MI</label>
                 <p class="sectionItemText">
                     Import  Maturity Indicators as YAML  <a href="" target="_blank">smartAPI</a> interface annotation
-                    <button type="button"
-                            class="getStarted btn-primary"
-                            ng-click="goToLocation('#!/metric/new')">
-                        Get started
-                    </button>
+                    <a ng-href="#!/metric/new">
+                        <button type="button" class="getStarted btn-primary">
+                            Get started
+                        </button>
+                    </a>
                 </p>
             </div>
 
@@ -20,9 +20,12 @@
             <div class="sectionItem col-xl-4 col-lg-4 col-md-6 col-sm-12" id="item2">
                 <i class="sectionItemIcon fas fa-list"></i>
                 <label class="sectionItemLabel">Create collections</label>
+
                 <p class="sectionItemText">
                     Assemble  Maturity Indicators into community centered collections
-                    <button type="button" class="getStarted btn-primary" ng-click="goToLocation('#!/collection/new')"> Get started </button>
+                    <a ng-href="#!/collection/new">
+                        <button type="button" class="getStarted btn-primary"> Get started </button>
+                    </a>
                 </p>
             </div>
 
@@ -32,10 +35,9 @@
                 <label class="sectionItemLabel">Evaluate resources</label>
                 <p class="sectionItemText">
                     Evaluate resources FAIRness against Maturity Indicator Collections
-                    <button type="button"
-
-                            class="getStarted btn-primary"
-                            ng-click="goToLocation('#!/collections/new/evaluate')"> Get started </button>
+                    <a ng-href="#!/collections/new/evaluate">
+                        <button type="button" class="getStarted btn-primary"> Get started </button>
+                    </a>
                 </p>
             </div>
 

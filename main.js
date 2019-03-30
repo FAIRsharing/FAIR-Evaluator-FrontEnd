@@ -18,6 +18,10 @@
                 .primaryPalette('yellow')
         });
 
+
+    /* *************************************************************************************************** */
+    /* ROUTING */
+
     my_app.config(function($routeProvider) {
         $routeProvider
             .when("/", {
@@ -44,7 +48,7 @@
                 controller: "requestCtrl"
             })
             .when("/evaluations/:id", {
-                templateUrl : "scripts/deprecated/evaluation.html",
+                templateUrl : "scripts/views/evaluation.html",
                 controller: "requestCtrl"
             })
             .when("/metrics", {
@@ -65,8 +69,10 @@
             });
     });
 
+
     /* *************************************************************************************************** */
-    /* MAIN */
+    /* MAIN CONTROLLER */
+
     my_app.controller(
         'mainCtrl',
         function($http, $scope, $window, $location) {
@@ -94,12 +100,7 @@
                     return;
                 }
             };
-
-            $scope.goToLocation = function(location){
-                $scope.baseURL = new $window.URL($location.absUrl());
-                $window.location.href = $scope.baseURL.origin + $scope.baseURL.pathname + location;
-            };
-
+            
             $scope.process_data = function(data){
                 let processed_collections = [];
                 for (let collectionIterator in data){
@@ -207,8 +208,10 @@
         }
     );
 
+
     /* *************************************************************************************************** */
     /* FILTERS */
+
     my_app.filter('URL_last_arg', function() {
         return function (url) {
             let item = url.split('/').slice(-1)[0];
@@ -231,7 +234,6 @@
             return parseInt(str)
         };
     });
-
 
 
     /* *************************************************************************************************** */

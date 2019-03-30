@@ -80,7 +80,11 @@
         <div class="newCollectionValidate">
             <button type="button" class="btn btn-primary" ng-click="createCollection()">Create collection</button>
             <button type="button" class="btn btn-primary" ng-click="clearFields()">Clear fields</button>
-            <button type="button" class="btn btn-primary" ng-click="goToLocation('#!/collections')">Go back to collections</button>
+            <a ng-href="#!/collections">
+                <button type="button" class="btn btn-primary">
+                    Go back to collections
+                </button>
+            </a>
         </div>
 
     </div>
