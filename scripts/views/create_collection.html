@@ -57,7 +57,7 @@
 
                         <md-input-container class="md-block" flex-gt-sm>
                             <label>Organization Name</label>
-                            <input ng-model="collection_data.organization" required name="collectionOrganziation">
+                            <input ng-model="collection_data.organization" required name="collectionOrganization">
                         </md-input-container>
                     </div>
 
@@ -78,7 +78,12 @@
         </md-content>
 
         <div class="newCollectionValidate">
-            <button type="button" class="btn btn-primary" ng-click="createCollection()">Create collection</button>
+            <button type="submit"
+                    class="btn btn-primary"
+                    ng-click="createCollection(newCollection)">
+                Create collection
+            </button>
+
             <button type="button" class="btn btn-primary" ng-click="clearFields()">Clear fields</button>
             <a ng-href="#!/collections">
                 <button type="button" class="btn btn-primary">

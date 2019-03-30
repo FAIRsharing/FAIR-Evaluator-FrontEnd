@@ -87,17 +87,12 @@
             $scope.goToSearches = function(terms){
                 let window_url = new $window.URL($location.absUrl());
                 $scope.search_triggered = true;
-
-                let termsArray = terms.split(',');
-                for (let k in termsArray){
-                    termsArray[k] = termsArray[k].trim()
-                }
-
-                if ($scope.terms !== null){
+                if (terms !== null){
+                    let termsArray = terms.split(',');
+                    for (let k in termsArray){
+                        termsArray[k] = termsArray[k].trim()
+                    }
                     $window.location.href =  window_url.origin + window_url.pathname + '#!searches?terms=' + termsArray;
-                }
-                else {
-                    return;
                 }
             };
 

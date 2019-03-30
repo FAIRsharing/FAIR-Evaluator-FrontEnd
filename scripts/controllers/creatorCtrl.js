@@ -84,6 +84,7 @@ my_creator_app.controller(
 my_creator_app.controller(
     'newCollectionCtrl',
     function($http, $scope, $window, $location){
+        let vm = this;
         let base_url = $scope.$parent.base_url;
         let request = {
             method: 'GET',
@@ -110,46 +111,52 @@ my_creator_app.controller(
             $scope.available_metrics = response.data;
         });
 
-        $scope.createCollection = function(){
+        $scope.createCollection = function(form){
 
+            form.$setSubmitted();
             $scope.triggered = true;
 
-            let request_data = {
-                "name": $scope.collection_data.name,
-                "contact": $scope.collection_data.contact,
-                "description": $scope.collection_data.description,
-                "organization": $scope.collection_data.organization,
-                "include_metrics": []
-            };
+            if (form.$valid){
+                let request_data = {
+                    "name": $scope.collection_data.name,
+                    "contact": $scope.collection_data.contact,
+                    "description": $scope.collection_data.description,
+                    "organization": $scope.collection_data.organization,
+                    "include_metrics": []
+                };
 
-            for (let ite in $scope.collection_data.indicators){
-                let metric_URL = $scope.collection_data.indicators[ite];
-                for (let sub_it in $scope.available_metrics){
-                    if ($scope.available_metrics.hasOwnProperty(sub_it) && $scope.available_metrics[sub_it]["@id"] === metric_URL){
-                        request_data['include_metrics'].push($scope.available_metrics[sub_it]['smarturl']);
+                for (let ite in $scope.collection_data.indicators){
+                    let metric_URL = $scope.collection_data.indicators[ite];
+                    for (let sub_it in $scope.available_metrics){
+                        if ($scope.available_metrics.hasOwnProperty(sub_it) && $scope.available_metrics[sub_it]["@id"] === metric_URL){
+                            request_data['include_metrics'].push($scope.available_metrics[sub_it]['smarturl']);
+                        }
                     }
                 }
+
+                let request = {
+                    method: 'POST',
+                    url: base_url + "/collections",
+                    headers: {
+                        'Accept': "application/json",
+                        'Content-Type': "application/json"
+                    },
+                    data: request_data
+                };
+
+                $http(request).then(function(response){
+                    $scope.triggered = false;
+                    let identifier= response.data['@id'].split('/').slice(-1)[0];
+                    let root_url = new $window.URL($location.absUrl());
+                    $scope.response_content = root_url.origin + root_url.pathname + "#!/collections/" + identifier;
+                    $scope.errors = response.data.statusText
+                });
             }
 
-            let request = {
-                method: 'POST',
-                url: base_url + "/collections",
-                headers: {
-                    'Accept': "application/json",
-                    'Content-Type': "application/json"
-                },
-                data: request_data
-            };
-
-            $http(request).then(function(response){
+            else{
                 $scope.triggered = false;
-                console.log(response);
-                let identifier= response.data['@id'].split('/').slice(-1)[0];
-                let root_url = new $window.URL($location.absUrl());
-                $scope.response_content = root_url.origin + root_url.pathname + "#!/collections/" + identifier;
-                $scope.errors = response.data.statusText
-            });
-        };
+            }
+                    };
 
         $scope.clearFields = function(){
             $scope.collection_data.name = "";
