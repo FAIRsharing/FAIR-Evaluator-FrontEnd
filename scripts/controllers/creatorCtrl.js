@@ -41,43 +41,46 @@ my_creator_app.controller(
             $scope.evalForm.orcid = null;
         };
 
-        $scope.runEvaluation = function() {
-            $scope.response_rdy = false;
-            let collection_id = "";
+        $scope.runEvaluation = function(form) {
 
+            form.$setSubmitted();
 
-            if (typeof $scope.collection_id == "undefined"){
-                collection_id = $scope.evalForm.collection.split('/').slice(-1)[0];
-            }
-            else{
-                collection_id = $scope.collection_id.split('/').slice(-1)[0];
-            }
+            if (form.$valid){
+                $scope.response_rdy = false;
+                let collection_id = "";
 
-            let eval_request = {
-                method: 'POST',
-                url: base_url + "/collections/" + collection_id + "/evaluate",
-                headers: {
-                    'Accept': "application/json",
-                    'Content-Type': "application/json"
-                },
-                data: {
-                    "resource": $scope.evalForm.guid,
-                    "executor": $scope.evalForm.orcid,
-                    "title": $scope.evalForm.title
+                if (typeof $scope.collection_id == "undefined"){
+                    collection_id = $scope.evalForm.collection.split('/').slice(-1)[0];
                 }
-            };
+                else{
+                    collection_id = $scope.collection_id.split('/').slice(-1)[0];
+                }
 
-            let root_url = new $window.URL($location.absUrl());
-            let next_url = root_url.origin + root_url.pathname + '#!/evaluations/';
+                let eval_request = {
+                    method: 'POST',
+                    url: base_url + "/collections/" + collection_id + "/evaluate",
+                    headers: {
+                        'Accept': "application/json",
+                        'Content-Type': "application/json"
+                    },
+                    data: {
+                        "resource": $scope.evalForm.guid,
+                        "executor": $scope.evalForm.orcid,
+                        "title": $scope.evalForm.title
+                    }
+                };
 
-            $http(eval_request).then(function(response){
-                $scope.response_rdy = true;
-                let evaluation_id = response.data["@id"].split('/').slice(-1)[0];
-                $scope.response_content = next_url + evaluation_id;
-                $scope.response_rdy = true;
-            })
+                let root_url = new $window.URL($location.absUrl());
+                let next_url = root_url.origin + root_url.pathname + '#!/evaluations/';
+
+                $http(eval_request).then(function(response){
+                    $scope.response_rdy = true;
+                    let evaluation_id = response.data["@id"].split('/').slice(-1)[0];
+                    $scope.response_content = next_url + evaluation_id;
+                    $scope.response_rdy = true;
+                })
+            }
         }
-
     }
 );
 
