@@ -277,9 +277,26 @@
                 metricsData: '=',
             },
             link: function($scope){
-                $scope.$watch('metricsData', function(fieldType){
-                    if(fieldType)
+                $scope.$watch('metricsData', function(metricsData){
+                    if(metricsData)
                         $scope.content_output = $scope.metricsData;
+                });
+            }
+        }
+    });
+
+    /* Collections table */
+    my_app.directive('collectionsData', function(){
+        return{
+            restrict: 'A',
+            templateUrl: 'scripts/directives/collectionsTable.html',
+            scope: {
+                collectionsData: '=',
+            },
+            link: function($scope){
+                $scope.$watch('collectionsData', function(collectionsData){
+                    if(collectionsData)
+                        $scope.content_output = $scope.collectionsData;
                 });
             }
         }

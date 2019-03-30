@@ -72,71 +72,7 @@
         </form>
     </div>
 
-    <table class="table table-hover table-light table-striped">
-        <thead>
-            <tr>
-                <th scope="col">
-                    <span>Status</span>
-                </th>
-                <th scope="col" ng-click="sortType.collections = 'name'; reverseSort.collections = !reverseSort.collections" class="clickMe">
-                    <span>Title</span>
-                    <span ng-show="sortType.collections == 'name' && !reverseSort.collections" class="fa fa-caret-down"></span>
-                    <span ng-show="sortType.collections == 'name' && reverseSort.collections" class="fa fa-caret-up"></span>
-                </th>
-                <th scope="col" ng-click="sortType.collections = 'description'; reverseSort.collections = !reverseSort.collections" class="clickMe">
-                    <span>Description</span>
-                    <span ng-show="sortType.collections == 'description' && !reverseSort.collections" class="fa fa-caret-down"></span>
-                    <span ng-show="sortType.collections == 'description' && reverseSort.collections" class="fa fa-caret-up"></span>
-                </th>
-                <th scope="col" ng-click="sortType.collections = 'Organization'; reverseSort.collections = !reverseSort.collections" class="clickMe">
-                    <span>Organization</span>
-                    <span ng-show="sortType.collections == 'Organization' && !reverseSort.collections" class="fa fa-caret-down"></span>
-                    <span ng-show="sortType.collections == 'Organization' && reverseSort.collections" class="fa fa-caret-up"></span>
-                </th>
-                <th scope="col">
-                    <span>Contact</span>
-                </th>
-                <th scope="col">View</th>
-                <th scope="col">Execute</th>
-            </tr>
-        </thead>
-
-        <tbody>
-        <tr ng-repeat="collection in content_output | orderBy : sortType.collections:reverseSort.collections | filter:collections_searchTerms">
-            <td class="col1">
-                <i class="fa fa-check"></i>
-            </td>
-            <td>
-                {{collection.name}}
-            </td>
-            <td>
-                {{collection.description}}
-            </td>
-            <td>
-                {{collection.Organization}}
-            </td>
-            <td>
-                <a href="{{collection.contact}}" target="_blank" class="orcidLink">
-                    <img src="assets/img/orcid.png" class="orcid_icon">
-                </a>
-            </td>
-
-            <td>
-                <i class="fas fa-share-square showButton" ng-click="goToCollection(collection['id'])"></i>
-            </td>
-
-            <td>
-                <i class="fas fa-cogs showButton" ng-click="goToRunEvaluation(collection['id'])"></i>
-            </td>
-        </tr>
-        </tbody>
-
-
-
-
-
-
-    </table>
+    <div collections-data="content_output"></div>
 
 </div>
 

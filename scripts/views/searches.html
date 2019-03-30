@@ -36,7 +36,6 @@
                 <hr>
             </div>
 
-
             <div class="search_results col-12" id="metrics_results">
                 <h3> Metrics </h3>
                 <div metrics-data="results.metrics"></div>
@@ -49,47 +48,8 @@
             <div class="search_results col-12" id="collections_results">
                 <h3> Collections </h3>
 
-                <div class="collections row fade show">
-                    <div class="col-lg-4 col-md-6 col-sm-12 col-xl-3 collectionsCards" ng-repeat="collection in results.collections">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="title">
-                                    <label class="collectionName">{{collection["http://purl.org/dc/elements/1.1/title"]}}</label>
-                                </div>
-                                <hr>
-                                <div class="description">
-                                    <label>Status:</label>
-                                    <span> Deprecated or Valid </span>
-                                </div>
-                                <div class="description">
-                                    <label>Description:</label>
-                                    <span> {{collection['http://rdfs.org/ns/void#description']}} </span>
-                                </div>
-                                <div class="description">
-                                    <label>Contact:</label>
-                                    <span> {{collection['http://purl.org/dc/elements/1.1/authoredBy'] | URL_last_arg}} </span>
-                                </div>
-                                <div class="description">
-                                    <label>Organization:</label>
-                                    <span> {{collection["http://purl.org/dc/elements/1.1/creator"]}} </span>
-                                </div>
-                            </div>
+                <div collections-data="process_data(results.collections)"></div>
 
-                            <div class="buttonsContainer">
-                                <button type="button"
-                                        class="btn btn-primary btn"
-                                        ng-click="goToCollection(collection['id'])">
-                                    <a>Show</a>
-                                </button>
-
-                                <button type="button"
-                                        class="btn btn-primary" ng-click="goToRunEvaluation(collection['id'])">
-                                    Execute Evaluation
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
 
         </div>
