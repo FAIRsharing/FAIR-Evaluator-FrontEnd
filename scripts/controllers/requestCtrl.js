@@ -1,7 +1,7 @@
 let request_app = angular.module('requestProviderCtrl', ['appConfigCtrl']);
 
 /* route: /collections */
-my_collections_app.controller(
+request_app.controller(
     'requestCtrl',
     function($http, $scope, $window, $location) {
 

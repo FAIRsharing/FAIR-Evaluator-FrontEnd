@@ -10,9 +10,7 @@
             'chart.js',
             'appConfigCtrl',
             'appGraphCtrl',
-            'appCollectionsCtrl',
-            'appEvaluationsCtrl',
-            'appMetricsCtrl',
+            'appCreatorsCtrl',
             'requestProviderCtrl'
         ])
         .config(function ($mdThemingProvider) {
