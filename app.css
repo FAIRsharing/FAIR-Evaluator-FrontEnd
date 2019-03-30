@@ -586,6 +586,9 @@ table a {
 
 }
 
+.socialMedia .card-body {
+    padding:0 !important;
+}
 
 
 canvas#doughnut {
