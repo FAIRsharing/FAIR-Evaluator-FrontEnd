@@ -13,7 +13,7 @@ angular.module('appConfigCtrl', []).controller(
             /* SORTING TABLES DEFAULT VALUES */
             /* ******************************************** */
             $scope.sortType = {
-                "collections": "title",
+                "collections": "name",
                 "evaluations": "title",
                 "metrics": "principle"
             };
