@@ -7,6 +7,7 @@ request_app.controller(
 
         $scope.response_rdy = false;
         $scope.request_error = false;
+        $scope.dataType = null;
 
         let baseURL = new $window.URL($location.absUrl()).hash.replace('#!/', "");
         let URL = baseURL.split('/');
@@ -23,6 +24,7 @@ request_app.controller(
 
                 /* COLLECTIONS */
                 if (URL[0] === 'collections') {
+                    $scope.dataType = "collections";
                     if (URL.length === 2) {
                         $scope.collection = response.data;
                         $scope.collection['title'] = response.data['http://purl.org/dc/elements/1.1/title'];
@@ -34,6 +36,7 @@ request_app.controller(
 
                 /* EVALUATIONS */
                 else if (URL[0] === 'evaluations') {
+                    $scope.dataType = "evaluations";
                     if (URL.length === 2) {
                         let evaluation = JSON.parse(response.data['evaluationResult']);
                         $scope.evaluation = response.data;
@@ -51,6 +54,7 @@ request_app.controller(
 
                 /* METRICS */
                 else if (URL[0] === 'metrics') {
+                    $scope.dataType = "metrics";
                     if (URL.length === 2) {
                         $scope.metric = response.data;
                     }
@@ -62,9 +66,8 @@ request_app.controller(
                 /* SEARCHES */
                 else {
                     $scope.searchTerms = decodeURIComponent(URL[0].split("?terms=")[1]);
-                    console.log($scope.searchTerms);
                     $scope.results = response.data;
-                    console.log($scope.results);
+                    $scope.results.collections = $scope.process_data(response.data.collections);
                 }
             },
             function (error) {

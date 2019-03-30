@@ -32,24 +32,10 @@
                 <h2 class="mgBot"><span>Search results</span></h2>
             </div>
 
-            <div class="col-12">
-                <hr>
+            <div class="search_results col-12" id="metrics_results" metrics-data="results.metrics">
             </div>
 
-            <div class="search_results col-12" id="metrics_results">
-                <h3> Metrics </h3>
-                <div metrics-data="results.metrics"></div>
-            </div>
-
-            <div class="col-12">
-                <hr>
-            </div>
-
-            <div class="search_results col-12" id="collections_results">
-                <h3> Collections </h3>
-
-                <div collections-data="process_data(results.collections)"></div>
-
+            <div class="search_results col-12" id="collections_results" collections-data="results.collections">
             </div>
 
         </div>

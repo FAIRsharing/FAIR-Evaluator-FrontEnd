@@ -24,7 +24,7 @@
                 templateUrl : "scripts/views/main.html",
             })
             .when("/collections", {
-                templateUrl : "scripts/views/collections.html",
+                templateUrl : "scripts/views/pageLoader.html",
                 controller: "requestCtrl"
             })
             .when("/collections/:id", {
@@ -48,7 +48,7 @@
                 controller: "requestCtrl"
             })
             .when("/metrics", {
-                templateUrl : "scripts/views/metrics.html",
+                templateUrl : "scripts/views/pageLoader.html",
                 controller: "requestCtrl"
             })
             .when("/metrics/:id", {
@@ -109,12 +109,7 @@
                         processed_collection['name'] = collection["http://purl.org/dc/elements/1.1/title"];
                         processed_collection['contact'] = collection["http://purl.org/dc/elements/1.1/authoredBy"];
                         processed_collection['Organization'] = collection["http://purl.org/dc/elements/1.1/creator"];
-                        if (collection.hasOwnProperty('valid')){
-                            processed_collection['Deprecated'] = collection["valid"];
-                        }
-                        else {
-                            processed_collection['Deprecated'] = true
-                        }
+                        processed_collection['Deprecated'] = null;
                         processed_collection['id'] = collection["@id"];
 
                         let raw_description = collection["http://rdfs.org/ns/void#description"].split("https://orcid.org/")[1];
@@ -299,7 +294,5 @@
             }
         }
     });
-
-
 
 })();
