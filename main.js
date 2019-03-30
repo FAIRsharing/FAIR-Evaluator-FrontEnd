@@ -24,7 +24,7 @@
                 templateUrl : "scripts/views/main.html",
             })
             .when("/collections", {
-                templateUrl : "scripts/views/pageLoader.html",
+                templateUrl : "scripts/views/listerPages.html",
                 controller: "requestCtrl"
             })
             .when("/collections/:id", {
@@ -40,15 +40,15 @@
                 controller: "runEvaluationCtrl"
             })
             .when("/evaluations", {
-                templateUrl : "scripts/views/evaluations.html",
+                templateUrl : "scripts/views/listerPages.html",
                 controller: "requestCtrl"
             })
             .when("/evaluations/:id", {
-                templateUrl : "scripts/views/evaluation.html",
+                templateUrl : "scripts/deprecated/evaluation.html",
                 controller: "requestCtrl"
             })
             .when("/metrics", {
-                templateUrl : "scripts/views/pageLoader.html",
+                templateUrl : "scripts/views/listerPages.html",
                 controller: "requestCtrl"
             })
             .when("/metrics/:id", {
@@ -290,6 +290,23 @@
                 $scope.$watch('collectionsData', function(collectionsData){
                     if(collectionsData)
                         $scope.content_output = $scope.collectionsData;
+                });
+            }
+        }
+    });
+
+    /* Collections table */
+    my_app.directive('evaluationsData', function(){
+        return{
+            restrict: 'A',
+            templateUrl: 'scripts/directives/evaluationsTable.html',
+            scope: {
+                evaluationsData: '=',
+            },
+            link: function($scope){
+                $scope.$watch('evaluationsData', function(evaluationsData){
+                    if(evaluationsData)
+                        $scope.content_output = $scope.evaluationsData;
                 });
             }
         }
