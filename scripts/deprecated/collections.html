@@ -39,17 +39,19 @@
                 </div>
 
                 <div class="buttonsContainer">
-                    <button type="button"
-                            class="btn btn-primary btn"
-                            ng-click="goToCollection(collection['id'])">
+                    <a ng-href="#!/collections/{{collection['id'] | URL_last_arg}}">
+                        <button type="button"
+                                class="btn btn-primary btn">
                             <a>Show</a>
-                    </button>
+                        </button>
+                    </a>
 
-                    <button type="button"
-                            class="btn btn-primary"
-                            ng-click="goToRunEvaluation(collection['id'])">
-                        Execute Evaluation
-                    </button>
+                    <a ng-href="#!/collections/{{collection['id'] | URL_last_arg}}/evaluate">
+                        <button type="button"
+                                class="btn btn-primary">
+                            Execute Evaluation
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>

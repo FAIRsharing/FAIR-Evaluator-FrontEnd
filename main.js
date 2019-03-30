@@ -100,7 +100,7 @@
                     return;
                 }
             };
-            
+
             $scope.process_data = function(data){
                 let processed_collections = [];
                 for (let collectionIterator in data){
@@ -119,12 +119,6 @@
                     }
                 }
                 return processed_collections
-            };
-
-            $scope.goToCollection = function(identifier){
-                $scope.baseURL = new $window.URL($location.absUrl());
-                let id = identifier.split('/').slice(-1)[0];
-                $window.location.href = $scope.baseURL + "/" + id
             };
 
             $scope.goToRunEvaluation = function(identifier){
