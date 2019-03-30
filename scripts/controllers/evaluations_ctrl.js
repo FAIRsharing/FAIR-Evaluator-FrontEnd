@@ -14,7 +14,7 @@ my_evaluations_app.controller(
         $scope.response_rdy = true;
 
 
-        let request = $scope.request.evaluations.new;
+        let request = $scope.requests.evaluations.multiple;
 
         $scope.evalForm.collection_disabled = true;
         if ($routeParams.id === "new"){

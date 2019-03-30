@@ -77,6 +77,7 @@
             $scope.search_errors = null;
             $scope.evaluation_searchTerms = "";
             $scope.metrics_searchTerms = "";
+            $scope.collections_searchTerms = "";
             $scope.search_triggered = false;
 
             $scope.goToSearches = function(terms){
@@ -191,6 +192,7 @@
                             }
                         }
                     }
+                    console.log(local_request);
                 }
 
                 /* SEARCHES */
