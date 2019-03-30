@@ -121,24 +121,6 @@
                 return processed_collections
             };
 
-            $scope.goToRunEvaluation = function(identifier){
-                $scope.baseURL = new $window.URL($location.absUrl());
-                let id = identifier.split('/').slice(-1)[0];
-                $window.location.href = $scope.baseURL + "/" + id + '/evaluate'
-            };
-
-            $scope.goToMetric = function(identifier){
-                $scope.baseURL = new $window.URL($location.absUrl());
-                let id = identifier.split('/').slice(-1)[0];
-                $window.location.href = $scope.baseURL + "/" + id
-            };
-
-            $scope.goToEvaluation = function(identifier){
-                $scope.baseURL = new $window.URL($location.absUrl());
-                let id = identifier.split('/').slice(-1)[0];
-                $window.location.href = $scope.baseURL + "/" + id
-            };
-
             $scope.removeWarning = function(){
                 $scope.warning_on = false;
             };
