@@ -457,6 +457,10 @@ md-content {
     text-shadow: 2px 2px 1px rgba(0,0,0,0.5);
 }
 
+.fa-check{
+    color:#228B22;
+}
+
 #star1 {
     color: red;
 }
