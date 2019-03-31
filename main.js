@@ -8,6 +8,7 @@
             'ngAnimate',
             'ngMessages',
             'chart.js',
+            'appLoader',
             'appConfigCtrl',
             'appGraphCtrl',
             'appCreatorsCtrl',
@@ -178,111 +179,5 @@
 
         }
     );
-
-
-    /* *************************************************************************************************** */
-    /* FILTERS */
-
-    my_app.filter('URL_last_arg', function() {
-        return function (url) {
-            let item = url.split('/').slice(-1)[0];
-
-            if (item.indexOf('#') > 0){
-                return item.split('#').slice(-1)[0]
-            }
-            return item;
-        };
-    });
-
-    my_app.filter('removeUnderscore', function() {
-        return function (str) {
-            return str.replace(/_/g, ' ')
-        };
-    });
-
-    my_app.filter('str_to_int', function() {
-        return function (str) {
-            return parseInt(str)
-        };
-    });
-
-
-    /* *************************************************************************************************** */
-    /* DIRECTIVES */
-
-    /* DNA Loading animation directive */
-    my_app.directive('loader', function(){
-        return{
-            restrict: 'A',
-            templateUrl: 'scripts/directives/loader.html',
-        }
-    });
-
-    /* Warning */
-    my_app.directive('warning', function(){
-        return{
-            restrict: 'A',
-            templateUrl: 'scripts/directives/warning.html',
-        }
-    });
-
-    /* Timeout Error */
-    my_app.directive('timeout', function(){
-        return{
-            restrict: 'A',
-            templateUrl: 'scripts/directives/timeout.html',
-        }
-    });
-
-    /* Metrics table */
-    my_app.directive('metricsData', function(){
-        return{
-            restrict: 'A',
-            templateUrl: 'scripts/directives/metricsTable.html',
-            scope: {
-                metricsData: '=',
-            },
-            link: function($scope){
-                $scope.$watch('metricsData', function(metricsData){
-                    if(metricsData)
-                        $scope.content_output = $scope.metricsData;
-                });
-            }
-        }
-    });
-
-    /* Collections table */
-    my_app.directive('collectionsData', function(){
-        return{
-            restrict: 'A',
-            templateUrl: 'scripts/directives/collectionsTable.html',
-            scope: {
-                collectionsData: '=',
-            },
-            link: function($scope){
-                $scope.$watch('collectionsData', function(collectionsData){
-                    if(collectionsData)
-                        $scope.content_output = $scope.collectionsData;
-                });
-            }
-        }
-    });
-
-    /* Collections table */
-    my_app.directive('evaluationsData', function(){
-        return{
-            restrict: 'A',
-            templateUrl: 'scripts/directives/evaluationsTable.html',
-            scope: {
-                evaluationsData: '=',
-            },
-            link: function($scope){
-                $scope.$watch('evaluationsData', function(evaluationsData){
-                    if(evaluationsData)
-                        $scope.content_output = $scope.evaluationsData;
-                });
-            }
-        }
-    });
 
 })();
