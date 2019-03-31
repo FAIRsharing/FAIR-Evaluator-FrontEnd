@@ -157,7 +157,6 @@
                             }
                         }
                     }
-                    console.log(local_request);
                 }
 
                 /* SEARCHES */
@@ -173,6 +172,7 @@
                         }
                     }
                 }
+                console.log(local_request);
                 return local_request;
             };
 

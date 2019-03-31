@@ -132,7 +132,7 @@ angular.module('appConfigCtrl', []).controller(
                             "Accept": "application/json"
                         },
                         data: { },
-                        timeout: 3000
+                        timeout: $scope.request_timeout * 1.5
                     }
                 }
             };
