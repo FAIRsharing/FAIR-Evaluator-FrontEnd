@@ -14,7 +14,7 @@ my_creator_app.controller(
         $scope.response_rdy = true;
 
 
-        let request = $scope.requests.collections.multiple;
+        let request = angular.copy($scope.requests.collections.multiple);
 
         $scope.evalForm.collection_disabled = true;
         if ($routeParams.id === "new"){
