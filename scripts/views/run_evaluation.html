@@ -53,8 +53,8 @@
                                            name="collectionMetrics"
                                            required>
                                     <md-option ng-repeat="collection in collections"
-                                               value="{{collection['id']}}">
-                                        {{collection["name"]}}
+                                               value="{{collection['@id']}}">
+                                        {{collection["http://purl.org/dc/elements/1.1/title"]}}
                                     </md-option>
                                 </md-select>
                             </md-input-container>

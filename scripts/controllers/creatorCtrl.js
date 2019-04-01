@@ -25,7 +25,7 @@ my_creator_app.controller(
         }
 
         $http(request).then(function(response){
-            $scope.collections = $scope.process_data(response.data);
+            $scope.collections = response.data;
             if ($scope.evalForm.collection_disabled){
                 $scope.collection_id = response.data['@id'];
                 $scope.collection_title = response.data['http://purl.org/dc/elements/1.1/title']
