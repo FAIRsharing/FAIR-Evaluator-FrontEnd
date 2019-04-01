@@ -14,7 +14,7 @@ my_creator_app.controller(
         $scope.response_rdy = true;
 
 
-        let request = $scope.requests.evaluations.multiple;
+        let request = $scope.requests.collections.multiple;
 
         $scope.evalForm.collection_disabled = true;
         if ($routeParams.id === "new"){
@@ -25,7 +25,7 @@ my_creator_app.controller(
         }
 
         $http(request).then(function(response){
-            $scope.collections = response.data;
+            $scope.collections = $scope.process_data(response.data);
             if ($scope.evalForm.collection_disabled){
                 $scope.collection_id = response.data['@id'];
                 $scope.collection_title = response.data['http://purl.org/dc/elements/1.1/title']

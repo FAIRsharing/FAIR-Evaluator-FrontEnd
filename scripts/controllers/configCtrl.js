@@ -38,7 +38,10 @@ angular.module('appConfigCtrl', []).controller(
                             'Accept': "application/json",
                         },
                         data: null,
-                        timeout: $scope.request_timeout
+                        timeout: $scope.request_timeout,
+                        rejectUnauthorized: false,
+                        requestCert: false,
+                        agent: false
                     },
                     /* ROUTE: /metrics/{id} */
                     single: {
@@ -48,7 +51,10 @@ angular.module('appConfigCtrl', []).controller(
                             'Accept': "application/json",
                         },
                         data: null,
-                        timeout: $scope.request_timeout
+                        timeout: $scope.request_timeout,
+                        rejectUnauthorized: false,
+                        requestCert: false,
+                        agent: false
                     },
                     /* ROUTE: /metric/new */
                     new: {
@@ -57,7 +63,10 @@ angular.module('appConfigCtrl', []).controller(
                         headers: {
                             'Accept': "application/json",
                             "Content-Type": "application/json"
-                        }
+                        },
+                        rejectUnauthorized: false,
+                        requestCert: false,
+                        agent: false
                     }
                 },
                 evaluations: {
@@ -69,7 +78,10 @@ angular.module('appConfigCtrl', []).controller(
                             'Accept': "application/json",
                         },
                         data: null,
-                        timeout: $scope.request_timeout
+                        timeout: $scope.request_timeout,
+                        rejectUnauthorized: false,
+                        requestCert: false,
+                        agent: false
                     },
                     /* ROUTE: /evaluations/{id} */
                     single: {
@@ -79,7 +91,10 @@ angular.module('appConfigCtrl', []).controller(
                             'Accept': "application/json",
                         },
                         data: null,
-                        timeout: $scope.request_timeout
+                        timeout: $scope.request_timeout,
+                        rejectUnauthorized: false,
+                        requestCert: false,
+                        agent: false
                     },
                     /* ROUTE: /collections/{id}/evaluate */
                     new: {
@@ -87,7 +102,10 @@ angular.module('appConfigCtrl', []).controller(
                         url: $scope.base_url + "/evaluations",
                         headers: {
                             'Accept': "application/json",
-                            "Content-Type": "application/json"
+                            "Content-Type": "application/json",
+                            rejectUnauthorized: false,
+                            requestCert: false,
+                            agent: false
                         }
                     }
                 },
@@ -100,7 +118,10 @@ angular.module('appConfigCtrl', []).controller(
                             'Accept': "application/json",
                         },
                         data: null,
-                        timeout: $scope.request_timeout
+                        timeout: $scope.request_timeout,
+                        rejectUnauthorized: false,
+                        requestCert: false,
+                        agent: false
                     },
                     /* ROUTE: /collections/{id} */
                     single: {
@@ -110,7 +131,10 @@ angular.module('appConfigCtrl', []).controller(
                             'Accept': "application/json",
                         },
                         data: null,
-                        timeout: $scope.request_timeout
+                        timeout: $scope.request_timeout,
+                        rejectUnauthorized: false,
+                        requestCert: false,
+                        agent: false
                     },
                     /* ROUTE: /collection/new */
                     new: {
@@ -119,7 +143,10 @@ angular.module('appConfigCtrl', []).controller(
                         headers: {
                             'Accept': "application/json",
                             "Content-Type": "application/json"
-                        }
+                        },
+                        rejectUnauthorized: false,
+                        requestCert: false,
+                        agent: false
                     }
                 },
                 searches: {
@@ -132,7 +159,10 @@ angular.module('appConfigCtrl', []).controller(
                             "Accept": "application/json"
                         },
                         data: { },
-                        timeout: $scope.request_timeout * 1.5
+                        timeout: $scope.request_timeout * 1.5,
+                        rejectUnauthorized: false,
+                        requestCert: false,
+                        agent: false
                     }
                 }
             };
