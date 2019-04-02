@@ -133,7 +133,7 @@
                     if (URLArray.length === 1 ){
                         for (let itemName in $scope.requests){
                             if ($scope.requests.hasOwnProperty(itemName) && itemName === URLArray[0] ){
-                                local_request = $scope.requests[itemName].multiple;
+                                local_request = angular.copy($scope.requests[itemName].multiple);
                             }
                         }
                     }
@@ -143,7 +143,7 @@
                         if (URLArray[1] !== "new"){
                             for (let itemName in $scope.requests) {
                                 if ($scope.requests.hasOwnProperty(itemName) && itemName === URLArray[0]) {
-                                    local_request = $scope.requests[itemName].single;
+                                    local_request = angular.copy($scope.requests[itemName].single);
                                     local_request.url = local_request.url.replace("{:id}", URLArray[1]);
                                 }
                             }
@@ -153,7 +153,7 @@
                         else {
                             for (let itemName in $scope.requests) {
                                 if ($scope.requests.hasOwnProperty(itemName) && itemName === URLArray[0]) {
-                                    local_request = $scope.requests[itemName].new;
+                                    local_request = angular.copy($scope.requests[itemName].new);
                                 }
                             }
                         }
@@ -167,7 +167,7 @@
                         searchterms[k] = searchterms[k].replace(' ', '')
                     }
                     if (searchterms !== undefined){
-                        local_request = $scope.requests.searches.multiple;
+                        local_request = angular.copy($scope.requests.searches.multiple);
                         local_request.data = {
                             keywords: searchterms
                         }
