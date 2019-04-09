@@ -65,7 +65,8 @@
             <span>({{collection['http://www.w3.org/ns/dcat#entities']}}):</span>
             <ul>
                 <li ng-repeat="(key, metric) in collection['contains']">
-                    <a href="{{metric['@id'] | replaceURL}}">{{metric['name']}} </a>
+                    <a href="{{metric['@id'] | replaceURL}}">{{metric['name']}}</a>:
+                    <span> {{metric['description']}}</span>
                 </li>
             </ul>
         </div>
