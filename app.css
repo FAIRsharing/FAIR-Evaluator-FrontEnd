@@ -652,8 +652,8 @@ canvas#doughnut {
     color:darkgreen;
 }
 
-.collectionStatus .fa-times{
-    color:darkred;
+.fa-times{
+    color:red;
 }
 
 .collectionTitle .col-10{

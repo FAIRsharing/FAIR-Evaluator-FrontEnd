@@ -109,6 +109,10 @@
                         processed_collection['Deprecated'] = null;
                         processed_collection['id'] = collection["@id"];
 
+                        if (collection.hasOwnProperty("http://purl.obolibrary.org/obo/IAO_0000114")){
+                            processed_collection['status'] = collection['http://purl.obolibrary.org/obo/IAO_0000114'];
+                        }
+
                         let raw_description = collection["http://rdfs.org/ns/void#description"].split("https://orcid.org/")[1];
                         processed_collection['description'] = raw_description.split(".")[1];
                         processed_collections.push(processed_collection)

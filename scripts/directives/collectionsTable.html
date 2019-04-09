@@ -43,7 +43,7 @@
     <tbody>
     <tr ng-repeat="collection in content_output | orderBy : sortType.collections:reverseSort.collections | filter:collections_searchTerms">
         <td class="col1">
-            <i class="fa fa-check"></i>
+            <i class="fa" ng-class="{'fa-check': !collection.status, 'fa-times': collection.status}"></i>
         </td>
         <td>
             {{collection.name}}
