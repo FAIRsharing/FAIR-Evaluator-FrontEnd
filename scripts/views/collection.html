@@ -61,11 +61,11 @@
 
         <!-- Metrics -->
         <div class="fieldContainer">
-            <label>Maturity indicators</label>
+            <label>Maturity Indicators Tests</label>
             <span>({{collection['http://www.w3.org/ns/dcat#entities']}}):</span>
             <ul>
                 <li ng-repeat="(key, metric) in collection['contains']">
-                    <a href="{{metric['@id'] | replaceURL}}">{{metric['name']}}</a>:
+                    <a href="{{metric['@id'] | replaceURL}}">{{metric['name']}}</a> <span>({{metric['principle'] | URL_last_arg}}): </span>
                     <span> {{metric['description']}}</span>
                 </li>
             </ul>
