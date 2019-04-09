@@ -1,9 +1,27 @@
 let request_app = angular.module('requestProviderCtrl', ['appConfigCtrl']);
 
+
+request_app.factory('MetricsLoader', function($q, $http){
+
+    function MetricsLoader(){
+        let metricsLoader = this;
+
+        metricsLoader.load_metrics = function(metricsList){
+            for (let key in metricsList){
+                console.log(metricsList[key])
+            }
+        }
+    }
+
+    return MetricsLoader;
+
+});
+
+
 /* route: /collections */
 request_app.controller(
     'requestCtrl',
-    function($http, $scope, $window, $location) {
+    function($http, $scope, $window, $location, MetricsLoader) {
 
         $scope.response_rdy = false;
         $scope.request_error = false;
@@ -28,6 +46,14 @@ request_app.controller(
                     if (URL.length === 2) {
                         $scope.collection = response.data;
                         $scope.collection['title'] = response.data['http://purl.org/dc/elements/1.1/title'];
+                        if (response.data.hasOwnProperty("http://purl.obolibrary.org/obo/IAO_0000114")){
+                            $scope.collection['status'] = response.data['http://purl.obolibrary.org/obo/IAO_0000114'];
+                        }
+                        for (let key in $scope.collection["http://www.w3.org/ns/ldp#contains"]) {
+                            let realURL = $location.absUrl().replace($location.$$path, '/');
+                            $scope.collection["http://www.w3.org/ns/ldp#contains"][key] =
+                                $scope.collection["http://www.w3.org/ns/ldp#contains"][key].replace('https://w3id.org/FAIR_Evaluator/', realURL)
+                        }
                     }
                     else {
                         $scope.content_output = $scope.process_data(response.data);

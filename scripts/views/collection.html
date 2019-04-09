@@ -7,8 +7,14 @@
 <div class="fade show container mainContainer" ng-if="response_rdy && !request_error">
 
     <div class="container evalTitle">
-        <div class="row">
-            <div class="col-11"><h2>{{collection.title}}</h2></div>
+        <div class="row collectionTitle">
+
+            <div class="col-1 collectionStatus">
+                <i class="fa" ng-class="{'fa-check':!collection.status, 'fa-times':collection.status}"> </i>
+            </div>
+
+            <div class="col-10"><h2>{{collection.title}}</h2></div>
+
             <div class="orcid_logo col-1">
                 <a href="{{collection['http://purl.org/dc/elements/1.1/authoredBy']}}" target="_blank" class="orcidLink">
                     <img src="assets/img/orcid.png" class="orcid_icon">
@@ -48,7 +54,8 @@
         <!-- Creation date -->
         <div class="fieldContainer">
             <label>Status: </label>
-            <span> ?? </span>
+            <span ng-if="!collection.status"> Valid </span>
+            <span ng-if="collection.status"> Deprecated </span>
         </div>
 
 

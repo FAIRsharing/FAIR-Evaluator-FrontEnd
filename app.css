@@ -636,6 +636,32 @@ canvas#doughnut {
     text-align: justify;
 }
 
+.collectionTitle {
+    margin-bottom:10px;
+}
+
+.collectionStatus {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 27px;
+    padding:0;
+}
+
+.collectionStatus .fa-check{
+    color:darkgreen;
+}
+
+.collectionStatus .fa-times{
+    color:darkred;
+}
+
+.collectionTitle .col-10{
+    display: flex;
+    align-items: center;
+    padding:0;
+    padding-top:8px;
+}
 
 /* TODO: set sm and md @media for .section.sectionItem
          set sm for icons padding on main page.
