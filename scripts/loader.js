@@ -14,6 +14,18 @@ loader.filter('URL_last_arg', function() {
     };
 });
 
+loader.filter('test_of_URL', function() {
+    return function (url) {
+        let item = url.split('/').slice(-1)[0];
+
+        if (item.indexOf('#') > 0){
+            return item.split('#').slice(-1)[0]
+        }
+        return item.replace("FM", "MI");
+    };
+});
+
+
 loader.filter('removeUnderscore', function() {
     return function (str) {
         return str.replace(/_/g, ' ')

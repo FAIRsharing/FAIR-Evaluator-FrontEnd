@@ -59,7 +59,12 @@
             </a>
         </td>
 
-        <td> {{metric['test_of_metric'] | URL_last_arg}}</td>
+        <td>
+            <a href="https://github.com/FAIRMetrics/Metrics/tree/master/MaturityIndicators/Gen2/{{metric['test_of_metric'] | test_of_URL}}.md"
+               target="_blank">{{metric['test_of_metric'] | URL_last_arg}}</a>
+        </td>
+
+
         <td> {{metric['smarturl'] | URL_last_arg}}</td>
 
         <td>
