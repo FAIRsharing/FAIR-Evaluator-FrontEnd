@@ -64,12 +64,11 @@
             <label>Maturity indicators</label>
             <span>({{collection['http://www.w3.org/ns/dcat#entities']}}):</span>
             <ul>
-                <li ng-repeat="(key, metric) in collection['http://www.w3.org/ns/ldp#contains']">
-                    {{metric}}
+                <li ng-repeat="(key, metric) in collection['contains']">
+                    <a href="{{metric['@id'] | replaceURL}}">{{metric['name']}} </a>
                 </li>
             </ul>
         </div>
-
         <hr>
 
     </div>

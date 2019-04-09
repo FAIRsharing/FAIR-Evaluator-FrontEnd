@@ -6,10 +6,22 @@ request_app.factory('MetricsLoader', function($q, $http){
     function MetricsLoader(){
         let metricsLoader = this;
 
-        metricsLoader.load_metrics = function(metricsList){
-            for (let key in metricsList){
-                console.log(metricsList[key])
-            }
+        metricsLoader.load_metrics = function(metricsList, request){
+            let deferred = $q.defer();
+            $http(request).then(function(response){
+                deferred.resolve(response); // Resolve the response once triggered
+                metricsLoader.metrics = [];
+
+                for (let key in response.data){
+                    if (metricsList.indexOf(response.data[key]['@id']) !== -1){
+                        metricsLoader.metrics.push(response.data[key])
+                    }
+                }
+            }, function(error){
+                return deferred.reject(error);
+            });
+
+            return deferred.promise;
         }
     }
 
@@ -43,17 +55,20 @@ request_app.controller(
                 /* COLLECTIONS */
                 if (URL[0] === 'collections') {
                     $scope.dataType = "collections";
+
+                    /* single collection */
                     if (URL.length === 2) {
                         $scope.collection = response.data;
                         $scope.collection['title'] = response.data['http://purl.org/dc/elements/1.1/title'];
                         if (response.data.hasOwnProperty("http://purl.obolibrary.org/obo/IAO_0000114")){
                             $scope.collection['status'] = response.data['http://purl.obolibrary.org/obo/IAO_0000114'];
                         }
-                        for (let key in $scope.collection["http://www.w3.org/ns/ldp#contains"]) {
-                            let realURL = $location.absUrl().replace($location.$$path, '/');
-                            $scope.collection["http://www.w3.org/ns/ldp#contains"][key] =
-                                $scope.collection["http://www.w3.org/ns/ldp#contains"][key].replace('https://w3id.org/FAIR_Evaluator/', realURL)
-                        }
+
+                        let metricsLoader = new MetricsLoader();
+                        metricsLoader.load_metrics($scope.collection["http://www.w3.org/ns/ldp#contains"],
+                            $scope.requests['metrics'].multiple).then(function(){
+                            $scope.collection['contains'] = metricsLoader.metrics;
+                        });
                     }
                     else {
                         $scope.content_output = $scope.process_data(response.data);

@@ -26,6 +26,15 @@ loader.filter('str_to_int', function() {
     };
 });
 
+loader.filter('replaceURL', function($location) {
+    return function (str) {
+        let urlArray = str.split('/');
+        let identifier = urlArray[urlArray.length - 1];
+        return $location.absUrl().replace($location.$$path, '') + '/metrics/' + identifier
+    };
+});
+
+
 
 /* *************************************************************************************************** */
 /* DIRECTIVES */
