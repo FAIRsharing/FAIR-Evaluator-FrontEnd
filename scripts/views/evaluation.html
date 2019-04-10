@@ -42,7 +42,7 @@
                     </div>
                 </div>
 
-                <div class="row" >
+                <div class="row">
                     <div class="col-12">
                         <div class="container">
                             <div class="row"><label> Summary: </label></div>
@@ -97,7 +97,7 @@
                         <div class="card">
                             <div class="card-body">
 
-                                <h4>{{resultKey | URL_last_arg | removeUnderscore}}</h4>
+                                <h4>{{resultVal[0]['name']}}</h4>
 
                                 <hr>
                                 <!-- results /stars -->
@@ -140,6 +140,7 @@
                                     <label>Score: </label>
                                     <span> {{resultVal[0]['http://semanticscience.org/resource/SIO_000300'][0]['@value']}} </span>
                                 </div>
+
                             </div>
                         </div>
                     </div>
