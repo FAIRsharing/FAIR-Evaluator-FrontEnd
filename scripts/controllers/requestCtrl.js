@@ -330,6 +330,12 @@ request_app.controller(
 
         let baseURL = new $window.URL($location.absUrl()).hash.replace('#!/', "");
         let URL = baseURL.split('/');
+        let current_request = $scope.getRequest(URL);
+
+        if (current_request === null){
+            $scope.response_rdy = true;
+            return;
+        }
 
         let requestLoader = new RequestLoader($scope.request_timeout);
 
