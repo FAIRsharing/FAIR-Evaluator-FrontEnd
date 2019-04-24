@@ -67,108 +67,71 @@
 
     <div class="" ng-controller="graphCtrl as Graph">
         <div class="container">
-                <div class="row">
-                    <div class="col-12">
+
+            <div class="row" id="verticalSlider">
+                <div class="col-12 card"
+                     ng-repeat="(resultKey, resultVal) in evaluation['evaluationResult']"
+                     ng-class="{'border-warning': resultVal[1]['deprecated'] == true}">
+
+                    <div class="card-header container" id="header_{{$index}}">
+
+                        <div class="row">
+                            <div class="col-1">
+                                <i class="fa" ng-class="{'fa-check': resultVal[0]['http://semanticscience.org/resource/SIO_000300'][0]['@value'] == 1, 'fa-times': resultVal[0]['http://semanticscience.org/resource/SIO_000300'][0]['@value'] == 0}"></i>
+                            </div>
+                            <div class="col-11">
+                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapse_{{$index}}" aria-expanded="false" aria-controls="collapse_{{$index}}">
+                                    {{resultVal[1]["name"]}}
+                                </button>
+                            </div>
+                        </div>
 
                     </div>
 
-                    <div class="col-4 doughnut" ng-if="charts_on">
-                        <div class="container">
-                            <div class="row"> <h6>Number of stars </h6></div>
-                            <div class="row">
-                                <canvas id="doughnut2"
-                                        class="chart chart-doughnut row"
-                                        chart-data="pie_data"
-                                        chart-labels="pie_labels"
-                                        width=100>
-                                </canvas>
+                    <div id="collapse_{{$index}}"
+                         class="collapse"
+                         ng-class="{'show': resultVal[0]['http://semanticscience.org/resource/SIO_000300'][0]['@value'] == 1}"
+                         aria-labelledby="heading_{{index}}"
+                         data-parent="#verticalSlider">
+                        <div class="card-body">
+
+                            <div class="metricField">
+                                <label>Status: </label>
+                                <span ng-if="resultVal[0]['http://semanticscience.org/resource/SIO_000300'][0]['@value'] == 1">Success
+                                </span>
+                                <span ng-if="resultVal[0]['http://semanticscience.org/resource/SIO_000300'][0]['@value'] == 0">Failure
+                                </span>
                             </div>
 
-                        </div>
-                    </div>
-
-                    <div class="col-8 hBar" ng-if="charts_on">
-
-                        <div class="container">
-                            <div class="row"> <h6>Score per metric </h6> </div>
-                            <canvas id="bar"
-                                    class="chart chart-bar"
-                                    chart-data="histo_data"
-                                    chart-labels="histo_labels"
-                                    chart-options="histo_options"
-                                    chart-colors="colors">
-                            </canvas>
-                        </div>
-                    </div>
-                </div>
-
-                <hr>
-
-                <div class="row" id="verticalSlider">
-                    <div class="col-12 card"
-                         ng-repeat="(resultKey, resultVal) in evaluation['evaluationResult']"
-                         ng-class="{'border-warning': resultVal[1]['deprecated'] == true}">
-
-                        <div class="card-header container" id="header_{{$index}}">
-
-                            <div class="row">
-                                <div class="col-1">
-                                    <i class="fa" ng-class="{'fa-check': resultVal[0]['http://semanticscience.org/resource/SIO_000300'][0]['@value'] == 1, 'fa-times': resultVal[0]['http://semanticscience.org/resource/SIO_000300'][0]['@value'] == 0}"></i>
-                                </div>
-                                <div class="col-11">
-                                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapse_{{$index}}" aria-expanded="false" aria-controls="collapse_{{$index}}">
-                                        {{resultVal[1]["name"]}}
-                                    </button>
-                                </div>
+                            <div class="metricField">
+                                <label>Principle tested:</label>
+                                <span>{{resultVal[1]['principle'] | URL_last_arg}}</span>
                             </div>
 
+                            <div class="metricField">
+                                <label>Description</label>
+                                <span>{{resultVal[1]['description']}}</span>
+                            </div>
 
+                            <div class="metricField">
+                                <label>Created on:</label>
+                                <span>
+                                    {{resultVal[1]['created_at'] | date}} by
+                                    <a href="https://orcid.org/{{resultVal[1]['orcid']}}" target="_blank">{{resultVal[1]['creator']}}</a>
+                                    (updated on {{resultVal[1]['updated_at'] | date}}).
+                                </span>
+                            </div>
 
-                        </div>
-
-                        <div id="collapse_{{$index}}" class="collapse" ng-class="{'show': $first}" aria-labelledby="heading_{{index}}" data-parent="#verticalSlider">
-                            <div class="card-body">
-
-                                <div class="metricField">
-                                    <label>Status: </label>
-                                    <span ng-if="resultVal[0]['http://semanticscience.org/resource/SIO_000300'][0]['@value'] == 1">Success
-                                    </span>
-                                    <span ng-if="resultVal[0]['http://semanticscience.org/resource/SIO_000300'][0]['@value'] == 0">Failure
-                                    </span>
-                                </div>
-
-                                <div class="metricField">
-                                    <label>Principle tested:</label>
-                                    <span>{{resultVal[1]['principle'] | URL_last_arg}}</span>
-                                </div>
-
-                                <div class="metricField">
-                                    <label>Description</label>
-                                    <span>{{resultVal[1]['description']}}</span>
-                                </div>
-
-                                <div class="metricField">
-                                    <label>Created on:</label>
-                                    <span>
-                                        {{resultVal[1]['created_at'] | date}} by
-                                        <a href="https://orcid.org/{{resultVal[1]['orcid']}}" target="_blank">{{resultVal[1]['creator']}}</a>
-                                        (updated on {{resultVal[1]['updated_at'] | date}}).
-                                    </span>
-                                </div>
-
-                                <div class="metricField testResult">
-                                    <label class="resultLabel">Test results</label>
-                                    <div class="terminal newlines" ng-bind-html='resultVal[0]["http://schema.org/comment"][0]["@value"]'></div>
-                                </div>
-
-
-
+                            <div class="metricField testResult">
+                                <label class="resultLabel">Test results</label>
+                                <div class="terminal newlines" ng-bind-html='resultVal[0]["http://schema.org/comment"][0]["@value"]'></div>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
+        </div>
+
     </div>
 
     <div class="goBack">
