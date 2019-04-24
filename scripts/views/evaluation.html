@@ -7,13 +7,61 @@
 <div class="container mainContainer fade show" ng-if="response_rdy && !request_error" id="evaluation">
 
     <div class="container evalTitle">
-        <div class="row">
+
+        <div class="row evaluationTitle">
             <div class="col-11"><h2>{{evaluation.title}}</h2></div>
             <div class="orcid_logo col-1">
                 <a href="{{evaluation['creator']}}" target="_blank" class="orcidLink">
                     <img src="assets/img/orcid.png" class="orcid_icon">
                 </a>
             </div>
+        </div>
+
+        <div class="row">
+
+                <div class="col-4">
+                    <div class="doughnut" ng-controller="graphCtrl as Graph">
+                        <div class="container">
+                            <div class="row">
+                                <h6>Tests passing and failing </h6>
+                            </div>
+                            <div class="row">
+                                <canvas id="doughnut"
+                                        class="chart chart-doughnut row"
+                                        chart-data="pie_data"
+                                        chart-labels="pie_labels"
+                                        width=100>
+                                </canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-8 container">
+                    <div class="row">
+                        <div class="col-12">
+
+                            <!-- Description -->
+                            <div class="">
+                                <label>Description: </label>
+                                <span> {{evaluation["http://rdfs.org/ns/void#description"]}}</span>
+                            </div>
+
+                            <!-- Description -->
+                            <div class="">
+                                <label>Resource: </label>
+                                <a ng-href="https://doi.org/{{evaluation['primaryTopic']}}" target="_blank"> https://doi.org/{{evaluation['primaryTopic']}}</a>
+                            </div>
+
+                            <!-- Tested Against -->
+                            <div class="">
+                                <label> Collection: </label>
+                                <a href="{{evaluation['collection']}}"> {{evaluation["collection"] | URL_last_arg}} </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
         </div>
     </div>
 
@@ -22,49 +70,13 @@
                 <div class="row">
                     <div class="col-12">
 
-                        <!-- Description -->
-                        <div class="">
-                            <label>Description: </label>
-                            <span> {{evaluation["http://rdfs.org/ns/void#description"]}}</span>
-                        </div>
-
-                        <!-- Description -->
-                        <div class="">
-                            <label>Resource: </label>
-                            <a href="{{resource}}" target="_blank"> {{resource}}</a>
-                        </div>
-
-                        <!-- Tested Against -->
-                            <div class="">
-                                <label> Collection: </label>
-                                <a href="{{evaluation['collection']}}"> {{evaluation["collection"] | URL_last_arg}} </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-12">
-                        <div class="container">
-                            <div class="row"><label> Summary: </label></div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <md-switch class="chartSwitch md-primary" ng-model="charts_on" aria-label="Charts">
-                                        Charts:
-                                        <span ng-if="charts_on">Show</span>
-                                        <span ng-if="!charts_on">Hide</span>
-                                    </md-switch>
-                                </div>
-                            </div>
-                        </div>
-
-
                     </div>
 
                     <div class="col-4 doughnut" ng-if="charts_on">
                         <div class="container">
                             <div class="row"> <h6>Number of stars </h6></div>
                             <div class="row">
-                                <canvas id="doughnut"
+                                <canvas id="doughnut2"
                                         class="chart chart-doughnut row"
                                         chart-data="pie_data"
                                         chart-labels="pie_labels"
@@ -155,7 +167,7 @@
                         </div>
                     </div>
                 </div>
-            
+
             </div>
     </div>
 

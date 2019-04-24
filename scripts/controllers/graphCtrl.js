@@ -1,7 +1,7 @@
 angular.module('appGraphCtrl', []).controller(
     'graphCtrl',
     ['$scope', '$http', function($scope){
-        $scope.pie_labels = ["1 star", "2 stars", "3stars", "4 stars", "5stars"];
+        $scope.pie_labels = ["Passing", "Failing"];
         $scope.histo_labels = [];
         $scope.pie_data = [0, 0, 0, 0, 0];
         $scope.histo_data = [[]];
@@ -41,19 +41,19 @@ angular.module('appGraphCtrl', []).controller(
                     /* SET PIE CHART DATA */
                     switch(parseFloat(score)){
                         case 0:
-                            $scope.pie_data[0] += 1;
-                            break;
-                        case 1:
-                            $scope.pie_data[4] += 1;
-                            break;
-                        case 0.25:
                             $scope.pie_data[1] += 1;
                             break;
+                        case 1:
+                            $scope.pie_data[0] += 1;
+                            break;
+                        case 0.25:
+                            $scope.pie_data[0] += 1;
+                            break;
                         case 0.5:
-                            $scope.pie_data[2] += 1;
+                            $scope.pie_data[0] += 1;
                             break;
                         case 0.75:
-                            $scope.pie_data[3] += 1;
+                            $scope.pie_data[0] += 1;
                             break;
                     }
                 }
