@@ -706,6 +706,10 @@ canvas#doughnut {
     padding:5px 15px;
 }
 
+#verticalSlider {
+    margin-top: 35px;
+}
+
 #verticalSlider .card{
     margin-bottom:20px;
     border-radius: 0;
