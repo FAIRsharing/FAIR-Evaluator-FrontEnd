@@ -47,30 +47,44 @@
                     <div layout-gt-sm="row">
                         <md-input-container class="md-block" flex-gt-sm>
                             <label>Collection name</label>
-                            <input ng-model="collection_data.name" required name="collectionName">
+                            <input ng-model="collection_data.name" required name="collectionName" minlength="35">
+                            <div ng-messages="newCollection.collectionName.$error">
+                                <div ng-message="required">Please provide an informative, publicly-meaningful title for this collection with at least 35 characters.</div>
+                                <div ng-message="minlength">Please provide an informative, publicly-meaningful title for this collection with at least 35 characters.</div>
+                            </div>
                         </md-input-container>
 
                         <md-input-container class="md-block" flex-gt-sm>
                             <label>Contact ORCiD</label>
                             <input ng-model="collection_data.contact" required name="collectionContact">
+                            <div ng-messages="newCollection.collectionContact.$error">
+                                <div ng-message="required">Please provide an ORCID. If you dont have one, you can register at https://orcid.org/</div>
+                            </div>
                         </md-input-container>
 
                         <md-input-container class="md-block" flex-gt-sm>
                             <label>Organization Name</label>
-                            <input ng-model="collection_data.organization" required name="collectionOrganization">
+                            <input ng-model="collection_data.organization" required name="collectionOrganization" minlength="3">
+                            <div ng-messages="newCollection.collectionContact.$error">
+                                <div ng-message="required">Please provide an organisation name with at least 3 characters</div>
+                            </div>
                         </md-input-container>
                     </div>
 
                     <md-input-container class="md-block">
-                        <label>Description of the collection</label>
+                        <label>Description of the collection, please be sure to indicate the community(ies) to which this collection would be relevant</label>
                         <textarea ng-model="collection_data.description"
                                   md-maxlength="300"
                                   rows="5"
                                   required
                                   name="collectionDescription"
+                                  minlength="100"
                                   md-select-on-focus>
 
                         </textarea>
+                        <div ng-messages="newCollection.collectionDescription.$error">
+                            <div ng-message="required">Please provide a meaningful description with at least 100 characters</div>
+                        </div>
                     </md-input-container>
 
                 </form>
