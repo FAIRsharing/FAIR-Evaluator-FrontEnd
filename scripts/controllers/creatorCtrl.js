@@ -54,7 +54,7 @@ my_creator_app.controller(
         };
 
         $scope.runEvaluation = function(form) {
-
+            console.log($scope.evalForm.collection);
             form.$setSubmitted();
 
             if (form.$valid){
@@ -95,9 +95,7 @@ my_creator_app.controller(
         };
 
         $scope.querySearch = function(query) {
-            let result = query ? $scope.collections.filter(createFilterFor(query)) : $scope.collections;
-            console.log(result);
-            return result;
+            return query ? $scope.collections.filter(createFilterFor(query)) : $scope.collections;
         };
 
         function createFilterFor(query) {
@@ -106,6 +104,11 @@ my_creator_app.controller(
                 return (collection.value['http://purl.org/dc/elements/1.1/title'].toLowerCase().indexOf(lowercaseQuery) !== -1);
             };
 
+        }
+
+        $scope.setCollection = function(collection){
+            $scope.evalForm.collection = collection.value["@id"];
+            console.log($scope.evalForm.collection);
         }
     }
 );

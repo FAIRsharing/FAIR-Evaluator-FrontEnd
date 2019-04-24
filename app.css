@@ -136,6 +136,8 @@ table th{
 .table td{
     vertical-align: middle;
     text-align: center;
+    max-width: 200px;
+    overflow: hidden;
 }
 
 .table-hover tbody tr:hover{

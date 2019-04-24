@@ -55,7 +55,9 @@
                                         md-items="item in querySearch(searchText)"
                                         md-item-text='item.display'
                                         md-min-length="0"
-                                        placeholder="Select a collection">
+                                        md-selected-item-change="setCollection(item)"
+                                        placeholder="Select a collection"
+                                        ng-model="evalForm.collection">
 
                                     <md-item-template>
                                         <span md-highlight-text="searchText" md-highlight-flags="i">{{item.display}}</span>
