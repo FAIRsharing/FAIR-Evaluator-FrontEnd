@@ -74,13 +74,11 @@
                     <md-input-container class="md-block">
                         <label>Description of the collection, please be sure to indicate the community(ies) to which this collection would be relevant</label>
                         <textarea ng-model="collection_data.description"
-                                  md-maxlength="300"
                                   rows="5"
                                   required
                                   name="collectionDescription"
                                   minlength="100"
                                   md-select-on-focus>
-
                         </textarea>
                         <div ng-messages="newCollection.collectionDescription.$error">
                             <div ng-message="required">Please provide a meaningful description with at least 100 characters</div>
