@@ -5,11 +5,13 @@ let loader = angular.module('appLoader', []);
 
 loader.filter('URL_last_arg', function() {
     return function (url) {
-        let item = url.split('/').slice(-1)[0];
-        if (item.indexOf('#') > 0){
-            return item.split('#').slice(-1)[0]
+        if (url){
+            let item = url.split('/').slice(-1)[0];
+            if (item.indexOf('#') > 0){
+                return item.split('#').slice(-1)[0]
+            }
+            return item;
         }
-        return item;
     };
 });
 

@@ -1,6 +1,6 @@
 let request_app = angular.module('requestProviderCtrl', ['appConfigCtrl']);
 
-request_app.factory("RequestLoader", function($q, $http){
+request_app.factory("RequestLoader", function($q, $http, $sce){
     
     function RequestsLoader(timeout){
         let loader = this;
@@ -219,6 +219,7 @@ request_app.factory("RequestLoader", function($q, $http){
                 if (response.data.hasOwnProperty("http://purl.obolibrary.org/obo/IAO_0000114")){
                     content_data['status'] = response.data['http://purl.obolibrary.org/obo/IAO_0000114'];
                 }
+                console.log(response.data["http://www.w3.org/ns/ldp#contains"]);
                 loader.get_metrics(response.data["http://www.w3.org/ns/ldp#contains"]).then(function(response){
                     content_data['contains'] = response.data
                 });
@@ -257,11 +258,32 @@ request_app.factory("RequestLoader", function($q, $http){
             return processed_collections
         };
 
-        /* Getting multiple evaluations */
-        loader.get_evaluations = function(id = []){};
-
         /* Getting a single evaluation */
         loader.get_evaluation = function(id){
+
+            let colors = {
+                "SUCCESS": [
+                    /SUCCESS/g,
+                    "<label class='textGreen'>SUCCESS</label>"
+                ],
+                "INFO": [
+                    /INFO/g,
+                    "<label class='textBlue'>INFO</label>"
+                ],
+                "WARN": [
+                    /WARN/g,
+                    "<label class='textYellow'>WARN</label>"
+                ],
+                "CRITICAL": [
+                    /CRITICAL/g,
+                    "<label class='textOrange'>CRITICAL</label>"
+                ],
+                "FAILURE": [
+                    /FAILURE/g,
+                    "<label class='textRed'>FAILURE</label>"
+                ]
+            };
+
             let deferred = $q.defer();
             let request = angular.copy(requests.evaluations.single);
             request.url = request.url.replace('{:id}', id);
@@ -270,12 +292,31 @@ request_app.factory("RequestLoader", function($q, $http){
                 deferred.resolve(response);
                 response.data['evaluationResult'] = JSON.parse(response.data['evaluationResult']);
                 for (let metricName in response.data['evaluationResult']){
-                    response.data['evaluationResult'][metricName][0]['name'] = metricName.split('/').slice(-1)[0].replace(/_/g, ' ');
-                }
-                let collectionID = response.data['collection'].split('/').slice(-1)[0];
 
-                loader.get_collection(collectionID).then(function(collection_response){
-                    response.data['metrics'] = collection_response.data
+                    response.data['evaluationResult'][metricName][0]["http://schema.org/comment"][0]["@value"] =
+                        response.data['evaluationResult'][metricName][0]["http://schema.org/comment"][0]["@value"].replace(/\n\n/g, "\n");
+                    response.data['evaluationResult'][metricName][0]['name'] = metricName.split('/').slice(-1)[0].replace(/_/g, ' ');
+
+
+                    let comment = angular.copy(response.data['evaluationResult'][metricName][0]["http://schema.org/comment"][0]["@value"]);
+                    for (let colorLabel in colors){
+                        let color = colors[colorLabel];
+                        comment = comment.replace(color[0], color[1]);
+                    }
+
+                    response.data['evaluationResult'][metricName][0]["http://schema.org/comment"][0]["@value"] = $sce.trustAsHtml(comment.replace('\r', '<BR>'));
+                }
+
+                let metricsID = [];
+                for (let metricName in response.data['evaluationResult']){
+                    metricsID.push(metricName);
+                }
+                loader.get_metrics(metricsID).then(function(sub_response){
+
+                    for (let metrics in sub_response.data){
+                        let metricsID = sub_response.data[metrics]['@id'];
+                        response.data['evaluationResult'][metricsID].push(sub_response.data[metrics])
+                    }
                 });
 
                 return deferred
@@ -330,13 +371,6 @@ request_app.controller(
 
         let baseURL = new $window.URL($location.absUrl()).hash.replace('#!/', "");
         let URL = baseURL.split('/');
-        let current_request = $scope.getRequest(URL);
-
-        if (current_request === null){
-            $scope.response_rdy = true;
-            return;
-        }
-
         let requestLoader = new RequestLoader($scope.request_timeout);
 
         /* SINGLE ITEMS */
@@ -397,7 +431,7 @@ request_app.controller(
                 });
             }
 
-            /* METRICS */
+            /* EVALUATIONS */
             if (URL[0] === 'evaluations'){
                 $scope.dataType = "evaluations";
                 requestLoader.get_evaluations().then(function(response){
