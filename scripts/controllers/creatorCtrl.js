@@ -5,6 +5,7 @@ my_creator_app.controller(
     'runEvaluationCtrl',
     function($http, $scope, $window, $location, $routeParams){
         let base_url = $scope.$parent.base_url;
+        let self = this;
         $scope.evalForm = {};
         $scope.evalForm.collection = null;
         $scope.evalForm.guid = null;
@@ -12,6 +13,8 @@ my_creator_app.controller(
         $scope.evalForm.orcid = null;
         $scope.response_content = false;
         $scope.response_rdy = true;
+        $scope.searchText = "";
+        $scope.selectedItem = "";
 
 
         let request = angular.copy($scope.requests.collections.multiple);
@@ -25,7 +28,16 @@ my_creator_app.controller(
         }
 
         $http(request).then(function(response){
-            $scope.collections = response.data;
+            $scope.collections = [];
+
+            for (let colIt in response.data){
+
+                $scope.collections.push({
+                    value: response.data[colIt],
+                    display: response.data[colIt]['http://purl.org/dc/elements/1.1/title']
+                });
+            }
+
             if ($scope.evalForm.collection_disabled){
                 $scope.collection_id = response.data['@id'];
                 $scope.collection_title = response.data['http://purl.org/dc/elements/1.1/title']
@@ -80,6 +92,20 @@ my_creator_app.controller(
                     $scope.response_rdy = true;
                 })
             }
+        };
+
+        $scope.querySearch = function(query) {
+            let result = query ? $scope.collections.filter(createFilterFor(query)) : $scope.collections;
+            console.log(result);
+            return result;
+        };
+
+        function createFilterFor(query) {
+            let lowercaseQuery = query.toLowerCase();
+            return function filterFn(collection) {
+                return (collection.value['http://purl.org/dc/elements/1.1/title'].toLowerCase().indexOf(lowercaseQuery) !== -1);
+            };
+
         }
     }
 );

@@ -783,6 +783,27 @@ canvas#doughnut {
     padding-bottom: 10px;
 }
 
+.highlight{
+    font-weight: bolder;
+}
+
+.md-whiteframe-z1 {
+    height:auto;
+}
+
+md-autocomplete input.md-input {
+    border:0px;
+    padding-left: 10px;
+}
+
+md-input-container.collectionTitle{
+    margin-top: 5px;
+}
+
+md-input-container.collectionTitle label:first-child{
+    display: none;
+}
+
 /* TODO: set sm and md @media for .section.sectionItem
          set sm for icons padding on main page.
 */
