@@ -78,16 +78,29 @@
                             <md-input-container class="md-block" flex-gt-sm>
                                 <label>GUID</label>
                                 <input ng-model="evalForm.guid" required name="collectionName">
+                                <div ng-messages="runEval.collectionName.$error">
+                                    <div ng-message="required">Please provide a URL or GUID to your resource. See hints above.</div>
+                                </div>
                             </md-input-container>
 
                             <md-input-container class="md-block" flex-gt-sm>
                                 <label>Title of this evaluation</label>
-                                <input ng-model="evalForm.title" required name="collectionContact">
+                                <input ng-model="evalForm.title"
+                                       required
+                                       name="collectionContact"
+                                       minlength="35">
+                                <div ng-messages="runEval.collectionContact.$error">
+                                    <div ng-message="required">Please provide an informative, publicly-meaningful title for this evaluation with at least 35 characters.</div>
+                                    <div ng-message="minlength">Please provide an informative, publicly-meaningful title for this evaluation with at least 35 characters.</div>
+                                </div>
                             </md-input-container>
 
                             <md-input-container class="md-block" flex-gt-sm>
                                 <label>Your ORCiD</label>
                                 <input ng-model="evalForm.orcid" required name="collectionOrganization">
+                                <div ng-messages="runEval.collectionOrganization.$error">
+                                    <div ng-message="required">Please provide your ORCID. If you dont have one, you can register at https://orcid.org/</div>
+                                </div>
                             </md-input-container>
                         </div>
                     </form>

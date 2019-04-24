@@ -47,10 +47,12 @@
                                 <span> {{evaluation["http://rdfs.org/ns/void#description"]}}</span>
                             </div>
 
-                            <!-- Description -->
+                            <!-- Resource -->
                             <div class="">
                                 <label>Resource: </label>
-                                <a ng-href="https://doi.org/{{evaluation['primaryTopic']}}" target="_blank"> https://doi.org/{{evaluation['primaryTopic']}}</a>
+                                <a ng-href="https://doi.org/{{evaluation['primaryTopic']}}" target="_blank">
+                                    {{evaluation['primaryTopic']}}
+                                </a>
                             </div>
 
                             <!-- Tested Against -->
@@ -73,18 +75,20 @@
                      ng-repeat="(resultKey, resultVal) in evaluation['evaluationResult']"
                      ng-class="{'border-warning': resultVal[1]['deprecated'] == true}">
 
-                    <div class="card-header container" id="header_{{$index}}">
+                    <div class="card-header " id="header_{{$index}}">
 
-                        <div class="row">
-                            <div class="col-1">
-                                <i class="fa" ng-class="{'fa-check': resultVal[0]['http://semanticscience.org/resource/SIO_000300'][0]['@value'] == 1, 'fa-times': resultVal[0]['http://semanticscience.org/resource/SIO_000300'][0]['@value'] == 0}"></i>
-                            </div>
-                            <div class="col-11">
-                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapse_{{$index}}" aria-expanded="false" aria-controls="collapse_{{$index}}">
-                                    {{resultVal[1]["name"]}}
-                                </button>
-                            </div>
+                    <button class="btn btn-link btnBlock" data-toggle="collapse" data-target="#collapse_{{$index}}" aria-expanded="false" aria-controls="collapse_{{$index}}">
+                        <i class="fa"
+                           ng-class="{'fa-check': resultVal[0]['http://semanticscience.org/resource/SIO_000300'][0]['@value'] == 1, 'fa-times': resultVal[0]['http://semanticscience.org/resource/SIO_000300'][0]['@value'] == 0}">
+                        </i>
+                        {{resultVal[1]["name"]}}
+                        <!--
+                        <div class="openButton">
+                            <i class="fa fa-chevron-right" id="open_{{$index}}">
+                            </i>
                         </div>
+                        -->
+                    </button>
 
                     </div>
 
@@ -104,17 +108,17 @@
                             </div>
 
                             <div class="metricField">
-                                <label>Principle tested:</label>
+                                <label>Principle tested: </label>
                                 <span>{{resultVal[1]['principle'] | URL_last_arg}}</span>
                             </div>
 
                             <div class="metricField">
-                                <label>Description</label>
+                                <label>Description: </label>
                                 <span>{{resultVal[1]['description']}}</span>
                             </div>
 
                             <div class="metricField">
-                                <label>Created on:</label>
+                                <label>Created on: </label>
                                 <span>
                                     {{resultVal[1]['created_at'] | date}} by
                                     <a href="https://orcid.org/{{resultVal[1]['orcid']}}" target="_blank">{{resultVal[1]['creator']}}</a>

@@ -715,6 +715,10 @@ canvas#doughnut {
     border-radius: 0;
 }
 
+#verticalSlider .card-header {
+    padding: 10px 5px;
+}
+
 #verticalSlider .card-header,
 #verticalSlider .card-header label,
 #verticalSlider .card-header button {
@@ -738,13 +742,39 @@ canvas#doughnut {
 
 #verticalSlider .fa{
     font-size: 1.5rem;
+    margin-right:20px;
 }
 
-#verticalSlider .card-header .col-1
+#verticalSlider .fa-chevron-right,
+#verticalSlider .fa-chevron-down{
+    color:#e9ecef;
+    font-size: 1rem;
+    margin-right:0;
+}
+
+#verticalSlider .openButton{
+    width:30px;
+    height:30px;
+    border-radius: 50%;
+    background-color:#27aae1;
+    margin-left:20px;
+    justify-content: center;
+}
+
+#verticalSlider .openButton,
+#verticalSlider .card-header button
 {
     display: flex;
-    justify-content: center;
     align-items: center;
+}
+
+#verticalSlider .card-header button:hover,
+#verticalSlider .card-header button{
+    text-decoration: none;
+}
+
+#verticalSlider .card-header .btnBlock{
+    width:100%;
 }
 
 .evaluationTitle{
