@@ -614,13 +614,6 @@ table a {
     padding:0 !important;
 }
 
-
-canvas#doughnut {
-    width:109% !important;
-    height:auto !important;
-}
-
-
 .principleText{
     display: flex;
     align-items: center;
@@ -783,6 +776,14 @@ canvas#doughnut {
     margin-bottom:20px;
     border-bottom: 2px solid #325D88;
     padding-bottom: 10px;
+}
+
+.evaluationDescription h6 {
+    text-align: left;
+}
+
+.evaluationDescriptionItem {
+    padding: 0 15px;
 }
 
 .highlight{

@@ -47,6 +47,16 @@ loader.filter('replaceURL', function($location) {
     };
 });
 
+loader.filter('length', function() {
+    return function (object) {
+        let object_size = 0;
+        for (let field in object){
+            object_size += 1;
+        }
+        return object_size;
+    };
+});
+
 
 
 /* *************************************************************************************************** */

@@ -17,57 +17,69 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row" ng-controller="graphCtrl as Graph">
 
-                <div class="col-4">
-                    <div class="doughnut" ng-controller="graphCtrl as Graph">
-                        <div class="container">
-                            <div class="row">
-                                <h6>Tests passing and failing </h6>
-                            </div>
-                            <div class="row">
-                                <canvas id="doughnut"
-                                        class="chart chart-doughnut row"
-                                        chart-data="pie_data"
-                                        chart-labels="pie_labels"
-                                        width=100>
-                                </canvas>
-                            </div>
+            <div class="col-8 container">
+                <div class="row evaluationDescriptionContainer">
+                    <div class="col-12 evaluationDescription">
+
+                        <h6> Summary: </h6>
+
+                        <!-- Description -->
+                        <div class="evaluationDescriptionItem">
+                            <label>Description: </label>
+                            <span> {{evaluation["http://rdfs.org/ns/void#description"]}}</span>
                         </div>
+
+                        <!-- Resource -->
+                        <div class="evaluationDescriptionItem">
+                            <label>Resource: </label>
+                            <a ng-href="https://doi.org/{{evaluation['primaryTopic']}}" target="_blank">
+                                {{evaluation['primaryTopic']}}
+                            </a>
+                        </div>
+
+                        <!-- Tested Against -->
+                        <div class="evaluationDescriptionItem">
+                            <label> Collection: </label>
+                            <a href="{{evaluation['collection']}}"> {{evaluation["collection"] | URL_last_arg}} </a>
+                        </div>
+
+                        <!-- Tests -->
+                        <div class="evaluationDescriptionItem">
+                            <label> Observations: </label>
+                            <span> Ran {{evaluation['evaluationResult'] | length}} tests ({{pie_data[0]}} succeeded, {{pie_data[1]}} failed).</span>
+                        </div>
+
+
                     </div>
                 </div>
 
-                <div class="col-8 container">
-                    <div class="row">
-                        <div class="col-12">
+            </div>
 
-                            <!-- Description -->
-                            <div class="">
-                                <label>Description: </label>
-                                <span> {{evaluation["http://rdfs.org/ns/void#description"]}}</span>
-                            </div>
-
-                            <!-- Resource -->
-                            <div class="">
-                                <label>Resource: </label>
-                                <a ng-href="https://doi.org/{{evaluation['primaryTopic']}}" target="_blank">
-                                    {{evaluation['primaryTopic']}}
-                                </a>
-                            </div>
-
-                            <!-- Tested Against -->
-                            <div class="">
-                                <label> Collection: </label>
-                                <a href="{{evaluation['collection']}}"> {{evaluation["collection"] | URL_last_arg}} </a>
-                            </div>
+            <div class="col-4">
+                <div class="doughnut">
+                    <div class="container">
+                        <div class="row">
+                            <h6>Tests passing and failing </h6>
+                        </div>
+                        <div class="row">
+                            <canvas id="doughnut"
+                                    class="chart chart-doughnut row"
+                                    chart-data="pie_data"
+                                    chart-labels="pie_labels"
+                                    width=110>
+                            </canvas>
                         </div>
                     </div>
-
                 </div>
+            </div>
+
+
         </div>
     </div>
 
-    <div class="" ng-controller="graphCtrl as Graph">
+    <div class="">
         <div class="container">
 
             <div class="row" id="verticalSlider">
