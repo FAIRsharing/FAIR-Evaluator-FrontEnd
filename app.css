@@ -316,7 +316,7 @@ hr {
 }
 
 .siteLogo{
-    width:80px;
+    width:60px;
 }
 
 .navbar-brand {
@@ -325,6 +325,12 @@ hr {
 
 nav {
     box-shadow: 0 0 6px 2px rgba(0,0,0,0.5);
+}
+
+div.dropdown-menu {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
 }
 
 .nav-link{
@@ -810,6 +816,10 @@ md-input-container.collectionTitle label:first-child{
 
 nav.footer p{
     margin-bottom:0;
+}
+
+nav.navTop{
+    padding:0 20px;
 }
 
 
