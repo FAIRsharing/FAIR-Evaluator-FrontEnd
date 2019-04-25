@@ -305,6 +305,7 @@ request_app.factory("RequestLoader", function($q, $http, $sce){
                     }
 
                     response.data['evaluationResult'][metricName][0]["http://schema.org/comment"][0]["@value"] = $sce.trustAsHtml(comment.replace('\r', '<BR>'));
+                    response.data['evaluationResult'][metricName][0]['opened'] = false;
                 }
 
                 let metricsID = [];
@@ -466,6 +467,17 @@ request_app.controller(
                 $scope.response_rdy = true;
                 $scope.results = response.data;
             });
+        }
+
+        $scope.open_tab = function(metric, evaluations){
+
+            let state = angular.copy(metric['opened']);
+
+            for (let result in evaluations){
+                evaluations[result][0]['opened'] = false;
+            }
+            $scope.evaluation['evaluationResult'] = evaluations;
+            metric['opened'] = !state;
         }
     }
 );

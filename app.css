@@ -746,8 +746,8 @@ table a {
     margin-right:20px;
 }
 
-#verticalSlider .fa-chevron-right,
-#verticalSlider .fa-chevron-down{
+#verticalSlider .fa-plus,
+#verticalSlider .fa-minus{
     color:#e9ecef;
     font-size: 1rem;
     margin-right:0;
@@ -844,10 +844,6 @@ nav.navTop{
     border-radius: 50%;
     box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px;
 }
-
-
-
-
 
 
 /* TODO: set sm and md @media for .section.sectionItem
