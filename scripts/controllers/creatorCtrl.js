@@ -30,6 +30,7 @@ my_creator_app.controller(
         $http(request).then(function(response){
             $scope.collections = [];
 
+            // Setting up the data structure for autocomplete
             for (let colIt in response.data){
 
                 $scope.collections.push({
@@ -54,7 +55,6 @@ my_creator_app.controller(
         };
 
         $scope.runEvaluation = function(form) {
-            console.log($scope.evalForm.collection);
             form.$setSubmitted();
 
             if (form.$valid){
@@ -107,8 +107,9 @@ my_creator_app.controller(
         }
 
         $scope.setCollection = function(collection){
-            $scope.evalForm.collection = collection.value["@id"];
-            console.log($scope.evalForm.collection);
+            if (collection){
+                $scope.evalForm.collection = collection.value["@id"];
+            }
         }
     }
 );
