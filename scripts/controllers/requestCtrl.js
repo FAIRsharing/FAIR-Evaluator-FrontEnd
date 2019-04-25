@@ -364,6 +364,7 @@ request_app.factory("RequestLoader", function($q, $http, $sce){
             };
             $http(request).then(function(response){
                 deferred.resolve(response);
+                response.data.collections = process_collection(response.data.collections);
                 return deferred
             });
 
@@ -459,29 +460,12 @@ request_app.controller(
 
         /* Searches */
         if (URL[0].split('?').slice(0)[0] === 'searches') {
-
             $scope.searchTerms = decodeURIComponent(URL[0].split("?terms=")[1]);
             console.log($scope.searchTerms);
             requestLoader.search_terms($scope.searchTerms).then(function(response){
                 $scope.response_rdy = true;
                 $scope.results = response.data;
-                $scope.results.collections = $scope.process_data(response.data.collections);
             });
-
-
-            /* trigger the request and process the data
-            $http(current_request).then(function (response) {
-                $scope.response_rdy = true;
-                $scope.searchTerms = decodeURIComponent(URL[0].split("?terms=")[1]);
-                $scope.results = response.data;
-                $scope.results.collections = $scope.process_data(response.data.collections);
-
-                },
-                function (error) {
-                    $scope.response_rdy = true;
-                    $scope.request_error = true;
-                }
-            );*/
         }
     }
 );
