@@ -760,6 +760,8 @@ table a {
     background-color:#27aae1;
     margin-left:20px;
     justify-content: center;
+    border:3px solid white;
+    box-shadow: 3px 3px 6px rgba(0,0,0, 0.5);
 }
 
 #verticalSlider .openButton,
