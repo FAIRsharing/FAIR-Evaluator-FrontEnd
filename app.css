@@ -757,12 +757,17 @@ table a {
     width:30px;
     height:28px;
     border-radius: 50%;
-    background-color:#27aae1;
+    background-color:rgb(39,170,225);
     margin-left:20px;
     justify-content: center;
-    border:3px solid white;
+    border:2px solid white;
     box-shadow: 3px 3px 6px rgba(0,0,0, 0.5);
 }
+
+#verticalSlider .openButton:active{
+    background-color:#1d9cd1;
+}
+
 
 #verticalSlider .openButton,
 #verticalSlider .card-header button
