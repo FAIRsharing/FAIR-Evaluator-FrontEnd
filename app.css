@@ -822,6 +822,32 @@ nav.navTop{
     padding:0 20px;
 }
 
+.led-green {
+    margin: 0 20px 0 auto;
+    width: 24px;
+    height: 24px;
+    background-color: #ABFF00;
+    border-radius: 50%;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #304701 0 -1px 9px;
+}
+
+.metricTitle {
+    width:100%;
+    text-align: left;
+}
+
+.led-red {
+    margin: 0 20px 0 auto;
+    width: 24px;
+    height: 24px;
+    background-color: #F00;
+    border-radius: 50%;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px;
+}
+
+
+
+
 
 
 /* TODO: set sm and md @media for .section.sectionItem
