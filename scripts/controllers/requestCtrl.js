@@ -354,6 +354,21 @@ request_app.factory("RequestLoader", function($q, $http, $sce){
 
             return deferred.promise;
         };
+
+        /* Searcher */
+        loader.search_terms = function(terms){
+            let deferred = $q.defer();
+            let request = angular.copy(requests.searches.multiple);
+            request.data = {
+                keywords: terms
+            };
+            $http(request).then(function(response){
+                deferred.resolve(response);
+                return deferred
+            });
+
+            return deferred.promise;
+        }
     }
 
     return RequestsLoader;
@@ -445,7 +460,16 @@ request_app.controller(
         /* Searches */
         if (URL[0].split('?').slice(0)[0] === 'searches') {
 
-            /* trigger the request and process the data */
+            $scope.searchTerms = decodeURIComponent(URL[0].split("?terms=")[1]);
+            console.log($scope.searchTerms);
+            requestLoader.search_terms($scope.searchTerms).then(function(response){
+                $scope.response_rdy = true;
+                $scope.results = response.data;
+                $scope.results.collections = $scope.process_data(response.data.collections);
+            });
+
+
+            /* trigger the request and process the data
             $http(current_request).then(function (response) {
                 $scope.response_rdy = true;
                 $scope.searchTerms = decodeURIComponent(URL[0].split("?terms=")[1]);
@@ -457,7 +481,7 @@ request_app.controller(
                     $scope.response_rdy = true;
                     $scope.request_error = true;
                 }
-            );
+            );*/
         }
     }
 );
