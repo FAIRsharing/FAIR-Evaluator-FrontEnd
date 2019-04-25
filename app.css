@@ -807,6 +807,13 @@ md-input-container.collectionTitle label:first-child{
     display: none;
 }
 
+
+nav.footer p{
+    margin-bottom:0;
+}
+
+
+
 /* TODO: set sm and md @media for .section.sectionItem
          set sm for icons padding on main page.
 */
