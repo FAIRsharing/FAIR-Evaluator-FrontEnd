@@ -85,6 +85,8 @@
             $scope.collections_searchTerms = "";
             $scope.search_triggered = false;
 
+            $scope.current_path = $location.path();
+
             $scope.goToSearches = function(terms){
                 let window_url = new $window.URL($location.absUrl());
                 $scope.search_triggered = true;

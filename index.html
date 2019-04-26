@@ -40,6 +40,64 @@
 <body ng-controller="configCtrl as Config">
 
     <div class="" ng-controller="mainCtrl as searcher">
+
+
+        <script type="application/ld+json" ng-if="current_path == '/'">
+        {
+            "@context": [
+            	"http://schema.org/",
+                {
+                    "swap": "http://www.w3.org/2000/10/swap/pim/doc#"
+                }
+            ],
+            "identifier": "https://w3id.org/AmIFAIR",
+            "@type": "WebApplication",
+            "name": "FAIR Evaluator Front-End",
+            "applicationCategory": "Quality Control Test",
+            "operatingSystem": "Any",
+            "url": "https://w3id.org/AmIFAIR",
+            "mainEntity": "https://w3id.org/AmIFAIR",
+            "codeRepository": "https://github.com/FAIRsharing/FAIR-Maturity-FrontEnd",
+            "license": "https://opensource.org/licenses/MIT",
+            "description": "The human interface to the FAIR Evaluator.  This front-end provides access to the registration of Maturity Indicator tests, as well as the execution of collections of those tests on a digital resource to determine its FAIR Maturity",
+            "keywords": "FAIR Data, Evaluation, Quality Control, Findable, Accessible, Interoperable, Reusable, Interfaces",
+            "sourceOrganization": [{
+                "@type": "Organization",
+                "name": "CBGP UPM-INIA",
+                "address": "Centro de Biotecnología y Genómica de Plantas UPM – INIA Parque Científico y Tecnológico de la U.P.M. Campus de Montegancedo Autopista M-40, Km 38 - 28223 Pozuelo de Alarcón (Madrid)",
+                "logo": "http://www.cbgp.upm.es/images/cbgp_logo1.png",
+                "parentOrganization": {
+                    "@type": "Organization",
+                    "name": "Universidad Politecnica de Madrid & INIA"
+                }},
+                {
+                "@type": "Organization",
+                "name": "University of Oxford"
+            }],
+            "author": [{
+                    "@type": "Person",
+                    "name": "Dominique Batista",
+                    "familyName": "Batista",
+                    "givenName": "Dominique",
+                    "@id": "http://orcid.org/0000-0002-2109-489X",
+                    "jobTitle": "Research Software and Knowledge Engineer"
+                },
+                {
+                    "@type": "Person",
+                    "@id": "http://orcid.org/0000-0001-6960-357X",
+                    "name": "Mark D Wilkinson",
+                    "email": "markw@illuminae.com",
+                    "familyName": "Wilkinson",
+                    "givenName": "Mark Denis",
+                    "honorificPrefix": "Dr.",
+                    "jobTitle": "BBVA-UPM Industry Chair on ..."
+                }
+            ]}
+		}
+    </script>
+
+
+
         <!-- NAV BAR TOP -->
         <nav class="navTop navbar navbar-expand-lg fixed-top navbar-dark bg-primary navbar-transparent navbar-dark bg-primary">
             <img class="siteLogo" src="assets/img/fairmetrics.png">
