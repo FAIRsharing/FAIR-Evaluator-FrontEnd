@@ -61,7 +61,7 @@ my_creator_app.controller(
                 $scope.response_rdy = false;
                 let collection_id = "";
 
-                if (typeof $scope.collection_id == "undefined"){
+                if (typeof $scope.collection_id === "undefined"){
                     collection_id = $scope.evalForm.collection.split('/').slice(-1)[0];
                 }
                 else{
@@ -89,7 +89,10 @@ my_creator_app.controller(
                     $scope.response_rdy = true;
                     let evaluation_id = response.data["@id"].split('/').slice(-1)[0];
                     $scope.response_content = next_url + evaluation_id;
+                }, function(error){
+                    $scope.response_content = true;
                     $scope.response_rdy = true;
+                    $scope.request_error = error;
                 })
             }
         };

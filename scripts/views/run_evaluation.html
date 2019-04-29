@@ -3,7 +3,7 @@
 <!-- response -->
 <div class="container fade show waiter" ng-if="response_content">
 
-    <div class="row">
+    <div class="row" ng-if="!request_error">
         <div class="waiterLabel col-12"> Your URL is ready:</div>
         <a class="rdyLink col-12"
            style="text-align: center"
@@ -11,7 +11,8 @@
             {{response_content}}
         </a>
     </div>
-    {{errors}}
+
+    <div timeout="request_error" ng-if="request_error"></div>
 
 </div>
 
@@ -35,7 +36,7 @@
                     </div>
                     <div class="hints">
                         <label>Hints:</label>
-                        We currently recognze INCHI Keys, DOIs, Handles and URLs. Contact the developer to add new GUID types to this list - for example, we plan to support LSIDs soon, and others. <br>
+                        We currently recognize INCHI Keys, DOIs, Handles and URLs. Contact the developer to add new GUID types to this list - for example, we plan to support LSIDs soon, and others. <br>
                         If you have a DOI for your data deposit, a DOI returns metadata to our system, so please use your DOI unless you have specifically created a better metadata record. <br>
                         For DOIs, enter the DOI <b>without the 'doi:' prefix </b> (e.g. just '10.1002/abd.123') <br>
                         For InCHI keys, enter the key <b>with no prefix</b> ( e.g xxxxxxxxxxxxxxxx.xxxxxxxxxx.xxxxx)

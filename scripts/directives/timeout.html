@@ -3,7 +3,8 @@
 
 <div class="testResult errorContainer">
     <label class="resultLabel">{{content_error['xhrStatus']}}</label>
-    <div class="newlines">
+
+    <div class="newlines" ng-if="content_error['xhrStatus'] == 'abort'">
         <div class="errorItem">
             <label>Request: </label>
             <p>Method: {{content_error.config.method}}</p>
@@ -15,16 +16,38 @@
         </div>
         <div class="errorItem">
             <label>Error message: </label>
-            <p ng-if="content_error['xhrStatus'] == 'abort'">
+            <p>
                 Request was aborted due to timeout, please try again later. If this error persists, please contact  us
                 at <a href="mailto:markw@illuminae.com">markw@illuminae.com</a>
             </p>
-
-            <p ng-if="content_error['xhrStatus'] != 'abort'">
-                There is a problem with the server ({{content_error['xhrStatus']}}). Please try again later or contact us
-                at <a href="mailto:markw@illuminae.com">markw@illuminae.com</a>
-            </p>
         </div>
-
     </div>
+
+    <div class="newlines" ng-if="content_error['xhrStatus'] != 'abort'">
+        <div class="errorItem">
+            <label>Request: </label>
+            <p>Method: {{content_error.config.method}}</p>
+            <p>URL: {{content_error.config.url}}</p>
+            <p>Headers: {{content_error.config.headers}}</p>
+
+            <p ng-if="content_error.config.data != null">Data: {{content_error.config.data}}</p>
+            <p ng-if="content_error.config.data == null">Data: No data for this request</p>
+        </div>
+        <div class="errorItem">
+            <label>Error message: </label>
+            <div>
+                <ul>
+                    <li ng-repeat="(key, val) in content_error.data.errors">
+                        <label>{{key}}: </label>
+                        <span> {{val}}</span>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                There is a problem with the server. Please try again later or contact us at <a href="mailto:markw@illuminae.com">markw@illuminae.com</a>
+            </div>
+        </div>
+    </div>
+
+
 </div>
