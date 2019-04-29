@@ -404,7 +404,7 @@ request_app.controller(
 
         let baseURL = new $window.URL($location.absUrl()).hash.replace('#!/', "");
         let URL = baseURL.split('/');
-        let requestLoader = new RequestLoader(1);
+        let requestLoader = new RequestLoader($scope.request_timeout);
 
         /* SINGLE ITEMS */
         if (URL.length === 2){
