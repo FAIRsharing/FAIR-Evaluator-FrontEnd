@@ -1,7 +1,7 @@
 <div warning></div>
 
 <div class="container mainContainer fade show" ng-if="response_rdy && request_error">
-    <div timeout></div>
+    <div timeout="request_error"></div>
 </div>
 
 <div class="fade show container mainContainer" ng-if="response_rdy && !request_error">
@@ -64,11 +64,15 @@
             <label>Maturity Indicators Tests</label>
             <span>({{collection['http://www.w3.org/ns/dcat#entities']}}):</span>
             <ul>
-                <li ng-repeat="(key, metric) in collection['contains']">
+                <li ng-repeat="(key, metric) in collection['contains']" ng-if="!collection['contains'].error">
                     <a href="{{metric['@id'] | replaceURL}}">{{metric['name']}}</a> <span>({{metric['principle'] | URL_last_arg}}): </span>
                     <span> {{metric['description']}}</span>
                 </li>
             </ul>
+            <div ng-if="collection['contains'].error">
+                <hr>
+                <div timeout="collection['contains'].content"></div>
+            </div>
         </div>
         <hr>
 

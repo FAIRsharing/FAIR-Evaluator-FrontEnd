@@ -218,14 +218,17 @@ request_app.factory("RequestLoader", function($q, $http, $sce){
 
             $http(request).then(function(response){
                 deferred.resolve(response);
-                let content_data = response.data;
-                content_data['title'] = response.data['http://purl.org/dc/elements/1.1/title'];
+                response.data['title'] = response.data['http://purl.org/dc/elements/1.1/title'];
                 if (response.data.hasOwnProperty("http://purl.obolibrary.org/obo/IAO_0000114")){
-                    content_data['status'] = response.data['http://purl.obolibrary.org/obo/IAO_0000114'];
+                    response.data['status'] = response.data['http://purl.obolibrary.org/obo/IAO_0000114'];
                 }
-                console.log(response.data["http://www.w3.org/ns/ldp#contains"]);
-                loader.get_metrics(response.data["http://www.w3.org/ns/ldp#contains"]).then(function(response){
-                    content_data['contains'] = response.data
+                loader.get_metrics(response.data["http://www.w3.org/ns/ldp#contains"]).then(function(sub_response){
+                    response.data['contains'] = sub_response.data
+                }, function(sub_error){
+                    response.data['contains'] = {
+                        error: true,
+                        content: sub_error
+                    }
                 });
 
                 return deferred

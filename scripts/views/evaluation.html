@@ -1,7 +1,7 @@
 <div warning></div>
 
 <div class="container mainContainer fade show" ng-if="response_rdy && request_error">
-    <div timeout></div>
+    <div timeout="request_error"></div>
 </div>
 
 <div class="container mainContainer fade show" ng-if="response_rdy && !request_error" id="evaluation">
