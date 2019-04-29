@@ -82,7 +82,7 @@
     <div class="testResults">
         <div class="container">
 
-            <div class="row" id="verticalSlider">
+            <div class="row" id="verticalSlider" ng-if="!evaluation['evaluationResult'].error">
                 <div class="col-12 card"
                      ng-repeat="(resultKey, resultVal) in evaluation['evaluationResult']"
                      ng-class="{'border-warning': resultVal[1]['deprecated'] == true}">
@@ -154,6 +154,12 @@
                     </div>
                 </div>
             </div>
+
+            <div ng-if="evaluation['evaluationResult'].error">
+                <hr>
+                <div timeout="evaluation['evaluationResult'].content"></div>
+            </div>
+
         </div>
 
     </div>

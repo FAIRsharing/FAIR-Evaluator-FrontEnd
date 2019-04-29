@@ -325,6 +325,11 @@ request_app.factory("RequestLoader", function($q, $http, $sce){
                         let metricsID = sub_response.data[metrics]['@id'];
                         response.data['evaluationResult'][metricsID].push(sub_response.data[metrics])
                     }
+                }, function(sub_error){
+                    response.data['evaluationResult'] = {
+                        error: true,
+                        content: sub_error
+                    }
                 });
 
                 return deferred
