@@ -83,6 +83,15 @@ loader.directive('timeout', function(){
     return{
         restrict: 'A',
         templateUrl: 'scripts/directives/timeout.html',
+        scope: {
+            timeout: '=',
+        },
+        link: function($scope){
+            $scope.$watch('timeout', function(timeout){
+                if(timeout)
+                    $scope.content_error = $scope.timeout;
+            });
+        }
     }
 });
 

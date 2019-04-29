@@ -163,6 +163,8 @@ request_app.factory("RequestLoader", function($q, $http, $sce){
                     response.data = output;
                 }
                 return deferred
+            }, function(error){
+                return deferred.reject(error);
             });
             return deferred.promise;
         };
@@ -201,6 +203,8 @@ request_app.factory("RequestLoader", function($q, $http, $sce){
                     response.data = process_collection(response.data)
                 }
                 return deferred
+            }, function(error){
+                return deferred.reject(error);
             });
 
             return deferred.promise;
@@ -351,6 +355,8 @@ request_app.factory("RequestLoader", function($q, $http, $sce){
                     }
                 }
                 return deferred
+            }, function(error){
+                return deferred.reject(error);
             });
 
             return deferred.promise;
@@ -367,6 +373,8 @@ request_app.factory("RequestLoader", function($q, $http, $sce){
                 deferred.resolve(response);
                 response.data.collections = process_collection(response.data.collections);
                 return deferred
+            }, function(error){
+                return deferred.reject(error);
             });
 
             return deferred.promise;
@@ -388,7 +396,7 @@ request_app.controller(
 
         let baseURL = new $window.URL($location.absUrl()).hash.replace('#!/', "");
         let URL = baseURL.split('/');
-        let requestLoader = new RequestLoader($scope.request_timeout);
+        let requestLoader = new RequestLoader(1);
 
         /* SINGLE ITEMS */
         if (URL.length === 2){
@@ -400,6 +408,9 @@ request_app.controller(
                     requestLoader.get_collection(URL[1]).then(function(response){
                         $scope.response_rdy = true;
                         $scope.collection = response.data;
+                    }, function(error){
+                        $scope.response_rdy = true;
+                        $scope.request_error = error;
                     });
                 }
             }
@@ -411,6 +422,9 @@ request_app.controller(
                     requestLoader.get_metric(URL[1]).then(function(response){
                         $scope.response_rdy = true;
                         $scope.metric = response.data;
+                    }, function(error){
+                        $scope.response_rdy = true;
+                        $scope.request_error = error;
                     });
                 }
             }
@@ -422,6 +436,9 @@ request_app.controller(
                     requestLoader.get_evaluation(URL[1]).then(function(response){
                         $scope.response_rdy = true;
                         $scope.evaluation = response.data;
+                    }, function(error){
+                        $scope.response_rdy = true;
+                        $scope.request_error = error;
                     });
                 }
             }
@@ -436,6 +453,9 @@ request_app.controller(
                 requestLoader.get_collections().then(function(response){
                     $scope.response_rdy = true;
                     $scope.content_output = response.data
+                }, function(error){
+                    $scope.response_rdy = true;
+                    $scope.request_error = error;
                 });
             }
 
@@ -445,6 +465,9 @@ request_app.controller(
                 requestLoader.get_metrics().then(function(response){
                     $scope.response_rdy = true;
                     $scope.content_output = response.data;
+                }, function(error){
+                    $scope.response_rdy = true;
+                    $scope.request_error = error;
                 });
             }
 
@@ -454,6 +477,9 @@ request_app.controller(
                 requestLoader.get_evaluations().then(function(response){
                     $scope.response_rdy = true;
                     $scope.content_output = response.data;
+                }, function(error){
+                    $scope.response_rdy = true;
+                    $scope.request_error = error;
                 });
             }
 
@@ -466,6 +492,9 @@ request_app.controller(
             requestLoader.search_terms($scope.searchTerms).then(function(response){
                 $scope.response_rdy = true;
                 $scope.results = response.data;
+            }, function(error){
+                $scope.response_rdy = true;
+                $scope.request_error = error;
             });
         }
 

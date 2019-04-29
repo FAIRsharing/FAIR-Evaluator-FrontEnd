@@ -852,6 +852,20 @@ nav.navTop{
     box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px;
 }
 
+.errorContainer .newlines{
+    white-space: initial;
+    text-align: initial;
+}
+
+.errorItem label{
+    color:white;
+    font-weight: bolder;
+}
+
+.errorItem p {
+    margin-left:20px;
+    margin-bottom: 0;
+}
 
 /* TODO: set sm and md @media for .section.sectionItem
          set sm for icons padding on main page.

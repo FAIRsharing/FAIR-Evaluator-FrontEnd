@@ -1,2 +1,30 @@
 <h2> Response timeout </h2>
-<p> There was an error with the server, please try again later or reload the page (F5).</p>
+<p> There was an error with the server, please try again later or check above for an error message</p>
+
+<div class="testResult errorContainer">
+    <label class="resultLabel">{{content_error['xhrStatus']}}</label>
+    <div class="newlines">
+        <div class="errorItem">
+            <label>Request: </label>
+            <p>Method: {{content_error.config.method}}</p>
+            <p>URL: {{content_error.config.url}}</p>
+            <p>Headers: {{content_error.config.headers}}</p>
+
+            <p ng-if="content_error.data != null">Data: {{content_error.data}}</p>
+            <p ng-if="content_error.data == null">Data: No data for this request</p>
+        </div>
+        <div class="errorItem">
+            <label>Error message: </label>
+            <p ng-if="content_error['xhrStatus'] == 'abort'">
+                Request was aborted due to timeout, please try again later. If this error persists, please contact  us
+                at <a href="mailto:markw@illuminae.com">markw@illuminae.com</a>
+            </p>
+
+            <p ng-if="content_error['xhrStatus'] != 'abort'">
+                There is a problem with the server ({{content_error['xhrStatus']}}). Please try again later or contact us
+                at <a href="mailto:markw@illuminae.com">markw@illuminae.com</a>
+            </p>
+        </div>
+
+    </div>
+</div>
