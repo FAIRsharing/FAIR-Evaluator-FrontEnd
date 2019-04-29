@@ -1,6 +1,6 @@
 let request_app = angular.module('requestProviderCtrl', ['appConfigCtrl']);
 
-request_app.factory("RequestLoader", function($q, $http, $sce){
+request_app.factory("RequestLoader", function($q, $http, $sce, $location){
     
     function RequestsLoader(timeout){
         let loader = this;
@@ -297,6 +297,10 @@ request_app.factory("RequestLoader", function($q, $http, $sce){
 
             $http(request).then(function(response){
                 deferred.resolve(response);
+
+                let current_id = response.data['collection'].split('/').slice(-1)[0];
+                response.data['collection'] = $location.absUrl().split('#!')[0] + "#!/collections/" + current_id;
+
                 response.data['evaluationResult'] = JSON.parse(response.data['evaluationResult']);
                 for (let metricName in response.data['evaluationResult']){
 
