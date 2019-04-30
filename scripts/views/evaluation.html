@@ -74,8 +74,6 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div>
 
@@ -138,12 +136,17 @@
                             </div>
 
                             <div class="metricField">
-                                <label>Created on: </label>
+                                <label>Metric test created on: </label>
                                 <span>
                                     {{resultVal[1]['created_at'] | date}} by
                                     <a href="https://orcid.org/{{resultVal[1]['orcid']}}" target="_blank">{{resultVal[1]['creator']}}</a>
                                     (updated on {{resultVal[1]['updated_at'] | date}}).
                                 </span>
+                            </div>
+
+                            <div class="metricField">
+                                <label> Test executed on: </label>
+                                <span> {{content_output['http://purl.org/pav/version'] | date}}</span>
                             </div>
 
                             <div class="metricField testResult">
