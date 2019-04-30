@@ -11,9 +11,9 @@ angular.module('appGraphCtrl', []).controller(
         let resourceLimit = 0;
 
         $scope.$watch('evaluation', function(){
-            for (let metricKey in $scope.evaluation['evaluationResult']){
-                if ($scope.evaluation['evaluationResult'].hasOwnProperty(metricKey)){
-                    let metric = $scope.evaluation['evaluationResult'][metricKey][0];
+            for (let metricKey in $scope.content_output['evaluationResult']){
+                if ($scope.content_output['evaluationResult'].hasOwnProperty(metricKey)){
+                    let metric = $scope.content_output['evaluationResult'][metricKey][0];
                     if (resourceLimit === 0){
                         $scope.resource = metric['http://semanticscience.org/resource/SIO_000332'][0]['@id'];
                         if (!$scope.resource){

@@ -9,9 +9,9 @@
     <div class="container evalTitle">
 
         <div class="row evaluationTitle">
-            <div class="col-11"><h2>{{evaluation.title}}</h2></div>
+            <div class="col-11"><h2>{{content_output.title}}</h2></div>
             <div class="orcid_logo col-1">
-                <a href="{{evaluation['creator']}}" target="_blank" class="orcidLink">
+                <a href="{{content_output['creator']}}" target="_blank" class="orcidLink">
                     <img src="assets/img/orcid.png" class="orcid_icon">
                 </a>
             </div>
@@ -28,27 +28,27 @@
                         <!-- Description -->
                         <div class="evaluationDescriptionItem">
                             <label>Description: </label>
-                            <span> {{evaluation["http://rdfs.org/ns/void#description"]}}</span>
+                            <span> {{content_output["http://rdfs.org/ns/void#description"]}}</span>
                         </div>
 
                         <!-- Resource -->
                         <div class="evaluationDescriptionItem">
                             <label>Resource: </label>
-                            <a ng-href="https://doi.org/{{evaluation['primaryTopic']}}" target="_blank">
-                                {{evaluation['primaryTopic']}}
+                            <a ng-href="https://doi.org/{{content_output['primaryTopic']}}" target="_blank">
+                                {{content_output['primaryTopic']}}
                             </a>
                         </div>
 
                         <!-- Tested Against -->
                         <div class="evaluationDescriptionItem">
                             <label> Collection: </label>
-                            <a href="{{evaluation['collection']}}"> {{evaluation["collection"] | URL_last_arg}} </a>
+                            <a href="{{content_output['collection']}}"> {{content_output["collection"] | URL_last_arg}} </a>
                         </div>
 
                         <!-- Tests -->
                         <div class="evaluationDescriptionItem">
                             <label> Observations: </label>
-                            <span> Ran {{evaluation['evaluationResult'] | length}} tests ({{pie_data[0]}} succeeded, {{pie_data[1]}} failed).</span>
+                            <span> Ran {{content_output['evaluationResult'] | length}} tests ({{pie_data[0]}} succeeded, {{pie_data[1]}} failed).</span>
                         </div>
 
 
@@ -82,14 +82,14 @@
     <div class="testResults">
         <div class="container">
 
-            <div class="row" id="verticalSlider" ng-if="!evaluation['evaluationResult'].error">
+            <div class="row" id="verticalSlider" ng-if="!content_output['evaluationResult'].error">
                 <div class="col-12 card"
-                     ng-repeat="(resultKey, resultVal) in evaluation['evaluationResult']"
+                     ng-repeat="(resultKey, resultVal) in content_output['evaluationResult']"
                      ng-class="{'border-warning': resultVal[1]['deprecated'] == true}">
 
                     <div class="card-header " id="header_{{$index}}">
 
-                        <button ng-click="open_tab(resultVal[0], evaluation['evaluationResult'])"
+                        <button ng-click="open_tab(resultVal[0], content_output['evaluationResult'])"
                                 class="btn btn-link btnBlock"
                                 data-toggle="collapse"
                                 data-target="#collapse_{{$index}}"
@@ -155,9 +155,9 @@
                 </div>
             </div>
 
-            <div ng-if="evaluation['evaluationResult'].error">
+            <div ng-if="content_output['evaluationResult'].error">
                 <hr>
-                <div timeout="evaluation['evaluationResult'].content"></div>
+                <div timeout="content_output['evaluationResult'].content"></div>
             </div>
 
         </div>

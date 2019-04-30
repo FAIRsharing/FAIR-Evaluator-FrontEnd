@@ -10,13 +10,13 @@
         <div class="row collectionTitle">
 
             <div class="col-1 collectionStatus">
-                <i class="fa" ng-class="{'fa-check':!collection.status, 'fa-times':collection.status}"> </i>
+                <i class="fa" ng-class="{'fa-check':!content_output.status, 'fa-times':content_output.status}"> </i>
             </div>
 
-            <div class="col-10"><h2>{{collection.title}}</h2></div>
+            <div class="col-10"><h2>{{content_output.title}}</h2></div>
 
             <div class="orcid_logo col-1">
-                <a href="{{collection['http://purl.org/dc/elements/1.1/authoredBy']}}" target="_blank" class="orcidLink">
+                <a href="{{content_output['http://purl.org/dc/elements/1.1/authoredBy']}}" target="_blank" class="orcidLink">
                     <img src="assets/img/orcid.png" class="orcid_icon">
                 </a>
             </div>
@@ -28,50 +28,50 @@
         <!-- description -->
         <div class="fieldContainer">
             <label>Description: </label>
-            <span> {{collection['http://rdfs.org/ns/void#description']}}</span>
+            <span> {{content_output['http://rdfs.org/ns/void#description']}}</span>
         </div>
 
         <!-- license -->
         <div class="fieldContainer">
             <label>Licence: </label>
-            <a href="{{collection['http://purl.org/dc/elements/1.1/license']}}}" target="_blank">
-                {{collection['http://purl.org/dc/elements/1.1/license']}}
+            <a href="{{content_output['http://purl.org/dc/elements/1.1/license']}}}" target="_blank">
+                {{content_output['http://purl.org/dc/elements/1.1/license']}}
             </a>
         </div>
 
         <!-- Organization -->
         <div class="fieldContainer">
             <label>Organization: </label>
-            <span> {{collection['http://purl.org/dc/elements/1.1/creator']}}</span>
+            <span> {{content_output['http://purl.org/dc/elements/1.1/creator']}}</span>
         </div>
 
         <!-- Creation date -->
         <div class="fieldContainer">
             <label>Created on: </label>
-            <span> {{collection['http://purl.org/pav/version'] | date}}</span>
+            <span> {{content_output['http://purl.org/pav/version'] | date}}</span>
         </div>
 
         <!-- Creation date -->
         <div class="fieldContainer">
             <label>Status: </label>
-            <span ng-if="!collection.status"> Valid </span>
-            <span ng-if="collection.status"> Deprecated </span>
+            <span ng-if="!content_output.status"> Valid </span>
+            <span ng-if="content_output.status"> Deprecated </span>
         </div>
 
 
         <!-- Metrics -->
         <div class="fieldContainer">
             <label>Maturity Indicators Tests</label>
-            <span>({{collection['http://www.w3.org/ns/dcat#entities']}}):</span>
+            <span>({{content_output['http://www.w3.org/ns/dcat#entities']}}):</span>
             <ul>
-                <li ng-repeat="(key, metric) in collection['contains']" ng-if="!collection['contains'].error">
+                <li ng-repeat="(key, metric) in content_output['contains']" ng-if="!content_output['contains'].error">
                     <a href="{{metric['@id'] | replaceURL}}">{{metric['name']}}</a> <span>({{metric['principle'] | URL_last_arg}}): </span>
                     <span> {{metric['description']}}</span>
                 </li>
             </ul>
-            <div ng-if="collection['contains'].error">
+            <div ng-if="content_output['contains'].error">
                 <hr>
-                <div timeout="collection['contains'].content"></div>
+                <div timeout="content_output['contains'].content"></div>
             </div>
         </div>
         <hr>

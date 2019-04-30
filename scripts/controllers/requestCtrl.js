@@ -406,95 +406,51 @@ request_app.controller(
         $scope.request_error = false;
         $scope.dataType = null;
 
-        let baseURL = new $window.URL($location.absUrl()).hash.replace('#!/', "");
-        let URL = baseURL.split('/');
+        let URL = new $window.URL($location.absUrl()).hash.replace('#!/', "").split('/');
         let requestLoader = new RequestLoader($scope.request_timeout);
+        let url_mapper = {
+            "metrics/": function(){
+                return requestLoader.get_metrics()
+            },
+            "metrics": function(id){
+                return requestLoader.get_metric(id)
+            }  ,
+            "collections/": function(){
+                return requestLoader.get_collections()
+            },
+            "collections": function(id){
+                return requestLoader.get_collection(id)
+            },
+            "evaluations/": function(){
+                return requestLoader.get_evaluations()
+            },
+            "evaluations": function(id){
+                return requestLoader.get_evaluation(id)
+            }
+        };
 
-        /* SINGLE ITEMS */
-        if (URL.length === 2){
-
-            /* COLLECTION */
-            if (URL[0] === 'collections'){
-                $scope.dataType = "collections";
-                if (URL[1] !== "new"){
-                    requestLoader.get_collection(URL[1]).then(function(response){
-                        $scope.response_rdy = true;
-                        $scope.collection = response.data;
-                    }, function(error){
-                        $scope.response_rdy = true;
-                        $scope.request_error = error;
-                    });
-                }
+        for (let URL_param in url_mapper){
+            let endpointURL = null;
+            let id = null;
+            if (URL.length === 2 && URL[1] !== "new") {
+                endpointURL = URL[0];
+                id = URL[1];
+            }
+            else if (URL.length === 1) {
+                endpointURL = URL[0] + "/";
             }
 
-            /* METRIC */
-            if (URL[0] === 'metrics'){
-                $scope.dataType = "metrics";
-                if (URL[1] !== "new"){
-                    requestLoader.get_metric(URL[1]).then(function(response){
-                        $scope.response_rdy = true;
-                        $scope.metric = response.data;
-                    }, function(error){
-                        $scope.response_rdy = true;
-                        $scope.request_error = error;
-                    });
-                }
-            }
-
-            /* EVALUATION */
-            if (URL[0] === 'evaluations'){
-                $scope.dataType = "evaluations";
-                if (URL[1] !== "new"){
-                    requestLoader.get_evaluation(URL[1]).then(function(response){
-                        $scope.response_rdy = true;
-                        $scope.evaluation = response.data;
-                    }, function(error){
-                        $scope.response_rdy = true;
-                        $scope.request_error = error;
-                    });
-                }
-            }
-        }
-
-        /* MULTIPLE ITEMS */
-        else if (URL.length === 1) {
-
-            /* COLLECTIONS */
-            if (URL[0] === 'collections'){
-                $scope.dataType = "collections";
-                requestLoader.get_collections().then(function(response){
-                    $scope.response_rdy = true;
-                    $scope.content_output = response.data
-                }, function(error){
-                    $scope.response_rdy = true;
-                    $scope.request_error = error;
-                });
-            }
-
-            /* METRICS */
-            if (URL[0] === 'metrics'){
-                $scope.dataType = "metrics";
-                requestLoader.get_metrics().then(function(response){
+            if (endpointURL === URL_param){
+                url_mapper[URL_param](id).then(function(response){
+                    $scope.dataType = endpointURL.replace('/', '');
                     $scope.response_rdy = true;
                     $scope.content_output = response.data;
+                    console.log(response.data);
                 }, function(error){
                     $scope.response_rdy = true;
                     $scope.request_error = error;
-                });
+                })
             }
-
-            /* EVALUATIONS */
-            if (URL[0] === 'evaluations'){
-                $scope.dataType = "evaluations";
-                requestLoader.get_evaluations().then(function(response){
-                    $scope.response_rdy = true;
-                    $scope.content_output = response.data;
-                }, function(error){
-                    $scope.response_rdy = true;
-                    $scope.request_error = error;
-                });
-            }
-
         }
 
         /* Searches */
@@ -517,7 +473,7 @@ request_app.controller(
             for (let result in evaluations){
                 evaluations[result][0]['opened'] = false;
             }
-            $scope.evaluation['evaluationResult'] = evaluations;
+            $scope.content_output['evaluationResult'] = evaluations;
             metric['opened'] = !state;
         }
     }

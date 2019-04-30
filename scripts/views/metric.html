@@ -8,9 +8,9 @@
 
     <div class="container evalTitle">
         <div class="row">
-            <div class="col-11"><h2>{{metric.name}}</h2></div>
+            <div class="col-11"><h2>{{content_output.name}}</h2></div>
             <div class="orcid_logo col-1">
-                <a href="https://orcid.org/ + {{metric['orcid']}}" target="_blank" class="orcidLink">
+                <a href="https://orcid.org/ + {{content_output['orcid']}}" target="_blank" class="orcidLink">
                     <img src="assets/img/orcid.png" class="orcid_icon">
                 </a>
             </div>
@@ -21,7 +21,7 @@
         <div class="row">
             <div class="col-lg-2 col-sm-3 col-md-3 principleContainer">
                 <div class="principle">
-                    <a href="{{metric['principle']}}" target="_blank">{{metric['principle'] | URL_last_arg}}</a>
+                    <a href="{{content_output['principle']}}" target="_blank">{{content_output['principle'] | URL_last_arg}}</a>
                 </div>
             </div>
 
@@ -32,7 +32,7 @@
                     <div class="row">
                         <div class="col-12">
                             <label>Description: </label>
-                            <span> {{metric["description"]}}</span>
+                            <span> {{content_output["description"]}}</span>
                         </div>
                     </div>
 
@@ -41,7 +41,7 @@
                         <div class="col-12">
                             <label>Created by: </label>
                             <span>
-                                <a href="mailto:{{metric['email']}}">{{metric["creator"]}}</a> on {{metric['created_at'] | date}} (updated on {{metric['updated_at'] | date}})
+                                <a href="mailto:{{content_output['email']}}">{{content_output["creator"]}}</a> on {{content_output['created_at'] | date}} (updated on {{content_output['updated_at'] | date}})
                             </span>
                         </div>
                     </div>
@@ -50,8 +50,8 @@
                     <div class="row">
                         <div class="col-12">
                             <label>Interface smarlURL: </label>
-                            <a href="{{metric['smarturl']}}" target="_blank">
-                                {{metric["smarturl"]}}
+                            <a href="{{content_output['smarturl']}}" target="_blank">
+                                {{content_output["smarturl"]}}
                             </a>
                         </div>
                     </div>
