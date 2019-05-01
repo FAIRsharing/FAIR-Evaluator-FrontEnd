@@ -829,13 +829,17 @@ nav.navTop{
     padding:0 20px;
 }
 
+.led-green,
+.led-red{
+    box-shadow: #D6D6D6 2px 2px 3px 1px, inset #304701 0 -1px 9px;
+}
+
 .led-green {
     margin: 0 20px 0 auto;
     width: 24px;
     height: 22px;
     background-color: #99e500;
     border-radius: 50%;
-    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #304701 0 -1px 9px;
 }
 
 .metricTitle {
@@ -849,7 +853,6 @@ nav.navTop{
     height: 22px;
     background-color: #F00;
     border-radius: 50%;
-    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px;
 }
 
 .errorContainer .newlines{
