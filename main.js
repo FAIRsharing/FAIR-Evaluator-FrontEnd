@@ -103,6 +103,11 @@
                 $scope.warning_on = false;
             };
 
+            $scope.isURL = function(string){
+                return (string.startsWith('https://') || string.startsWith('http://'));
+
+            }
+
         }
     );
 

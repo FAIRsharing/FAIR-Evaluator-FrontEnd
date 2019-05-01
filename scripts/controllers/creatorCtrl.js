@@ -68,6 +68,8 @@ my_creator_app.controller(
                     collection_id = $scope.collection_id.split('/').slice(-1)[0];
                 }
 
+                let creator_ORCID = $scope.isURL($scope.evalForm.orcid) ? $scope.evalForm.orcid.split['/'].slice(-1)[0] : $scope.evalForm.orcid;
+
                 let eval_request = {
                     method: 'POST',
                     url: base_url + "/collections/" + collection_id + "/evaluate",
@@ -77,7 +79,7 @@ my_creator_app.controller(
                     },
                     data: {
                         "resource": $scope.evalForm.guid,
-                        "executor": $scope.evalForm.orcid,
+                        "executor": creator_ORCID,
                         "title": $scope.evalForm.title
                     }
                 };
@@ -150,11 +152,13 @@ my_creator_app.controller(
 
             form.$setSubmitted();
 
-            if (form.$valid){
+            if (true /*form.$valid*/){
                 $scope.triggered = true;
+                let contact_ORCID = $scope.isURL($scope.collection_data.contact) ? $scope.collection_data.contact.split('/').slice(-1)[0] : $scope.collection_data.contact;
+
                 let request_data = {
                     "name": $scope.collection_data.name,
-                    "contact": $scope.collection_data.contact,
+                    "contact": contact_ORCID,
                     "description": $scope.collection_data.description,
                     "organization": $scope.collection_data.organization,
                     "include_metrics": []
@@ -179,13 +183,13 @@ my_creator_app.controller(
                     data: request_data
                 };
 
-                $http(request).then(function(response){
+                /*$http(request).then(function(response){
                     $scope.triggered = false;
                     let identifier= response.data['@id'].split('/').slice(-1)[0];
                     let root_url = new $window.URL($location.absUrl());
                     $scope.response_content = root_url.origin + root_url.pathname + "#!/collections/" + identifier;
                     $scope.errors = response.data.statusText
-                });
+                })*/;
             }
         };
 
