@@ -867,6 +867,11 @@ nav.navTop{
     margin-bottom: 0;
 }
 
+#social span:not(:first-child):not(:last-child){
+    margin:0 30px;
+}
+
+
 /* TODO: set sm and md @media for .section.sectionItem
          set sm for icons padding on main page.
 */
