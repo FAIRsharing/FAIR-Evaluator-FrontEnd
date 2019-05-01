@@ -19,6 +19,11 @@
                 .primaryPalette('yellow')
         });
 
+    // Disabling debug annotations for performance boost.
+    my_app.config(['$compileProvider', function ($compileProvider) {
+        $compileProvider.debugInfoEnabled(false);
+    }]);
+
 
     /* *************************************************************************************************** */
     /* ROUTING */
