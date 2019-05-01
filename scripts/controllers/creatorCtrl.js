@@ -152,7 +152,7 @@ my_creator_app.controller(
 
             form.$setSubmitted();
 
-            if (true /*form.$valid*/){
+            if (form.$valid){
                 $scope.triggered = true;
                 let contact_ORCID = $scope.isURL($scope.collection_data.contact) ? $scope.collection_data.contact.split('/').slice(-1)[0] : $scope.collection_data.contact;
 
@@ -183,13 +183,13 @@ my_creator_app.controller(
                     data: request_data
                 };
 
-                /*$http(request).then(function(response){
+                $http(request).then(function(response){
                     $scope.triggered = false;
                     let identifier= response.data['@id'].split('/').slice(-1)[0];
                     let root_url = new $window.URL($location.absUrl());
                     $scope.response_content = root_url.origin + root_url.pathname + "#!/collections/" + identifier;
                     $scope.errors = response.data.statusText
-                })*/;
+                });
             }
         };
 
