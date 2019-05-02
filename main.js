@@ -91,6 +91,9 @@
             $scope.search_triggered = false;
 
             $scope.current_path = $location.path();
+            if ($scope.current_path === ""){
+                $scope.current_path = '/';
+            }
 
             $scope.goToSearches = function(terms){
                 let window_url = new $window.URL($location.absUrl());
