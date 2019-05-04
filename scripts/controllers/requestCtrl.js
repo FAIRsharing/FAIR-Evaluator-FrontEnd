@@ -6,7 +6,7 @@ request_app.factory("RequestLoader", function($q, $http, $sce, $location){
         let loader = this;
         loader.data = null;
 
-        let base_url = "https://linkeddata.systems:3000/FAIR_Evaluator";
+        let base_url = "https://w3id.org/FAIR_Evaluator";
         let requests = {
             metrics: {
                 /* ROUTE: /metrics */
@@ -296,6 +296,7 @@ request_app.factory("RequestLoader", function($q, $http, $sce, $location){
             request.url = request.url.replace('{:id}', id);
 
             $http(request).then(function(response){
+                console.log(response);
                 deferred.resolve(response);
 
                 let current_id = response.data['collection'].split('/').slice(-1)[0];

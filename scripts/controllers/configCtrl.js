@@ -4,7 +4,7 @@ angular.module('appConfigCtrl', []).controller(
         '$scope',
         function($scope){
             /* server base URL for endpoints */
-            $scope.base_url = "https://linkeddata.systems:3000/FAIR_Evaluator";
+            $scope.base_url = "https://w3id.org/FAIR_Evaluator";
 
             /* Warning */
             $scope.warning = true;
