@@ -296,6 +296,7 @@ request_app.factory("RequestLoader", function($q, $http, $sce, $location){
             request.url = request.url.replace('{:id}', id);
 
             $http(request).then(function(response){
+                console.log(response);
                 deferred.resolve(response);
 
                 let current_id = response.data['collection'].split('/').slice(-1)[0];
