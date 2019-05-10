@@ -6,7 +6,7 @@ request_app.factory("RequestLoader", function($q, $http, $sce, $location){
         let loader = this;
         loader.data = null;
 
-        let base_url = "https://linkeddata.systems:3000/FAIR_Evaluator";
+        let base_url = "https://ejp-evaluator.appspot.com/FAIR_Evaluator";
         let requests = {
             metrics: {
                 /* ROUTE: /metrics */
