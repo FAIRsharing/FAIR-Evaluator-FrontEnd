@@ -75,6 +75,10 @@ h2 a{
     color:rgba(0,0,0,1);
 }
 
+.about h2{
+    text-align: center;
+}
+
 h4{
     text-align: center;
     font-weight: bold;
@@ -102,8 +106,21 @@ h6 {
     margin-right: auto;
 }
 
+.largeIcon{
+    width:100%;
+    max-width: 300px;
+    right: 0;
+    left: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .metricsIcon {
     width: 80%;
+}
+
+.about .metricsIcon{
+    max-width: 200px;
 }
 
 label {
@@ -874,6 +891,18 @@ nav.navTop{
     margin:0 30px;
 }
 
+
+.about .imgBlock{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:20px 10px;
+}
+
+.about .imgText{
+    text-align: center;
+    margin-bottom:40px;
+}
 
 /* TODO: set sm and md @media for .section.sectionItem
          set sm for icons padding on main page.

@@ -72,6 +72,9 @@
             .when("/searches", {
                 templateUrl : "scripts/views/searches.html",
                 controller: "requestCtrl"
+            })
+            .when("/about", {
+                templateUrl : "scripts/views/about.html"
             });
     });
 
