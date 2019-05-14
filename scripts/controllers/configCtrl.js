@@ -7,7 +7,7 @@ angular.module('appConfigCtrl', []).controller(
             $scope.base_url = "https://ejp-evaluator.appspot.com/FAIR_Evaluator";
 
             /* Warning */
-            $scope.warning = true;
+            $scope.warning = false;
 
             /* ******************************************** */
             /* SORTING TABLES DEFAULT VALUES */
