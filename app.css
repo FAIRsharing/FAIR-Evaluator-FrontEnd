@@ -142,6 +142,10 @@ h6 {
     text-align: left;
 }
 
+.aboutSection .card-header a{
+    color: #325D88;
+}
+
 .aboutSection a{
     font-weight: bolder;
 }
