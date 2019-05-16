@@ -1,52 +1,129 @@
-<div class="about fade show container mainContainer">
+<div class="aboutSection">
 
-    <div class="row">
+    <div class="about fade show container mainContainer" id="aboutUs">
 
-        <div class="col-12">
-            <h2> About us </h2>
-            <hr>
-        </div>
+        <div class="row">
 
-        <div class="col-12">
-            <div class="imgBlock">
-                <img class="largeIcon" src="assets/img/fairsharing.png">
-                <img class="largeIcon metricsIcon" src="assets/img/fairmetrics-sm.png">
+            <div class="col-12">
+                <h2> Contributors and partners </h2>
+                <hr>
             </div>
-            <div class="imgText">This application is driven by the <a href="https://github.com/FAIRMetrics" target="_blank">FAIRmetrics</a>
-                and the <a href="https://sansonegroup.eng.ox.ac.uk/" target="_blank">FAIRsharing</a> groups.</div>
-            <hr style="margin-bottom: 30px;">
-        </div>
 
-        <div class="col-12">
-            <h2 style="margin-bottom: 30px;"> The team</h2>
+            <div class="col-12">
 
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-sm-12 col-md-12 col-lg-4">
-                        <div class="teamElement card">
-                            <h3> Back-end: </h3>
-                            <p> Mark D Wilkinson</p>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-6 col-sm-12 col-md-12 teamElement">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>Centro de Biotecnología y Genómica de Plantas UPM – INIA, Madrid, Spain</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="contributor"><a href="https://orcid.org/0000-0001-6960-357X" target="_blank"> Mark D Wilkinson</a>: Evaluator back-end; Maturity Indicators and Compliance Tests</div>
+                                    <div class="contributor"><a href="https://orcid.org/0000-0001-9833-8031" target="_blank">Mario Prieto</a>: Access libraries to the evaluator and to individual tests</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-12 col-md-12 teamElement">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>Data Readiness Group, Oxford e-Research Centre, Department of Engineering Science, University of Oxford, UK</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="contributor"><a href="https://orcid.org/0000-0002-2109-489X" target="_blank">Batista Dominique</a>: Evaluator front-end</div>
+                                    <div class="contributor"><a href="https://orcid.org/0000-0003-2687-1982" target="_blank">Peter McQuilton</a>: Evaluator, testing and FAIRsharing connection</div>
+                                    <div class="contributor"><a href="https://orcid.org/0000-0001-9853-5668" target="_blank">Philippe Rocca-Serra</a>: Testing</div>
+                                    <div class="contributor"><a href="https://orcid.org/0000-0001-5306-5690" target="_blank">Susanna-Assunta Sansone</a>:	Maturity Indicators</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-12 col-md-12 teamElement">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>GO FAIR International Support and Coordination Office, Leiden, The Netherlands</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="contributor"><a href="https://orcid.org/0000-0001-8888-635X" target="_blank">Erik Schultes</a>:	Maturity Indicators; Testing</div>
+                                    <div class="contributor"><a href="https://orcid.org/0000-0002-1164-1351" target="_blank">Luiz Olavo Bonino da Silva Santos</a>:	Maturity Indicators</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-12 col-md-12 teamElement">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>Institute of Data Science, Maastricht University, Maastricht, The Netherlands</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="contributor"><a href="https://orcid.org/0000-0003-4727-9435" target="_blank">Michel Dumontier</a>: Maturity Indicators</div>
+                                    <div class="contributor"><a href="https://orcid.org/" target="_blank">Ricardo de Miranda Azevedo</a>: Testing</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-sm-12 col-md-12 col-lg-4">
-                        <div class="teamElement card">
-                            <h3> Front-end: </h3>
-                            <p> Dominique Batista</p>
+                    <div class="row" id="partners">
+                        <div class="col-lg-2"></div>
+                        <div class="col-lg-4 col-sm-12 col-md-12 imgBlock">
+                            <img src="assets/img/fairsharing.png">
                         </div>
-                    </div>
-                    <div class="col-sm-12 col-md-12 col-lg-4">
-                        <div class="teamElement card">
-                            <h3> Metrics and tests designs: </h3>
-                            <p> Susanna A. Sansone</p>
+                        <div class="col-lg-4 col-sm-12 col-md-12 imgBlock">
+                            <img src="assets/img/fairmetrics.png">
                         </div>
+                        <div class="col-lg-2"></div>
                     </div>
                 </div>
+
+
+
             </div>
-
-
 
         </div>
 
     </div>
+
+    <div class="about fade show container mainContainer" id="code">
+        <div class="row">
+
+            <div class="col-12">
+                <h2> Source code </h2>
+                <hr>
+            </div>
+
+            <div class="col-12" id="maintainers">
+
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12 teamElement">
+                            This application and its components are available under MIT license. It is separated into two GitHub repositories:
+                            <ul>
+                                <li>
+                                    <b>The FAIR Evaluator back-end</b>: maintained by Mark D. Wilkinson
+                                    <div class="gitIcons">
+                                        <span>
+                                            <a class="github-button" href="https://github.com/FAIRMetrics/Metrics/subscription" data-size="large" data-show-count="true" aria-label="Watch FAIRMetrics/Metrics on GitHub">Watch</a>
+                                            <a class="github-button" href="https://github.com/FAIRMetrics/Metrics/fork" data-icon="octicon-repo-forked" data-size="large" data-show-count="true" aria-label="Fork FAIRMetrics/Metrics on GitHub">Fork</a>
+                                            <a class="github-button" href="https://github.com/FAIRMetrics/Metrics" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star FAIRMetrics/Metrics on GitHub">Star</a>
+                                        </span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <b>The FAIR Evaluator font-end</b>: maintained by Dominique Batista
+                                    <div class="gitIcons">
+                                        <span>
+                                            <a class="github-button" href="https://github.com/FAIRSharing/FAIR-Maturity-FrontEnd/subscription" data-size="large" data-show-count="true" aria-label="Watch FAIRMetrics/Metrics on GitHub">Watch</a>
+                                            <a class="github-button" href="https://github.com/FAIRSharing/FAIR-Maturity-FrontEnd/fork" data-icon="octicon-repo-forked" data-size="large" data-show-count="true" aria-label="Fork FAIRMetrics/Metrics on GitHub">Fork</a>
+                                            <a class="github-button" href="https://github.com/FAIRSharing/FAIR-Maturity-FrontEnd" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star FAIRMetrics/Metrics on GitHub">Star</a>
+                                        </span>
+                                    </div>
+                                </li>
+                            </ul>
+                            We do not gather any personal information apart from ORCIDs (not mandatory) from evaluators and no account is needed to run evaluations.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
 </div>
