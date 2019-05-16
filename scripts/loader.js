@@ -70,6 +70,14 @@ loader.directive('loader', function(){
     }
 });
 
+/* DNA Loading animation directive */
+loader.directive('submitWarning', function(){
+    return{
+        restrict: 'A',
+        templateUrl: 'scripts/directives/submit_warning.html',
+    }
+});
+
 /* Warning */
 loader.directive('warning', function(){
     return{
@@ -129,7 +137,7 @@ loader.directive('collectionsData', function(){
     }
 });
 
-/* Collections table */
+/* Evaluations table */
 loader.directive('evaluationsData', function(){
     return{
         restrict: 'A',

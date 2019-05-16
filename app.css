@@ -163,6 +163,22 @@ h6 {
     margin-top:5px;
 }
 
+.infoAccept{
+    font-size: 0.8rem;
+    font-style: italic;
+    padding: 10px;
+}
+
+.infoAccept .fa-exclamation-triangle{
+    color:darkorange;
+    margin-right:5px;
+}
+
+.btnSubmit{
+    margin-top: 20px;
+    display: block;
+}
+
 label {
     margin-bottom: 0;
     color: black;
@@ -488,7 +504,7 @@ md-content {
 }
 
 .newCollectionValidate{
-    padding:30px;
+    padding:0px 19px;
 }
 
 .md-select-value span {

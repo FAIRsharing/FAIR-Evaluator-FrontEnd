@@ -88,18 +88,23 @@
         </md-content>
 
         <div class="newCollectionValidate">
-            <button type="submit"
-                    class="btn btn-primary"
-                    ng-click="createCollection(newCollection)">
-                Create collection
-            </button>
+            <div class="infoAccept">
+                <div submit-warning></div>
+                <div class="btnSubmit">
+                    <button type="submit"
+                            class="btn btn-primary"
+                            ng-click="createCollection(newCollection)">
+                        Create collection
+                    </button>
+                    <button type="button" class="btn btn-primary" ng-click="clearFields()">Clear fields</button>
+                    <a ng-href="#!/collections">
+                        <button type="button" class="btn btn-primary">
+                            Go back to collections
+                        </button>
+                    </a>
+                </div>
+            </div>
 
-            <button type="button" class="btn btn-primary" ng-click="clearFields()">Clear fields</button>
-            <a ng-href="#!/collections">
-                <button type="button" class="btn btn-primary">
-                    Go back to collections
-                </button>
-            </a>
         </div>
 
     </div>

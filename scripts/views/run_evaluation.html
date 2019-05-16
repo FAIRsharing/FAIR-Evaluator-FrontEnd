@@ -118,8 +118,13 @@
             </md-content>
 
             <div class="newCollectionValidate">
-                <button type="button" class="btn btn-primary" ng-click="runEvaluation(runEval)">Run evaluation</button>
-                <button type="button" class="btn btn-primary" ng-click="clearFields()">Clear fields</button>
+                <div class="infoAccept">
+                    <div submit-warning></div>
+                    <div class="btnSubmit">
+                        <button type="button" class="btn btn-primary" ng-click="runEvaluation(runEval)">Run evaluation</button>
+                        <button type="button" class="btn btn-primary" ng-click="clearFields()">Clear fields</button>
+                    </div>
+                </div>
             </div>
 
         </div>
