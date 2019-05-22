@@ -1,8 +1,24 @@
 {
   "name": "FAIRMaturityEvaluator",
   "version": "0.0.1",
+  "license": "MIT",
+  "repository": "https://github.com/FAIRsharing/FAIR-Maturity-FrontEnd",
   "devDependencies": {
-    "standard": "*"
+    "standard": "*",
+    "jasmine": "*"
+  },
+  "dependencies": {
+    "angular": "1.6.7",
+    "angular-animate": "1.6.7",
+    "angular-aria": "1.6.7",
+    "angular-chart.js": "*",
+    "angular-material": "1.1.10",
+    "angular-route": "1.6.7",
+    "angular-messages": "1.6.7",
+    "bootstrap": "4.2.1",
+    "chart.js": "*",
+    "jquery": "3.3.1",
+    "popper.js": "^1.14.6"
   },
   "standard": {
     "ignore": [
@@ -12,4 +28,4 @@
   "scripts": {
     "test": "standard"
   }
-}
+}git stat
