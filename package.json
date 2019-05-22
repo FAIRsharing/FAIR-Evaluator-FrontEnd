@@ -1,0 +1,15 @@
+{
+  "name": "FAIRMaturityEvaluator",
+  "version": "0.0.1",
+  "devDependencies": {
+    "standard": "*"
+  },
+  "standard": {
+    "ignore": [
+      "lib/*"
+    ]
+  },
+  "scripts": {
+    "test": "standard"
+  }
+}
