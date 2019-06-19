@@ -40,9 +40,9 @@
                         <!-- Resource -->
                         <div class="evaluationDescriptionItem">
                             <label>Resource: </label>
-                            <a ng-href="https://doi.org/{{content_output['primaryTopic']}}" target="_blank" ng-if="!isURL(content_output['primaryTopic'])">
+                            <span ng-if="!isURL(content_output['primaryTopic'])">
                                 {{content_output['primaryTopic']}}
-                            </a>
+                            </span>
                             <a ng-href="{{content_output['primaryTopic']}}" target="_blank" ng-if="isURL(content_output['primaryTopic'])">
                                 {{content_output['primaryTopic']}}
                             </a>
