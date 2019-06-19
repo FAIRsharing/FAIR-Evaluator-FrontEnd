@@ -91,6 +91,7 @@ my_creator_app.controller(
                     $scope.response_rdy = true;
                     let evaluation_id = response.data["@id"].split('/').slice(-1)[0];
                     $scope.response_content = next_url + evaluation_id;
+                    $window.location.href = next_url + evaluation_id;
                 }, function(error){
                     $scope.response_content = true;
                     $scope.response_rdy = true;
