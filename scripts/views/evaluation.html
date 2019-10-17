@@ -60,6 +60,16 @@
                             <span> Ran {{content_output['evaluationResult'] | length}} tests ({{pie_data[0]}} succeeded, {{pie_data[1]}} failed).</span>
                         </div>
 
+                        <div class="evaluationDescriptionItem">
+                            <label>JSON response:</label>
+                            <span>
+                                <a href="{{content_output['http://www.w3.org/ns/dcat#identifier']}}.json"
+                                   target="_blank">
+                                    {{content_output['http://www.w3.org/ns/dcat#identifier']}}.json
+                                </a>
+                            </span>
+                        </div>
+
 
                     </div>
                 </div>
