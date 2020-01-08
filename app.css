@@ -396,7 +396,7 @@ hr {
     margin-right:50px;
 }
 
-nav {
+nav.navTop {
     box-shadow: 0 0 6px 2px rgba(0,0,0,0.5);
 }
 
@@ -989,4 +989,23 @@ nav.navTop{
     .principle {
         font-size: 2.5rem;
     }
+}
+
+/* PAGINATION */
+
+#paginationSelector label {
+    margin-right:20px;
+    font-size: 16px;
+}
+
+#paginationBlock nav {
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#paginationBlock span.active {
+    background-color: #325D88 !important;
+    color:white !important;
 }
