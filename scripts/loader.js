@@ -57,6 +57,15 @@ loader.filter('length', function() {
     };
 });
 
+loader.filter('startFrom', function() {
+    return function(input, start) {
+        if (input){
+            start = +start;
+            return input.slice(start);
+        }
+    }
+});
+
 
 
 /* *************************************************************************************************** */
@@ -144,11 +153,14 @@ loader.directive('evaluationsData', function(){
         templateUrl: 'scripts/directives/evaluationsTable.html',
         scope: {
             evaluationsData: '=',
+            pagination: "=",
+            search: "="
         },
         link: function($scope){
             $scope.$watch('evaluationsData', function(evaluationsData){
                 if(evaluationsData)
                     $scope.content_output = $scope.evaluationsData;
+                    $scope.configure_pagination = $scope.pagination;
             });
         }
     }

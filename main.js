@@ -91,11 +91,9 @@
             $scope.warning_on = $scope.$parent.warning;
             $scope.terms = null;
             $scope.search_errors = null;
-            $scope.evaluation_searchTerms = "";
             $scope.metrics_searchTerms = "";
             $scope.collections_searchTerms = "";
             $scope.search_triggered = false;
-
             $scope.current_path = $location.path();
             if ($scope.current_path === ""){
                 $scope.current_path = '/';
@@ -125,4 +123,19 @@
         }
     );
 
+    my_app.run(['$route', '$rootScope', '$location', function ($route, $rootScope, $location) {
+        let original = $location.path;
+        $location.path = function (path, reload) {
+            if (reload === false) {
+                let lastRoute = $route.current;
+                let un = $rootScope.$on('$locationChangeSuccess', function () {
+                    $route.current = lastRoute;
+                    un();
+                });
+            }
+            return original.apply($location, [path]);
+        };
+    }])
+
 })();
+
