@@ -993,19 +993,42 @@ nav.navTop{
 
 /* PAGINATION */
 
-#paginationSelector label {
+#paginationSelector label, #paginationBlockBottom label {
     margin-right:20px;
     font-size: 16px;
 }
 
-#paginationBlock nav {
+#paginationBlock nav, #paginationBlockBottom nav {
     display:flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    margin-bottom: 20px;
 }
 
-#paginationBlock span.active {
+#paginationBlock span.active, #paginationBlockBottom span.active  {
     background-color: #325D88 !important;
     color:white !important;
 }
+
+#paginationBlock span, #paginationBlockBottom span {
+    padding:10px 20px;
+    font-size: 1.3rem;
+    text-transform: capitalize;
+    font-weight:lighter;
+    box-shadow: 4px 4px 3px #D6D6D6;
+}
+
+.page-item:last-child .page-link {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.page-item:first-child .page-link {
+    margin-left: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+
+

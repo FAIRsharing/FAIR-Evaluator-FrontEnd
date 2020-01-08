@@ -153,7 +153,8 @@ loader.directive('evaluationsData', function(){
         templateUrl: 'scripts/directives/evaluationsTable.html',
         scope: {
             evaluationsData: '=',
-            pagination: "="
+            pagination: "=",
+            search: "="
         },
         link: function($scope){
             $scope.$watch('evaluationsData', function(evaluationsData){

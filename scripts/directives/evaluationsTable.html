@@ -13,13 +13,13 @@
         <div class="form-group">
             <div class="input-group">
                 <div class="input-group-addon"><i class="fa fa-search"></i></div>
-                <input type="text" class="form-control" placeholder="Search terms" ng-model="evaluation_searchTerms">
+                <input type="text" class="form-control" placeholder="Search terms" ng-model="search.terms">
             </div>
         </div>
     </form>
 </div>
 
-<div id="paginationBlock">
+<div id="paginationBlock" ng-if="configure_pagination.totalPages() >= 2">
     <nav>
         <ul class="pagination">
             <li class="page-item" ng-repeat="page in configure_pagination.pages() track by $index">
@@ -34,7 +34,8 @@
                 </span>
                 <span class="page-link"
                       ng-if="page != 'Next >' && page != '< Previous' && page != '...'"
-                      ng-click="configure_pagination.changePage(page)" ng-class="{'active': configure_pagination.currentPage === page}">
+                      ng-click="configure_pagination.changePage(page)"
+                      ng-class="{'active': configure_pagination.currentPage === page}">
                     {{page}}
                 </span>
             </li>
@@ -69,7 +70,6 @@
 
     <tbody>
     <tr ng-repeat="evaluation in content_output | orderBy : sortType.evaluations:reverseSort.evaluations
-                                                | filter:evaluation_searchTerms
                                                 | startFrom: (configure_pagination.currentPage -1)*configure_pagination.items_per_page
                                                 | limitTo: configure_pagination.items_per_page">
         <td class="col1">
@@ -95,3 +95,27 @@
     </tr>
     </tbody>
 </table>
+
+<div id="paginationBlockBottom" ng-if="configure_pagination.totalPages() >= 2">
+    <nav>
+        <ul class="pagination">
+            <li class="page-item" ng-repeat="page in configure_pagination.pages() track by $index">
+                <span class="page-link" ng-if="page === '...'">
+                    {{page}}
+                </span>
+                <span class="page-link" ng-if="page === '< Previous'" ng-click="configure_pagination.changePage(configure_pagination.currentPage - 1)">
+                    {{page}}
+                </span>
+                <span class="page-link" ng-if="page === 'Next >'" ng-click="configure_pagination.changePage(configure_pagination.currentPage + 1)">
+                    {{page}}
+                </span>
+                <span class="page-link"
+                      ng-if="page != 'Next >' && page != '< Previous' && page != '...'"
+                      ng-click="configure_pagination.changePage(page)"
+                      ng-class="{'active': configure_pagination.currentPage === page}">
+                    {{page}}
+                </span>
+            </li>
+        </ul>
+    </nav>
+</div>

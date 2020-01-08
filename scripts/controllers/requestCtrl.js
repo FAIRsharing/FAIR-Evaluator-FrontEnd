@@ -401,11 +401,14 @@ request_app.factory("RequestLoader", function($q, $http, $sce, $location){
 
 request_app.controller(
     'requestCtrl',
-    function($http, $scope, $window, $location, RequestLoader) {
+    function($http, $scope, $window, $location, RequestLoader, $filter) {
 
         $scope.response_rdy = false;
         $scope.request_error = false;
         $scope.dataType = null;
+        $scope.search = {
+            terms: ""
+        };
 
         let URL = new $window.URL($location.absUrl()).hash.replace('#!/', "").split('/');
         let full_url = URL[0] = URL[0].split("?");
@@ -448,6 +451,7 @@ request_app.controller(
                     $scope.dataType = endpointURL.replace('/', '');
                     $scope.response_rdy = true;
                     $scope.content_output = response.data;
+                    $scope.raw_output = angular.copy($scope.content_output);
 
                     if (endpointURL === "evaluations/"){
                         let currentPage = "1" ;
@@ -457,13 +461,11 @@ request_app.controller(
                                 currentPage = page
                             }
                         }
-
                         currentPage = parseInt(currentPage);
-
                         $scope.configure_pagination = {
                             items_per_page: 50,
                             totalPages: function(){
-                                return Math.ceil(Object.keys(response.data).length / this.items_per_page)
+                                return Math.ceil(Object.keys($scope.content_output).length / this.items_per_page)
                             },
                             currentPage: currentPage,
                             changePage: function(newPage){
@@ -474,7 +476,8 @@ request_app.controller(
                                     newPage = this.totalPages()
                                 }
                                 $location.path("evaluations", false).search({page: newPage});
-                                this.currentPage = newPage
+                                this.currentPage = newPage;
+                                console.log(newPage)
                             },
                             pages: function(){
                                 let pages = [];
@@ -521,7 +524,7 @@ request_app.controller(
                                     ]
                                 }
 
-                                if (this.currentPage < this.totalPages() -2 && this.currentPage > 3)
+                                if (this.currentPage < this.totalPages() -2 && this.currentPage > 3){
                                     pages = [
                                         "< Previous",
                                         1,
@@ -533,8 +536,20 @@ request_app.controller(
                                         this.totalPages(),
                                         "Next >"
                                     ];
+                                }
+
+                                if (this.totalPages() < 7 && this.totalPages() > 1){
+                                    pages = [];
+                                    pages[0] = "< Previous";
+
+                                    [...Array(this.totalPages()).keys()].forEach(function(val){
+                                        pages.push(val+1);
+                                    });
+
+                                    pages.push("Next >")
+                                }
                                 return pages;
-                            }
+                            },
                         };
                     }
                 }, function(error){
@@ -567,5 +582,17 @@ request_app.controller(
             $scope.content_output['evaluationResult'] = evaluations;
             metric['opened'] = !state;
         };
+
+        $scope.$watch("search.terms", function(current, original) {
+            if (current !== original && current.length >= 3 ){
+                $scope.content_output = $filter('filter')($scope.raw_output, current);
+                $scope.configure_pagination.currentPage = 1;
+            }
+            if (current.length < 3){
+                $scope.content_output = $scope.raw_output;
+            }
+        });
+
+
     }
 );

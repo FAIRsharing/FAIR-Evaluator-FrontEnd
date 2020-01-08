@@ -91,11 +91,9 @@
             $scope.warning_on = $scope.$parent.warning;
             $scope.terms = null;
             $scope.search_errors = null;
-            $scope.evaluation_searchTerms = "";
             $scope.metrics_searchTerms = "";
             $scope.collections_searchTerms = "";
             $scope.search_triggered = false;
-
             $scope.current_path = $location.path();
             if ($scope.current_path === ""){
                 $scope.current_path = '/';
