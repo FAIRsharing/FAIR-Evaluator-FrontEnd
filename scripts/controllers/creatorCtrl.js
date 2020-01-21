@@ -116,6 +116,9 @@ my_creator_app.controller(
             if (collection){
                 $scope.evalForm.collection = collection.value["@id"];
             }
+            else {
+                $scope.evalForm.collection = null;
+            }
         }
     }
 );
