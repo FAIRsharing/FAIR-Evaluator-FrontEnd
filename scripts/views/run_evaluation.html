@@ -50,33 +50,41 @@
                     </div>
 
                     <form name="runEval">
-                        <div>Select a collection to evaluate the resource</div>
                         <div layout-gt-sm="row">
+                            <div class="inputCollectionContainer">
+                                <div>Select a collection to evaluate the resource</div>
+                                <md-input-container class="md-block collectionTitle" flex-gt-xs ng-if="!evalForm.collection_disabled" style="z-index:3">
+                                    <md-autocomplete
+                                            name="collectionAutocomplete"
+                                            ng-disabled="false"
+                                            md-selected-item="selectedItem"
+                                            md-search-text="searchText"
+                                            md-items="item in querySearch(searchText)"
+                                            md-item-text='item.display'
+                                            md-min-length="0"
+                                            md-selected-item-change="setCollection(item)"
+                                            placeholder="Select a collection"
+                                            ng-model="evalForm.collection">
 
-                            <md-input-container class="md-block collectionTitle" flex-gt-xs ng-if="!evalForm.collection_disabled">
-                                <md-autocomplete
-                                        name="collectionAutocomplete"
-                                        ng-disabled="false"
-                                        md-selected-item="selectedItem"
-                                        md-search-text="searchText"
-                                        md-items="item in querySearch(searchText)"
-                                        md-item-text='item.display'
-                                        md-min-length="0"
-                                        md-selected-item-change="setCollection(item)"
-                                        placeholder="Select a collection"
-                                        ng-model="evalForm.collection">
+                                        <md-item-template>
+                                            <span md-highlight-text="searchText" md-highlight-flags="i">{{item.display}}</span>
+                                        </md-item-template>
 
-                                    <md-item-template>
-                                        <span md-highlight-text="searchText" md-highlight-flags="i">{{item.display}}</span>
-                                    </md-item-template>
+                                        <md-not-found>
+                                            No collection found with term "{{searchText}}".
+                                        </md-not-found>
 
-                                    <md-not-found>
-                                        No collection found with term "{{searchText}}".
-                                    </md-not-found>
-
-                                </md-autocomplete>
+                                    </md-autocomplete>
+                                </md-input-container>
+                                <md-input-container class="inputCollectionError">
+                                    <input required name="collectionAutocompleteError"
+                                           ng-model="evalForm.collection">
+                                    <div ng-messages="runEval.collectionAutocompleteError.$error">
+                                        <div ng-message="required">Please provide a URL or GUID to your resource. See hints above.</div>
+                                    </div>
                             </md-input-container>
 
+                            </div>
                             <md-input-container class="md-block" flex-gt-xs
                                                 ng-if="evalForm.collection_disabled">
                                 <md-select placeholder="collections"
@@ -89,7 +97,6 @@
                                     </md-option>
                                 </md-select>
                             </md-input-container>
-
                         </div>
 
                         <div layout-gt-sm="row">
@@ -115,7 +122,7 @@
 
                             <md-input-container class="md-block" flex-gt-sm>
                                 <label>Your ORCiD</label>
-                                <input ng-model="evalForm.orcid" required name="collectioOrganization">
+                                <input ng-model="evalForm.orcid" required name="collectionOrganization">
                                 <div ng-messages="runEval.collectionOrganization.$error">
                                     <div ng-message="required">Please provide your ORCID. If you dont have one, you can register at https://orcid.org/</div>
                                 </div>

@@ -1032,3 +1032,21 @@ nav.navTop{
 
 
 
+.inputCollectionContainer {
+    position: relative;
+    width:100%;
+}
+
+.inputCollectionContainer .collectionTitle{
+    z-index: 3;
+}
+
+.inputCollectionContainer .inputCollectionError {
+    position: absolute;
+    top:19px;
+    z-index:2;
+    width:100%;
+}
+
+.inputCollectionContainer .inputCollectionError input {
+}
