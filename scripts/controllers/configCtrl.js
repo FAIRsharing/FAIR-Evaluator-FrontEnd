@@ -8,6 +8,7 @@ angular.module('appConfigCtrl', []).controller(
 
             /* Warning */
             $scope.warning = false;
+            $scope.maintenance = true;
 
             /* ******************************************** */
             /* SORTING TABLES DEFAULT VALUES */
@@ -27,7 +28,12 @@ angular.module('appConfigCtrl', []).controller(
             /* ******************************************** */
             /* REQUESTS */
             /* ******************************************** */
-            $scope.request_timeout = 10000;
+            if ($scope.maintenance){
+                $scope.request_timeout = 0.0001;
+            }
+            else {
+                $scope.request_timeout = 10000;
+            }
             $scope.requests = {
                 metrics: {
                     /* ROUTE: /metrics */

@@ -137,8 +137,6 @@
 		}
         </script>
 
-
-
         <!-- NAV BAR TOP -->
         <nav class="navTop navbar navbar-expand-lg fixed-top navbar-dark bg-primary navbar-transparent navbar-dark bg-primary">
             <img class="siteLogo" src="assets/img/fairmetrics.png">
@@ -221,6 +219,15 @@
                     </div>
                 </div>
 
+            </div>
+        </div>
+
+        <div class="maintenance" ng-if="maintenance">
+            <div class="message">
+                <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                <b class="underline">PLEASE NOTE:</b>  The Evaluator will be taken offline during the weekend for relocation to a new server.
+                We discourage running evaluations in the days leading to the switch and recommend waiting until the service is restored on Feb 11th.
+                Thank you!
             </div>
         </div>
 

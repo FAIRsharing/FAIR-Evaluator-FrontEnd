@@ -1050,3 +1050,22 @@ nav.navTop{
 
 .inputCollectionContainer .inputCollectionError input {
 }
+
+
+.maintenance {
+    margin:20px;
+    background-color: indianred;
+    color:white;
+    padding:20px;
+    font-size:20px;
+    border-radius: 5px;
+    box-shadow: 6px 6px 9px rgba(0,0,0,0.2);
+}
+
+.maintenance .fa {
+    margin-right:10px;
+}
+
+.underline {
+    text-decoration: underline;
+}
