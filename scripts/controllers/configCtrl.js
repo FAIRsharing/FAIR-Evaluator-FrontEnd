@@ -31,9 +31,7 @@ angular.module('appConfigCtrl', []).controller(
             if ($scope.maintenance){
                 $scope.request_timeout = 0.0001;
             }*/
-            else {
-                $scope.request_timeout = 10000;
-            }
+            $scope.request_timeout = 10000;
             $scope.requests = {
                 metrics: {
                     /* ROUTE: /metrics */
