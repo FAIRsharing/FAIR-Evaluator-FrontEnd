@@ -4,11 +4,12 @@ angular.module('appConfigCtrl', []).controller(
         '$scope',
         function($scope){
             /* server base URL for endpoints */
-            $scope.base_url = "https://ejp-evaluator.appspot.com/FAIR_Evaluator";
+            $scope.base_url = "https://fair-evaluator.semanticscience.org/";
 
             /* Warning */
             $scope.warning = false;
-            $scope.maintenance = true;
+            $scope.maintenance = false;
+            $scope.weRBack = true;
 
             /* ******************************************** */
             /* SORTING TABLES DEFAULT VALUES */
