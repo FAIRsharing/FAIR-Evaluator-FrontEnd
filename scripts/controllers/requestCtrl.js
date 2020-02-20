@@ -6,7 +6,7 @@ request_app.factory("RequestLoader", function($q, $http, $sce, $location){
         let loader = this;
         loader.data = null;
 
-        let base_url = "https://fair-evaluator.semanticscience.org";
+        let base_url = "https://fair-evaluator.semanticscience.org/FAIR_Evaluator";
         let requests = {
             metrics: {
                 /* ROUTE: /metrics */
