@@ -8,8 +8,8 @@ angular.module('appConfigCtrl', []).controller(
 
             /* Warning */
             $scope.warning = false;
-            $scope.maintenance = true;
-            $scope.weRBack = false;
+            $scope.maintenance = false;
+            $scope.weRBack = true;
 
             /* ******************************************** */
             /* SORTING TABLES DEFAULT VALUES */
