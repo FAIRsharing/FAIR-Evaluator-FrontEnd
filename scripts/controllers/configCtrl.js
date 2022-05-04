@@ -5,7 +5,7 @@ angular.module('appConfigCtrl', []).controller(
         function($scope){
             /* server base URL for endpoints */
             /* $scope.base_url = "https://fair-evaluator.semanticscience.org/FAIR_Evaluator"; */
-            $scope.base_url = "https://w3id.org/AmIFAIR";
+            $scope.base_url = "https://w3id.org/FAIR_Evaluator";
 
 
             /* Warning */
