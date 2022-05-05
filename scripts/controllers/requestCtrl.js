@@ -1,12 +1,11 @@
 let request_app = angular.module('requestProviderCtrl', ['appConfigCtrl']);
 
 request_app.factory("RequestLoader", function($q, $http, $sce, $location){
-    
-    function RequestsLoader(timeout){
+    return function RequestsLoader(timeout, base_url){
         let loader = this;
         loader.data = null;
 
-        let base_url = "https://fair-evaluator.semanticscience.org/FAIR_Evaluator";
+        //let base_url = "https://fair-evaluator.semanticscience.org/FAIR_Evaluator";
         let requests = {
             metrics: {
                 /* ROUTE: /metrics */
@@ -393,9 +392,6 @@ request_app.factory("RequestLoader", function($q, $http, $sce, $location){
             return deferred.promise;
         }
     }
-
-    return RequestsLoader;
-
 });
 
 
@@ -413,7 +409,7 @@ request_app.controller(
         let URL = new $window.URL($location.absUrl()).hash.replace('#!/', "").split('/');
         let full_url = URL[0] = URL[0].split("?");
         URL[0] = full_url[0];
-        let requestLoader = new RequestLoader($scope.request_timeout);
+        let requestLoader = new RequestLoader($scope.request_timeout, $scope.base_url);
         let url_mapper = {
             "metrics/": function(){
                 return requestLoader.get_metrics()
