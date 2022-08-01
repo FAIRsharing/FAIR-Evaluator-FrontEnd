@@ -306,8 +306,7 @@ request_app.factory("RequestLoader", function($q, $http, $sce, $location){
 
                     response.data['evaluationResult'][metricName][0]["http://schema.org/comment"][0]["@value"] =
                         response.data['evaluationResult'][metricName][0]["http://schema.org/comment"][0]["@value"].replace(/\n\n/g, "\n");
-                    response.data['evaluationResult'][metricName][0]['name'] = metricName.split('/').slice(-1)[0].replace(/_/g, ' ');
-
+                    response.data['evaluationResult'][metricName][0]['name'] = response.data['evaluationResult'][metricName][0]['@id'].split('#')[0].split('/').slice(-1)[0].replace(/_/g, ' ');
 
                     let comment = angular.copy(response.data['evaluationResult'][metricName][0]["http://schema.org/comment"][0]["@value"]);
                     for (let colorLabel in colors){
